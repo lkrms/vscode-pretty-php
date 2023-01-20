@@ -1,0 +1,53 @@
+{
+  "name": "pretty-php",
+  "displayName": "PrettyPHP",
+  "description": "The perfect PHP formatter doesn't exi...",
+  "version": "0.1.4",
+  "publisher": "lkrms",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Formatters"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lkrms/vscode-pretty-php.git"
+  },
+  "activationEvents": [
+    "onCommand:pretty-php.format",
+    "onLanguage:php"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "pretty-php.format",
+        "title": "Format PHP"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "@vscode/test-electron": "^2.2.2",
+    "eslint": "^8.32.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "ts-standard": "^12.0.2",
+    "typescript": "^4.9.4"
+  },
+  "icon": "images/pretty-php.png"
+}
