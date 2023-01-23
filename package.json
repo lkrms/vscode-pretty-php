@@ -2,7 +2,7 @@
   "name": "pretty-php",
   "displayName": "PrettyPHP",
   "description": "The perfect PHP formatter doesn't exi...",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "publisher": "lkrms",
   "engines": {
     "vscode": "^1.74.0"
@@ -25,7 +25,17 @@
         "command": "pretty-php.format",
         "title": "Format PHP"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "PrettyPHP",
+      "properties": {
+        "pretty-php.php": {
+          "description": "Path to the PHP executable",
+          "type": "string",
+          "default": "php"
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
