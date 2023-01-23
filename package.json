@@ -29,10 +29,14 @@
     "configuration": {
       "title": "PrettyPHP",
       "properties": {
-        "pretty-php.php": {
+        "pretty-php.phpPath": {
           "description": "Path to the PHP executable",
           "type": "string",
           "default": "php"
+        },
+        "pretty-php.formatterPath": {
+          "description": "Use a custom version of PrettyPHP",
+          "type": "string"
         }
       }
     }
