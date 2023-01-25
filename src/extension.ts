@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import * as fs from 'fs';
 import { spawn } from 'child_process';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -10,10 +11,25 @@ export function activate(context: vscode.ExtensionContext) {
 		tabSize: number
 	): Thenable<vscode.TextEdit[]> {
 		return new Promise((resolve, reject) => {
+
 			const config = vscode.workspace.getConfiguration("pretty-php"),
+				formatterPath = config.get<string>("formatterPath");
+
+			if (formatterPath) {
+				try {
+					fs.accessSync(formatterPath, fs.constants.R_OK);
+				} catch (err) {
+					console.log("PrettyPHP access check failed: %s", err);
+					vscode.window.showErrorMessage("PrettyPHP not found: " + formatterPath);
+					reject();
+					return;
+				}
+			}
+
+			const phpPath = config.get<string>("phpPath"),
 				text = document.getText(),
 				php = spawn(
-					config.get("php") || "php",
+					phpPath || "php",
 					[
 						// Send startup errors to STDERR so they don't taint our code
 						"-ddisplay_errors=stderr",
@@ -21,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 						// Format code with the short form of PHP's open tag (`<?`)
 						"-dshort_open_tag=On",
 
-						path.resolve(__dirname, "../bin/pretty-php.phar"),
+						formatterPath || path.resolve(__dirname, "../bin/pretty-php.phar"),
 
 						// Pass the editor's indent type and size to PrettyPHP
 						(insertSpaces ? "-s" : "-t") + normaliseTabSize(tabSize),
@@ -57,7 +73,8 @@ export function activate(context: vscode.ExtensionContext) {
 					}
 				} else {
 					console.log("%s failed (exit status: %i)", php.spawnfile, code);
-					reject(stderr);
+					vscode.window.showErrorMessage("PrettyPHP failed: " + stderr);
+					reject();
 				}
 			});
 
@@ -94,11 +111,12 @@ export function activate(context: vscode.ExtensionContext) {
 			const options = vscode.window.activeTextEditor?.options,
 				insertSpaces = typeof options?.insertSpaces === "boolean" ? options.insertSpaces : true,
 				tabSize = typeof options?.tabSize === "number" ? options.tabSize : 4;
-			formatDocument(document, insertSpaces, tabSize).then((edits: vscode.TextEdit[]) => {
-				let edit = new vscode.WorkspaceEdit();
-				edit.set(document.uri, edits);
-				vscode.workspace.applyEdit(edit);
-			});
+			formatDocument(document, insertSpaces, tabSize)
+				.then((edits: vscode.TextEdit[]) => {
+					let edit = new vscode.WorkspaceEdit();
+					edit.set(document.uri, edits);
+					vscode.workspace.applyEdit(edit);
+				});
 		}
 	});
 
