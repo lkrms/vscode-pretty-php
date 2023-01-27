@@ -4,6 +4,12 @@ All notable changes to the PrettyPHP extension will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.1.7] - 2023-01-27
+
+### Changed
+
+- Update PrettyPHP to v0.1.10 for improved argument alignment and related bug fixes.
+
 ## [0.1.6] - 2023-01-25
 
 ### Added
