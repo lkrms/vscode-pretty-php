@@ -4,6 +4,18 @@ All notable changes to the PrettyPHP extension will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.2.0] - 2023-02-06
+
+### Changed
+
+- Update PrettyPHP to v0.2.0. Highlights:
+
+  - Newlines are added before `->` or `?->` operators that appear after an aligned call in a method chain.
+  - Newlines are added before items in argument lists and arrays where one or more items already have a leading newline.
+  - Multi-line comments are supported beside code.
+  - Standard multi-line comments (`/* ... */`) are formatted like their PHPDoc counterparts (`/** ... */`).
+  - Multiple bugs related to indentation and alignment have been fixed.
+
 ## [0.1.7] - 2023-01-27
 
 ### Changed
