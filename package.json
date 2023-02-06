@@ -2,7 +2,7 @@
   "name": "pretty-php",
   "displayName": "PrettyPHP",
   "description": "The perfect PHP formatter doesn't exi...",
-  "version": "0.1.7",
+  "version": "0.2.0",
   "publisher": "lkrms",
   "engines": {
     "vscode": "^1.74.0"
