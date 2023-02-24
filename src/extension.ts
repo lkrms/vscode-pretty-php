@@ -5,10 +5,20 @@ import { spawn } from 'child_process';
 
 export function activate(context: vscode.ExtensionContext) {
 
+	const skipMaps = [
+		{ config: "formatting.simplifyStrings", arg: "simplify-strings" },
+	];
+
+	const ruleMaps = [
+		{ config: "formatting.alignment.alignAssignments", arg: "align-assignments" },
+		{ config: "formatting.preserveOneLineStatements", arg: "preserve-one-line" },
+	];
+
 	function formatDocument(
 		document: vscode.TextDocument,
 		insertSpaces: boolean,
-		tabSize: number
+		tabSize: number,
+		...prettyPhpArgs: string[]
 	): Thenable<vscode.TextEdit[]> {
 		return new Promise((resolve, reject) => {
 
@@ -26,6 +36,18 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 			}
 
+			skipMaps.forEach((map) => {
+				if (!config.get<boolean>(map.config)) {
+					prettyPhpArgs.push('-i', map.arg);
+				}
+			});
+
+			ruleMaps.forEach((map) => {
+				if (config.get<boolean>(map.config)) {
+					prettyPhpArgs.push('-r', map.arg);
+				}
+			});
+
 			const phpPath = config.get<string>("phpPath"),
 				text = document.getText(),
 				php = spawn(
@@ -38,6 +60,8 @@ export function activate(context: vscode.ExtensionContext) {
 						"-dshort_open_tag=On",
 
 						formatterPath || path.resolve(__dirname, "../bin/pretty-php.phar"),
+
+						...prettyPhpArgs,
 
 						// Pass the editor's indent type and size to PrettyPHP
 						(insertSpaces ? "-s" : "-t") + normaliseTabSize(tabSize),
@@ -93,6 +117,23 @@ export function activate(context: vscode.ExtensionContext) {
 				: 2);
 	}
 
+	function handleCommand(
+		...prettyPhpArgs: string[]
+	) {
+		const document = vscode.window.activeTextEditor?.document;
+		if (document) {
+			const options = vscode.window.activeTextEditor?.options,
+				insertSpaces = typeof options?.insertSpaces === "boolean" ? options.insertSpaces : true,
+				tabSize = typeof options?.tabSize === "number" ? options.tabSize : 4;
+			formatDocument(document, insertSpaces, tabSize, ...prettyPhpArgs)
+				.then((edits: vscode.TextEdit[]) => {
+					let edit = new vscode.WorkspaceEdit();
+					edit.set(document.uri, edits);
+					vscode.workspace.applyEdit(edit);
+				});
+		}
+	}
+
 	vscode.languages.registerDocumentFormattingEditProvider([
 		"php"
 	], {
@@ -105,22 +146,11 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	let formatCommand = vscode.commands.registerCommand('pretty-php.format', () => {
-		const document = vscode.window.activeTextEditor?.document;
-		if (document) {
-			const options = vscode.window.activeTextEditor?.options,
-				insertSpaces = typeof options?.insertSpaces === "boolean" ? options.insertSpaces : true,
-				tabSize = typeof options?.tabSize === "number" ? options.tabSize : 4;
-			formatDocument(document, insertSpaces, tabSize)
-				.then((edits: vscode.TextEdit[]) => {
-					let edit = new vscode.WorkspaceEdit();
-					edit.set(document.uri, edits);
-					vscode.workspace.applyEdit(edit);
-				});
-		}
-	});
+	context.subscriptions.push(
+		vscode.commands.registerCommand('pretty-php.format', () => handleCommand()),
+		vscode.commands.registerCommand('pretty-php.formatWithoutNewlines', () => handleCommand('-N'))
+	);
 
-	context.subscriptions.push(formatCommand);
 }
 
 // this method is called when your extension is deactivated

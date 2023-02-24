@@ -1,8 +1,8 @@
 {
   "name": "pretty-php",
   "displayName": "PrettyPHP",
-  "description": "The perfect PHP formatter doesn't exi...",
-  "version": "0.2.0",
+  "description": "The opinionated formatter for modern, expressive PHP",
+  "version": "0.3.0",
   "publisher": "lkrms",
   "engines": {
     "vscode": "^1.74.0"
@@ -15,7 +15,6 @@
     "url": "https://github.com/lkrms/vscode-pretty-php.git"
   },
   "activationEvents": [
-    "onCommand:pretty-php.format",
     "onLanguage:php"
   ],
   "main": "./out/extension.js",
@@ -23,7 +22,13 @@
     "commands": [
       {
         "command": "pretty-php.format",
-        "title": "Format PHP"
+        "title": "Format PHP",
+        "enablement": "resourceLangId == php"
+      },
+      {
+        "command": "pretty-php.formatWithoutNewlines",
+        "title": "Format PHP without Preserving Newlines",
+        "enablement": "resourceLangId == php"
       }
     ],
     "configuration": {
@@ -37,6 +42,21 @@
         "pretty-php.formatterPath": {
           "description": "Use a custom version of PrettyPHP",
           "type": "string"
+        },
+        "pretty-php.formatting.simplifyStrings": {
+          "description": "Replace single- and double-quoted strings with whichever is clearer and more efficient",
+          "type": "boolean",
+          "default": true
+        },
+        "pretty-php.formatting.alignment.alignAssignments": {
+          "description": "Align consecutive assignment operators and double arrows when they have the same context",
+          "type": "boolean",
+          "default": false
+        },
+        "pretty-php.formatting.preserveOneLineStatements": {
+          "description": "Suppress newlines in statements and control structures that start and end on the same line, including individual case statements",
+          "type": "boolean",
+          "default": false
         }
       }
     }
