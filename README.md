@@ -8,43 +8,59 @@ for PHP by the same author, with Visual Studio Code.
 > *PrettyPHP* hasn't reached a stable release yet, but its code style is
 > unlikely to change significantly before v1.
 >
-> If *PrettyPHP*'s default output changes, e.g. to improve readability or reduce
-> diff size, settings to restore the previous behaviour will be added to the
-> extension wherever possible.
+> If *PrettyPHP*'s default output changes, settings to restore the previous
+> behaviour will be added to the extension wherever possible.
 
-### Requirements
+## Requirements
 
 PHP 8+ must be installed.
 
-### How is PrettyPHP different to other formatters?
+## How is PrettyPHP different to other formatters?
 
-From [PrettyPHP][]'s FAQ (features still being developed have crossed out):
+From [PrettyPHP][]'s FAQ (features still under development have been crossed
+out):
 
-- It's opinionated
+<details>
+  <summary>It's opinionated</summary>
 
   - No configuration is required
   - Formatting options are deliberately limited
   - Readable code, small diffs, and fast processing are the main priorities
 
-- It ignores previous formatting (with some exceptions)
+</details>
+
+<details>
+  <summary>It ignores previous formatting (with some exceptions)</summary>
 
   - Whitespace is discarded before formatting
   - Entire files are formatted in place
 
-- It doesn't make any changes to code (with some exceptions)
+</details>
 
-- It's CI-friendly
+<details>
+  <summary>It doesn't make any changes to code (with some exceptions)</summary>
+</details>
+
+<details>
+  <summary>It's CI-friendly</summary>
 
   - Installs via `composer require --dev` ~~or direct download~~
   - Runs on Linux, macOS and Windows
   - MIT-licensed
 
-- It's written in PHP
+</details>
+
+<details>
+  <summary>It's written in PHP</summary>
 
   - Uses PHP to safely tokenize and validate code
   - Compares tokens before and after formatting for equivalence
 
-- ~~It's optionally compliant with PSR-12 and other coding standards~~
+</details>
+
+<details>
+  <summary><del>It's optionally compliant with PSR-12 and other coding standards</del></summary>
+</details>
 
 See the [PrettyPHP][] repository on GitHub for more information.
 
