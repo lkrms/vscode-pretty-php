@@ -43,6 +43,11 @@
           "description": "Use a custom version of PrettyPHP",
           "type": "string"
         },
+        "pretty-php.formatting.blankBeforeDeclaration": {
+          "description": "Add, suppress or normalise blank lines before declarations",
+          "type": "boolean",
+          "default": true
+        },
         "pretty-php.formatting.simplifyStrings": {
           "description": "Replace single- and double-quoted strings with whichever is clearer and more efficient",
           "type": "boolean",
@@ -50,6 +55,11 @@
         },
         "pretty-php.formatting.alignment.alignAssignments": {
           "description": "Align consecutive assignment operators and double arrows when they have the same context",
+          "type": "boolean",
+          "default": false
+        },
+        "pretty-php.formatting.alignment.alignComments": {
+          "description": "Align comments beside code",
           "type": "boolean",
           "default": false
         },

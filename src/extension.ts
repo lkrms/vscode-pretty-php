@@ -6,11 +6,13 @@ import { spawn } from 'child_process';
 export function activate(context: vscode.ExtensionContext) {
 
 	const skipMaps = [
+		{ config: "formatting.blankBeforeDeclaration", arg: "blank-before-declaration" },
 		{ config: "formatting.simplifyStrings", arg: "simplify-strings" },
 	];
 
 	const ruleMaps = [
 		{ config: "formatting.alignment.alignAssignments", arg: "align-assignments" },
+		{ config: "formatting.alignment.alignComments", arg: "align-comments" },
 		{ config: "formatting.preserveOneLineStatements", arg: "preserve-one-line" },
 	];
 
@@ -68,7 +70,17 @@ export function activate(context: vscode.ExtensionContext) {
 
 						// Silence PrettyPHP unless there's an error
 						"-qqq",
-					]);
+					],
+					{
+						// Remove PrettyPHP settings from the environment to prevent confusing/unstable behaviour
+						env: {
+							...process.env,
+							...{
+								pretty_php_skip: undefined,	// eslint-disable-line @typescript-eslint/naming-convention
+								pretty_php_rule: undefined	// eslint-disable-line @typescript-eslint/naming-convention
+							}
+						}
+					});
 
 			console.log("Spawned:", ...php.spawnargs);
 
