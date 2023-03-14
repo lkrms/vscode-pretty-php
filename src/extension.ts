@@ -13,6 +13,7 @@ export function activate (context: vscode.ExtensionContext) {
   const ruleMaps = [
     { config: 'formatting.alignment.alignAssignments', arg: 'align-assignments' },
     { config: 'formatting.alignment.alignComments', arg: 'align-comments' },
+    { config: 'formatting.oneLineArguments', arg: 'one-line-arguments' },
     { config: 'formatting.preserveOneLineStatements', arg: 'preserve-one-line' }
   ]
 
