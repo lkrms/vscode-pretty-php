@@ -2,7 +2,7 @@
   "name": "pretty-php",
   "displayName": "PrettyPHP",
   "description": "The opinionated formatter for modern, expressive PHP",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "publisher": "lkrms",
   "engines": {
     "vscode": "^1.74.0"
@@ -60,6 +60,11 @@
         },
         "pretty-php.formatting.alignment.alignComments": {
           "description": "Align comments beside code",
+          "type": "boolean",
+          "default": false
+        },
+        "pretty-php.formatting.oneLineArguments": {
+          "description": "Suppress newlines between arguments in function declarations",
           "type": "boolean",
           "default": false
         },

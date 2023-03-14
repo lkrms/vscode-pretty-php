@@ -4,6 +4,17 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.2] - 2023-03-14
+
+### Added
+
+- Add formatting option: "One Line Arguments"
+
+### Changed
+
+- Update bundled [PrettyPHP] to v0.3.17, with fixes and heuristic improvements to hanging indentation, brace and newline
+  placement, assignment alignment and unenclosed control structure body handling.
+
 ## [0.3.1] - 2023-03-07
 
 ### Added
@@ -103,6 +114,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Initial release
 
 
+[0.3.2]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.2
 [0.3.1]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.1
 [0.3.0]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.0
 [0.2.0]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.2.0
