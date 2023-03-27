@@ -4,11 +4,42 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.3] - 2023-03-27
+
+### Added
+
+- Add settings:
+
+  - Formatter Arguments
+  - Formatting:
+
+    - Sort Imports
+    - Magic Commas
+    - Indent Heredocs
+    - Blank Before Return
+    - Strict Lists
+    - Alignment:
+
+      - Align Chains
+      - Align Fn
+      - Align Lists
+      - Align Ternary Operators
+
+### Changed
+
+- Update bundled [PrettyPHP] to v0.3.19. Highlights:
+
+  - New alignment rules for ternary operators and arrow functions
+  - Improved array and argument list handling
+  - Many fixes and refinements
+
+- Rename `Blank Before Declaration` setting to `Declaration Spacing`
+
 ## [0.3.2] - 2023-03-14
 
 ### Added
 
-- Add formatting option: "One Line Arguments"
+- Add formatting setting: "One Line Arguments"
 
 ### Changed
 
@@ -19,7 +50,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Added
 
-- Add formatting options:
+- Add formatting settings:
 
   - Blank Before Declaration
   - Align Comments
@@ -39,7 +70,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Add command: "Format PHP without Preserving Newlines"
-- Add formatting options (a few more to come):
+- Add formatting settings (a few more to come):
 
   - Simplify Strings
   - Align Assignments
@@ -114,6 +145,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Initial release
 
 
+[0.3.3]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.3
 [0.3.2]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.2
 [0.3.1]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.1
 [0.3.0]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.0
