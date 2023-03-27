@@ -6,16 +6,60 @@ import { spawn } from 'child_process'
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function activate (context: vscode.ExtensionContext) {
   const skipMaps = [
-    { config: 'formatting.blankBeforeDeclaration', arg: 'blank-before-declaration' },
-    { config: 'formatting.simplifyStrings', arg: 'simplify-strings' }
+    { config: 'formatting.declarationSpacing', arg: 'declaration-spacing' },
+    { config: 'formatting.simplifyStrings', arg: 'simplify-strings' },
+    { config: 'formatting.magicCommas', arg: 'magic-commas' },
+    { config: 'formatting.indentHeredocs', arg: 'indent-heredocs' }
   ]
 
   const ruleMaps = [
+    { config: 'formatting.blankBeforeReturn', arg: 'blank-before-return' },
+    { config: 'formatting.strictLists', arg: 'strict-lists' },
     { config: 'formatting.alignment.alignAssignments', arg: 'align-assignments' },
+    { config: 'formatting.alignment.alignChains', arg: 'align-chains' },
     { config: 'formatting.alignment.alignComments', arg: 'align-comments' },
+    { config: 'formatting.alignment.alignFn', arg: 'align-fn' },
+    { config: 'formatting.alignment.alignLists', arg: 'align-lists' },
+    { config: 'formatting.alignment.alignTernaryOperators', arg: 'align-ternary' },
     { config: 'formatting.oneLineArguments', arg: 'one-line-arguments' },
     { config: 'formatting.preserveOneLineStatements', arg: 'preserve-one-line' }
   ]
+
+  function migrateConfiguration<T> (from: string, to: string): void {
+    const config = vscode.workspace.getConfiguration('pretty-php')
+    const currentFrom = config.inspect<T>(from)
+    const currentTo = config.inspect<T>(to)
+    maybeUpdateConfiguration(config, from, to, currentFrom?.globalValue, currentTo?.globalValue, true)
+    maybeUpdateConfiguration(config, from, to, currentFrom?.workspaceValue, currentTo?.workspaceValue, false)
+  }
+
+  function maybeUpdateConfiguration (
+    config: vscode.WorkspaceConfiguration,
+    from: string,
+    to: string,
+    fromValue: any,
+    toValue: any,
+    global: boolean): void {
+    // Old setting not set?
+    if (fromValue == null) {
+      return
+    }
+
+    // New setting already set?
+    if (toValue != null) {
+      // Remove old setting if values match, otherwise leave it for manual removal
+      if (fromValue === toValue) {
+        config.update(from, undefined, global).then(() => { }, () => { })
+      }
+
+      return
+    }
+
+    config.update(to, fromValue, global).then(
+      () => { config.update(from, undefined, global).then(() => { }, () => { }) },
+      (reason) => { console.error('Could not migrate setting %s to %s: %s', from, to, reason) }
+    )
+  }
 
   function formatDocument (
     document: vscode.TextDocument,
@@ -31,7 +75,7 @@ export function activate (context: vscode.ExtensionContext) {
         try {
           fs.accessSync(formatterPath, fs.constants.R_OK)
         } catch (err) {
-          console.log('PrettyPHP access check failed: %s', err)
+          console.error('PrettyPHP access check failed: %s', err)
           vscode.window.showErrorMessage('PrettyPHP not found: ' + formatterPath)
             .then(
               () => { },
@@ -40,6 +84,11 @@ export function activate (context: vscode.ExtensionContext) {
           reject(new Error('PrettyPHP not found'))
           return
         }
+      }
+
+      const formatterArguments = config.get<string[]>('formatterArguments')
+      if (formatterArguments != null) {
+        prettyPhpArgs.push(...formatterArguments)
       }
 
       skipMaps.forEach((map) => {
@@ -55,6 +104,11 @@ export function activate (context: vscode.ExtensionContext) {
           prettyPhpArgs.push('-r', map.arg)
         }
       })
+
+      const sortImports = config.get<boolean>('formatting.sortImports')
+      if (sortImports != null && !sortImports) {
+        prettyPhpArgs.push('-M')
+      }
 
       const phpPath = config.get<string>('phpPath')
       const text = document.getText()
@@ -115,8 +169,11 @@ export function activate (context: vscode.ExtensionContext) {
             console.log('Nothing to change')
             resolve([])
           }
+        } else if (code === 2) {
+          console.log('%s reported invalid input (exit status: %i)', php.spawnfile, code)
+          reject(new Error('PrettyPHP reported invalid input'))
         } else {
-          console.log('%s failed (exit status: %i)', php.spawnfile, code)
+          console.error('%s failed (exit status: %i)', php.spawnfile, code)
           vscode.window.showErrorMessage('PrettyPHP failed: ' + stderr)
             .then(
               () => { },
@@ -158,6 +215,8 @@ export function activate (context: vscode.ExtensionContext) {
         }, () => { })
     }
   }
+
+  migrateConfiguration<boolean>('formatting.blankBeforeDeclaration', 'formatting.declarationSpacing')
 
   vscode.languages.registerDocumentFormattingEditProvider([
     'php'
