@@ -4,6 +4,12 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.4] - 2023-03-28
+
+### Changed
+
+- Update documentation
+
 ## [0.3.3] - 2023-03-27
 
 ### Added
@@ -27,13 +33,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ### Changed
 
+- Suppress error notification when syntax is invalid
+- Rename "Blank Before Declaration" setting to "Declaration Spacing"
 - Update bundled [PrettyPHP] to v0.3.19. Highlights:
 
   - New alignment rules for ternary operators and arrow functions
   - Improved array and argument list handling
   - Many fixes and refinements
-
-- Rename `Blank Before Declaration` setting to `Declaration Spacing`
 
 ## [0.3.2] - 2023-03-14
 
@@ -145,6 +151,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Initial release
 
 
+[0.3.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.4
 [0.3.3]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.3
 [0.3.2]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.2
 [0.3.1]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.1
