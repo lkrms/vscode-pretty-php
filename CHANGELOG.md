@@ -4,6 +4,17 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.3.5] - 2023-04-04
+
+### Changed
+
+- Update bundled [PrettyPHP] to v0.3.22. Highlights:
+
+  - Lists of interfaces after `extends` or `implements` are handled correctly
+  - If one ternary operator is found at the start of a line, its counterpart is also moved to the start of a line
+  - Improved chain alignment heuristics (apologies for any inexplicable whitespace diffs you encounter)
+  - Nested heredocs no longer produce unparsable output
+
 ## [0.3.4] - 2023-03-28
 
 ### Changed
@@ -151,6 +162,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Initial release
 
 
+[0.3.5]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.5
 [0.3.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.4
 [0.3.3]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.3
 [0.3.2]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.2
