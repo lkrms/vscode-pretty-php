@@ -4,6 +4,24 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.4.0] - 2023-04-28
+
+### Added
+
+Add settings:
+
+- Formatting: Preserve Trailing Spaces
+- Honour Configuration Files
+
+### Changed
+
+- Update bundled [PrettyPHP] to v0.4.1. Highlights:
+
+  - Support for JSON configuration files (e.g. `.prettyphp`, `prettyphp.json`) that specify how files in and below a
+    directory should be formatted
+  - Optional preservation of Markdown-style line breaks (aka trailing spaces) in comments
+  - Improved `match` handling
+
 ## [0.3.5] - 2023-04-04
 
 ### Changed
@@ -162,6 +180,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Initial release
 
 
+[0.4.0]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.0
 [0.3.5]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.5
 [0.3.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.4
 [0.3.3]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.3

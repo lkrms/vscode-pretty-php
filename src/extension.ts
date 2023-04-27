@@ -110,6 +110,23 @@ export function activate (context: vscode.ExtensionContext) {
         prettyPhpArgs.push('-M')
       }
 
+      const trailingSpaces = config.get<number[]>('formatting.preserveTrailingSpaces')
+      if (trailingSpaces != null) {
+        trailingSpaces.forEach((map) => {
+          prettyPhpArgs.push('-T' + String(map))
+        })
+      }
+
+      const honourConfigurationFiles = config.get<boolean>('honourConfigurationFiles')
+      if (honourConfigurationFiles != null && !honourConfigurationFiles) {
+        prettyPhpArgs.push('--no-config')
+      }
+
+      const filename = document.uri.scheme === 'file' ? document.uri.fsPath : null
+      if (filename !== null) {
+        prettyPhpArgs.push('-F', filename)
+      }
+
       const phpPath = config.get<string>('phpPath')
       const text = document.getText()
       const php = spawn(
@@ -129,7 +146,12 @@ export function activate (context: vscode.ExtensionContext) {
           (insertSpaces ? '-s' : '-t') + String(normaliseTabSize(tabSize)),
 
           // Silence PrettyPHP unless there's an error
-          '-qqq'
+          '-qqq',
+
+          '--',
+
+          // Specify that code to format should be taken from the standard input
+          '-'
         ],
         {
           env: {
@@ -137,7 +159,9 @@ export function activate (context: vscode.ExtensionContext) {
             ...{
               // Remove PrettyPHP settings from the environment to prevent confusing/unstable behaviour
               pretty_php_skip: undefined, // eslint-disable-line @typescript-eslint/naming-convention
-              pretty_php_rule: undefined // eslint-disable-line @typescript-eslint/naming-convention
+              pretty_php_rule: undefined, // eslint-disable-line @typescript-eslint/naming-convention
+              pretty_php_disable: undefined, // eslint-disable-line @typescript-eslint/naming-convention
+              pretty_php_enable: undefined // eslint-disable-line @typescript-eslint/naming-convention
             }
           }
         })
