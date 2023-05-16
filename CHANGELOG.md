@@ -4,6 +4,32 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.4.4] - 2023-05-16
+
+### Changed
+
+- Improve Windows support, including clearer feedback and instructions when PHP can't be found
+- Update bundled [PrettyPHP] to v0.4.4. Highlights:
+
+  - Tokens between indented `<?php` and `?>` tags are aligned with the opening tag (finally!)
+  - Unicode sequences ("👍") are never encoded (`"\360\237\221\215"`) when simplifying strings (an environment
+    configured with a UTF-8 locale was required previously)
+  - End-of-line sequences are preserved by default (previous versions converted `CRLF` to `LF`, which made no difference
+    to this extension but may have been a deal-breaker for command-line users)
+
+### Removed
+
+- Remove the "Formatter Path" setting because versions other than the bundled version of *PrettyPHP* are likely to
+  introduce compatibility issues
+
+### Fixed
+
+- Fix PHP 8.0 issue where *PrettyPHP* reports `Your Composer dependencies require a PHP version ">= 8.1.0"`. Apologies
+  for the packaging oversight.
+- Fix regression where the "Format PHP without Preserving Newlines" command preserves newlines when a config file
+  applies to the file being formatted
+
+
 ## [0.4.0] - 2023-04-28
 
 ### Added
@@ -22,6 +48,7 @@ Add settings:
   - Optional preservation of Markdown-style line breaks (aka trailing spaces) in comments
   - Improved `match` handling
 
+
 ## [0.3.5] - 2023-04-04
 
 ### Changed
@@ -33,11 +60,13 @@ Add settings:
   - Improved chain alignment heuristics (apologies for any inexplicable whitespace diffs you encounter)
   - Nested heredocs no longer produce unparsable output
 
+
 ## [0.3.4] - 2023-03-28
 
 ### Changed
 
 - Update documentation
+
 
 ## [0.3.3] - 2023-03-27
 
@@ -70,6 +99,7 @@ Add settings:
   - Improved array and argument list handling
   - Many fixes and refinements
 
+
 ## [0.3.2] - 2023-03-14
 
 ### Added
@@ -80,6 +110,7 @@ Add settings:
 
 - Update bundled [PrettyPHP] to v0.3.17, with fixes and heuristic improvements to hanging indentation, brace and newline
   placement, assignment alignment and unenclosed control structure body handling.
+
 
 ## [0.3.1] - 2023-03-07
 
@@ -97,6 +128,7 @@ Add settings:
   - Newlines between declarations are more consistent, e.g. when formatting three or more consecutive `public const`
     declarations, the gap between the first two declarations is applied to the others.
   - 2 spaces instead of 4 are added between code and adjacent comments.
+
 
 ## [0.3.0] - 2023-02-24
 
@@ -128,6 +160,7 @@ Add settings:
     - Undesirable blank lines above some PHPDoc comments
     - Undesirable alignment of multi-line comments beside code
 
+
 ## [0.2.0] - 2023-02-06
 
 ### Changed
@@ -140,11 +173,13 @@ Add settings:
   - Standard multi-line comments (`/* ... */`) are formatted like their PHPDoc counterparts (`/** ... */`).
   - Multiple bugs related to indentation and alignment have been fixed.
 
+
 ## [0.1.7] - 2023-01-27
 
 ### Changed
 
 - Update [PrettyPHP] to v0.1.10 for improved argument alignment and related bug fixes.
+
 
 ## [0.1.6] - 2023-01-25
 
@@ -157,6 +192,7 @@ Add settings:
 - Update [PrettyPHP] to v0.1.8. Fixes an issue where subsequent empty lines weren't truncated correctly in heredocs.
 - Rename `pretty-php.php` setting to `pretty-php.phpPath`.
 - Report errors via VSCode notifications.
+
 
 ## [0.1.5] - 2023-01-23
 
@@ -175,11 +211,13 @@ Add settings:
 
 - Fix PHP startup errors appearing in formatted code.
 
+
 ## [0.1.4] - 2023-01-20
 
 - Initial release
 
 
+[0.4.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.4
 [0.4.0]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.0
 [0.3.5]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.5
 [0.3.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.4
