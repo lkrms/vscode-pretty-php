@@ -2,7 +2,7 @@
   "name": "pretty-php",
   "displayName": "PrettyPHP",
   "description": "The opinionated formatter for modern, expressive PHP",
-  "version": "0.4.0",
+  "version": "0.4.4",
   "publisher": "lkrms",
   "engines": {
     "vscode": "^1.74.0"
@@ -151,11 +151,6 @@
           "type": "string",
           "default": "php",
           "order": 61
-        },
-        "pretty-php.formatterPath": {
-          "description": "Use a custom version of PrettyPHP",
-          "type": "string",
-          "order": 62
         }
       }
     },
@@ -163,9 +158,7 @@
       {
         "id": "json",
         "filenames": [
-          ".prettyphp",
-          ".prettyphp.dist",
-          "prettyphp.json.dist"
+          ".prettyphp"
         ]
       }
     ]
@@ -177,9 +170,13 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "ts-standard"
   },
+  "dependencies": {
+    "which": "^3.0.1"
+  },
   "devDependencies": {
     "@types/node": "18.x",
     "@types/vscode": "^1.74.0",
+    "@types/which": "^3.0.0",
     "ts-standard": "^12.0.2",
     "typescript": "^4.9.4"
   },
