@@ -151,11 +151,6 @@
           "type": "string",
           "default": "php",
           "order": 61
-        },
-        "pretty-php.formatterPath": {
-          "description": "Use a custom version of PrettyPHP",
-          "type": "string",
-          "order": 62
         }
       }
     },
