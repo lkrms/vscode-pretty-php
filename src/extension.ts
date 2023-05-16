@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
+import * as which from 'which'
 import { spawn } from 'child_process'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
@@ -47,18 +48,15 @@ export function activate (context: vscode.ExtensionContext) {
 
     // New setting already set?
     if (toValue != null) {
-      // Remove old setting if values match, otherwise leave it for manual removal
+      // Remove old setting if values match, otherwise leave for manual removal
       if (fromValue === toValue) {
-        config.update(from, undefined, global).then(() => { }, () => { })
+        void config.update(from, undefined, global)
       }
-
       return
     }
 
-    config.update(to, fromValue, global).then(
-      () => { config.update(from, undefined, global).then(() => { }, () => { }) },
-      (reason) => { console.error('Could not migrate setting %s to %s: %s', from, to, reason) }
-    )
+    void config.update(to, fromValue, global)
+      .then(() => { void config.update(from, undefined, global) })
   }
 
   function formatDocument (
@@ -67,104 +65,24 @@ export function activate (context: vscode.ExtensionContext) {
     tabSize: number,
     ...prettyPhpArgs: string[]
   ): Thenable<vscode.TextEdit[]> {
-    return new Promise((resolve, reject) => {
-      const config = vscode.workspace.getConfiguration('pretty-php')
-      const formatterPath = config.get<string>('formatterPath')
-
-      if (formatterPath != null && formatterPath !== '') {
-        try {
-          fs.accessSync(formatterPath, fs.constants.R_OK)
-        } catch (err) {
-          console.error('PrettyPHP access check failed: %s', err)
-          vscode.window.showErrorMessage('PrettyPHP not found: ' + formatterPath)
-            .then(
-              () => { },
-              () => { }
-            )
-          reject(new Error('PrettyPHP not found'))
-          return
-        }
+    return new Promise<vscode.TextEdit[]>(resolve => {
+      const args = getCommand(document, insertSpaces, tabSize)
+      const command = args?.shift()
+      if (args === undefined || command === undefined) {
+        resolve([])
+        return
       }
+      args.push(...prettyPhpArgs)
 
-      const formatterArguments = config.get<string[]>('formatterArguments')
-      if (formatterArguments != null) {
-        prettyPhpArgs.push(...formatterArguments)
-      }
-
-      skipMaps.forEach((map) => {
-        const enabled = config.get<boolean>(map.config)
-        if (enabled == null || !enabled) {
-          prettyPhpArgs.push('-i', map.arg)
-        }
-      })
-
-      ruleMaps.forEach((map) => {
-        const enabled = config.get<boolean>(map.config)
-        if (enabled != null && enabled) {
-          prettyPhpArgs.push('-r', map.arg)
-        }
-      })
-
-      const sortImports = config.get<boolean>('formatting.sortImports')
-      if (sortImports != null && !sortImports) {
-        prettyPhpArgs.push('-M')
-      }
-
-      const trailingSpaces = config.get<number[]>('formatting.preserveTrailingSpaces')
-      if (trailingSpaces != null) {
-        trailingSpaces.forEach((map) => {
-          prettyPhpArgs.push('-T' + String(map))
-        })
-      }
-
-      const honourConfigurationFiles = config.get<boolean>('honourConfigurationFiles')
-      if (honourConfigurationFiles != null && !honourConfigurationFiles) {
-        prettyPhpArgs.push('--no-config')
-      }
-
-      const filename = document.uri.scheme === 'file' ? document.uri.fsPath : null
-      if (filename !== null) {
-        prettyPhpArgs.push('-F', filename)
-      }
-
-      const phpPath = config.get<string>('phpPath')
       const text = document.getText()
       const php = spawn(
-        phpPath != null && phpPath !== '' ? phpPath : 'php',
-        [
-          // Send startup errors to STDERR so they don't taint our code
-          '-ddisplay_errors=stderr',
-
-          // Format code with the short form of PHP's open tag (`<?`)
-          '-dshort_open_tag=On',
-
-          formatterPath != null && formatterPath !== '' ? formatterPath : path.resolve(__dirname, '../bin/pretty-php.phar'),
-
-          ...prettyPhpArgs,
-
-          // Pass the editor's indent type and size to PrettyPHP
-          (insertSpaces ? '-s' : '-t') + String(normaliseTabSize(tabSize)),
-
-          // Silence PrettyPHP unless there's an error
-          '-qqq',
-
+        command, [
+          ...args,
+          '-qqq', // Silence PrettyPHP unless there's an error
           '--',
-
-          // Specify that code to format should be taken from the standard input
-          '-'
-        ],
-        {
-          env: {
-            ...process.env,
-            ...{
-              // Remove PrettyPHP settings from the environment to prevent confusing/unstable behaviour
-              pretty_php_skip: undefined, // eslint-disable-line @typescript-eslint/naming-convention
-              pretty_php_rule: undefined, // eslint-disable-line @typescript-eslint/naming-convention
-              pretty_php_disable: undefined, // eslint-disable-line @typescript-eslint/naming-convention
-              pretty_php_enable: undefined // eslint-disable-line @typescript-eslint/naming-convention
-            }
-          }
-        })
+          '-' // Specify that code to format should be taken from the standard input
+        ]
+      )
 
       console.log('Spawned:', ...php.spawnargs)
 
@@ -176,7 +94,7 @@ export function activate (context: vscode.ExtensionContext) {
       php.stderr.setEncoding('utf8')
       php.stderr.on('data', (chunk: string) => { stderr += chunk })
 
-      php.on('close', (code: number, signal: string) => {
+      php.on('close', (code: number) => {
         if (stderr.length > 0) {
           console.error(stderr)
         }
@@ -195,21 +113,127 @@ export function activate (context: vscode.ExtensionContext) {
           }
         } else if (code === 2) {
           console.log('%s reported invalid input (exit status: %i)', php.spawnfile, code)
-          reject(new Error('PrettyPHP reported invalid input'))
+          resolve([])
         } else {
           console.error('%s failed (exit status: %i)', php.spawnfile, code)
-          vscode.window.showErrorMessage('PrettyPHP failed: ' + stderr)
-            .then(
-              () => { },
-              () => { }
-            )
-          reject(new Error('PrettyPHP failed'))
+          showErrorMessage('PrettyPHP failed: ' + stderr)
+          resolve([])
         }
       })
 
-      php.stdin.write(document.getText())
+      php.stdin.write(text)
       php.stdin.end()
     })
+  }
+
+  function getCommand (
+    document?: vscode.TextDocument,
+    insertSpaces?: boolean,
+    tabSize?: number
+  ): string[] | undefined {
+    const php = getPath('PHP', 'phpPath', 'php', true)
+    if (php === undefined) {
+      return
+    }
+    const formatter = getPath('formatter', 'formatterPath', path.resolve(__dirname, '../bin/pretty-php.phar'), false)
+    if (formatter === undefined) {
+      return
+    }
+
+    const prettyPhpArgs: string[] = [
+      php,
+      '-ddisplay_errors=stderr', // Send startup errors to STDERR so they don't taint the code
+      '-dshort_open_tag=On', // Format code with the short form of PHP's open tag (`<?`)
+      formatter
+    ]
+
+    const config = vscode.workspace.getConfiguration('pretty-php')
+    const formatterArguments = config.get<string[]>('formatterArguments')
+    if (formatterArguments != null) {
+      prettyPhpArgs.push(...formatterArguments)
+    }
+
+    skipMaps.forEach((map) => {
+      const enabled = config.get<boolean>(map.config)
+      if (enabled == null || !enabled) {
+        prettyPhpArgs.push('-i', map.arg)
+      }
+    })
+
+    ruleMaps.forEach((map) => {
+      const enabled = config.get<boolean>(map.config)
+      if (enabled != null && enabled) {
+        prettyPhpArgs.push('-r', map.arg)
+      }
+    })
+
+    const sortImports = config.get<boolean>('formatting.sortImports')
+    if (sortImports != null && !sortImports) {
+      prettyPhpArgs.push('-M')
+    }
+
+    const trailingSpaces = config.get<number[]>('formatting.preserveTrailingSpaces')
+    if (trailingSpaces != null) {
+      trailingSpaces.forEach((map) => {
+        prettyPhpArgs.push('-T' + String(map))
+      })
+    }
+
+    const honourConfigurationFiles = config.get<boolean>('honourConfigurationFiles')
+    if (honourConfigurationFiles != null && !honourConfigurationFiles) {
+      prettyPhpArgs.push('--no-config')
+    }
+
+    if (document !== undefined) {
+      const filename = document.uri.scheme === 'file' ? document.uri.fsPath : null
+      if (filename !== null) {
+        prettyPhpArgs.push('-F', filename)
+      }
+    }
+
+    if (insertSpaces !== undefined && tabSize !== undefined) {
+      // Pass the editor's indent type and size to PrettyPHP
+      prettyPhpArgs.push((insertSpaces ? '-s' : '-t') + String(normaliseTabSize(tabSize)))
+    }
+
+    return prettyPhpArgs
+  }
+
+  function getPath (
+    name: string,
+    setting: string,
+    defaultPath: string,
+    executable: boolean
+  ): string | undefined {
+    const settingPath = vscode.workspace.getConfiguration('pretty-php').get<string>(setting)
+    const file = settingPath != null && settingPath !== '' ? settingPath : defaultPath
+    if (path.isAbsolute(file)) {
+      try {
+        fs.accessSync(file, fs.constants.R_OK | (executable ? fs.constants.X_OK : 0))
+        return file
+      } catch { }
+    } else {
+      const pathPath = which.sync(file, { nothrow: true })
+      if (pathPath !== null) {
+        return pathPath
+      }
+    }
+    setting = 'pretty-php.' + setting
+    showErrorMessage(`'${file}' not found. Use the '${setting}' setting to configure the ${name} path.`, setting)
+  }
+
+  function showErrorMessage (message: string, setting?: string): void {
+    if (setting === undefined) {
+      void vscode.window.showErrorMessage(message)
+    } else {
+      const goToSetting = 'Go to setting'
+      void vscode.window.showErrorMessage(message, goToSetting)
+        .then(item => {
+          if (item === goToSetting) {
+            void vscode.commands.executeCommand('workbench.action.openSettings', setting)
+          }
+        })
+    }
   }
 
   function normaliseTabSize (
@@ -242,13 +266,9 @@ export function activate (context: vscode.ExtensionContext) {
 
   migrateConfiguration<boolean>('formatting.blankBeforeDeclaration', 'formatting.declarationSpacing')
 
-  vscode.languages.registerDocumentFormattingEditProvider([
-    'php'
-  ], {
+  vscode.languages.registerDocumentFormattingEditProvider('php', {
     provideDocumentFormattingEdits (
-      document: vscode.TextDocument,
-      options: vscode.FormattingOptions,
-      token: vscode.CancellationToken
+      document: vscode.TextDocument, options: vscode.FormattingOptions
     ): Thenable<vscode.TextEdit[]> {
       return formatDocument(document, options.insertSpaces, options.tabSize)
     }
