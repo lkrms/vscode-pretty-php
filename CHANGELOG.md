@@ -4,6 +4,25 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.4.6] - 2023-05-18
+
+> You didn't miss anything—I've started releasing the extension with the same version number as *PrettyPHP* itself, and
+> some versions of the formatter don't make it to the extension.
+
+### Changed
+
+- **Improve alignment with `<?php` tags.** The first cut of this feature adhered more closely to "move fast and break
+  things" than intended. Runaway indentation has been fixed, and the formatter's heuristics now take the context of each
+  `?>` ... `<?php` pair into account.
+
+### Fixed
+
+- Fix errors related to alternative syntax parsing
+- Fix issue where strings with content other than valid UTF-8 sequences cannot be normalised
+- Fix inconsistent union and intersection type formatting
+- Suppress formatting of tokens between backticks
+
+
 ## [0.4.4] - 2023-05-16
 
 ### Changed
@@ -217,6 +236,7 @@ Add settings:
 - Initial release
 
 
+[0.4.6]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.6
 [0.4.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.4
 [0.4.0]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.0
 [0.3.5]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.5
