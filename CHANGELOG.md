@@ -4,10 +4,17 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.4.6] - 2023-05-18
+## [0.4.7] - 2023-05-23
 
 > You didn't miss anything—I've started releasing the extension with the same version number as *PrettyPHP* itself, and
 > some versions of the formatter don't make it to the extension.
+
+### Changed
+
+- Reinstate support for PHP 7.4
+
+
+## [0.4.6] - 2023-05-18
 
 ### Changed
 
@@ -236,6 +243,7 @@ Add settings:
 - Initial release
 
 
+[0.4.7]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.7
 [0.4.6]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.6
 [0.4.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.4
 [0.4.0]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.0
