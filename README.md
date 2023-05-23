@@ -3,16 +3,23 @@
 ## The opinionated formatter for modern, expressive PHP
 
 This extension integrates the latest release of [PrettyPHP], a code formatter
-for PHP by the same author, with Visual Studio Code.
+inspired by [Black], with Visual Studio Code.
 
-> *PrettyPHP* is still in development and is yet to reach a stable release. Its
-> code style is unlikely to change significantly before v1, and breaking changes
-> are kept to a minimum. *PrettyPHP* v0.x releases are safe to use in production
-> scenarios that accommodate these limitations.
+Like *Black*, *PrettyPHP* runs with sensible defaults and doesn't need to be
+configured. It's also deterministic (with some [pragmatic exceptions]), so no
+matter how the input is formatted, it produces the same output.
+
+> *PrettyPHP*'s default output is unlikely to change significantly before
+> [version 1.0.0] is released, but if you're already using it in production,
+> pinning `lkrms/pretty-php` to a specific version is recommended.
 
 ## Requirements
 
-PHP 8+ must be installed.
+*PrettyPHP* requires PHP 7.4, 8.0, 8.1, or 8.2 with a CLI runtime and the `phar`
+and `mbstring` extensions.
+
+The `json` and `tokenizer` extensions are also required, but they are usually
+enabled by default.
 
 ## FAQ
 
@@ -59,8 +66,10 @@ Over time, *PrettyPHP* will become more opinionated and have fewer options, so
 reliance on formatting options is discouraged.
 
 
+[Black]: https://github.com/psf/black
 [pragmatic exceptions]: https://github.com/lkrms/pretty-php#pragmatism
 [PrettyPHP]: https://github.com/lkrms/pretty-php
 [PSR-12]: https://www.php-fig.org/psr/psr-12/
 [tokenize]: https://www.php.net/manual/en/phptoken.tokenize.php
+[version 1.0.0]: https://semver.org/#spec-item-5
 
