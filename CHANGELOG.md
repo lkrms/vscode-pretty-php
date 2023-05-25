@@ -4,6 +4,22 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.4.8] - 2023-05-25
+
+### Changed
+
+- Improve formatting of chained method calls
+- Ignore all but the last of any incompatible rules given on the command line
+- Update `laravel` preset
+
+### Fixed
+
+- Fix issue where operators after `$object->{$property}` expressions are sometimes treated as unary operators
+- Fix issue where `align-lists` adds newlines between method chain arguments
+- Fix handling of one-line comments with a subsequent close bracket
+- Add tests for idempotent output and fix issues subsequently detected in comment placement and the `align-fn` rule
+
+
 ## [0.4.7] - 2023-05-23
 
 > You didn't miss anything—I've started releasing the extension with the same version number as *PrettyPHP* itself, and
@@ -243,6 +259,7 @@ Add settings:
 - Initial release
 
 
+[0.4.8]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.8
 [0.4.7]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.7
 [0.4.6]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.6
 [0.4.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.4
