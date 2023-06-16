@@ -4,6 +4,17 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.4.11] - 2023-06-17
+
+### Changed
+
+- Improve handling of control structures where braced and unbraced bodies are combined and/or nested
+
+### Fixed
+
+- Fix possible exception when rules `align-lists` and `align-fn` are combined
+
+
 ## [0.4.8] - 2023-05-25
 
 ### Changed
@@ -259,6 +270,7 @@ Add settings:
 - Initial release
 
 
+[0.4.11]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.11
 [0.4.8]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.8
 [0.4.7]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.7
 [0.4.6]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.6
