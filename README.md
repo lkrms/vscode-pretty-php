@@ -5,21 +5,21 @@
 This extension integrates the latest release of [PrettyPHP], a code formatter
 inspired by [Black], with Visual Studio Code.
 
-Like *Black*, *PrettyPHP* runs with sensible defaults and doesn't need to be
+Like Black, *PrettyPHP* runs with sensible defaults and doesn't need to be
 configured. It's also deterministic (with some [pragmatic exceptions]), so no
 matter how the input is formatted, it produces the same output.
 
-> *PrettyPHP*'s default output is unlikely to change significantly before
-> [version 1.0.0] is released, but if you're already using it in production,
-> pinning `lkrms/pretty-php` to a specific version is recommended.
+> *PrettyPHP*'s default output is unlikely to change significantly between now
+> and version 1.0, but if you're already using it in production, locking
+> `lkrms/pretty-php` to a specific version is recommended.
 
 ## Requirements
 
-*PrettyPHP* requires PHP 7.4, 8.0, 8.1, or 8.2 with a CLI runtime and the `phar`
-and `mbstring` extensions.
-
-The `json` and `tokenizer` extensions are also required, but they are usually
-enabled by default.
+- Linux, macOS or Windows
+- PHP 7.4, 8.0, 8.1 or 8.2 with a CLI runtime and the following extensions:
+  - `mbstring`
+  - `json`
+  - `tokenizer`
 
 ## FAQ
 
@@ -28,20 +28,24 @@ enabled by default.
 #### It's opinionated
 
 - No configuration is required
-- Formatting options are deliberately limited
-- Readable code, small diffs, and high throughput are the main priorities
+- Formatting options are [deliberately limited][why-so-many-options]
+- Readable code, small diffs, and fast batch processing are the main priorities
 
-#### It's a formatter, not a fixer
+#### It's a formatter, not a fixer<sup>\*</sup>
 
-- Previous formatting is ignored
-- Whitespace is changed, code is not
+- Previous formatting is ignored<sup>\*\*</sup>
+- Whitespace is changed, code is not<sup>\*\*</sup>
 - Entire files are formatted in place
 
-(Some [pragmatic exceptions] are made.)
+<sup>\*</sup> No disrespect is intended to excellent tools like [phpcbf] and
+[php-cs-fixer]. *PrettyPHP* augments these tools, much like Black augments
+`pycodestyle`.
+
+<sup>\*\*</sup> Some [pragmatic exceptions] are made.
 
 #### It's CI-friendly
 
-- Installs via `composer require --dev lkrms/pretty-php`
+- Installs via `composer require --dev lkrms/pretty-php` or [direct download]
 - Runs on Linux, macOS and Windows
 - MIT-licensed
 
@@ -49,27 +53,33 @@ enabled by default.
 
 - Written in PHP
 - Uses PHP's tokenizer to parse input and validate output
-- Checks formatted and original code for equivalence by comparing language
-  tokens returned by [`PhpToken::tokenize()`][tokenize].
+- Checks formatted and original code for equivalence
 
-#### It's optionally compatible with coding standards
+#### It's (almost) PSR-12 compliant
 
-*PrettyPHP* has partial support for [PSR-12]. An upcoming release will offer
-full support.
+Progress towards full compliance with the formatting-related requirements of
+[PSR-12] can be followed [here][PSR-12 issue].
 
-### Why are there so many options?
+### If it's so opinionated, why does it have so many options?
 
-Because *PrettyPHP* is in initial development, PHP formatting is complicated,
-and testing is easier when settings can be changed at runtime.
+*PrettyPHP*'s formatting options will be simplified before version 1.0 is
+released. Until then, feel free to experiment and provide [feedback][issues] on
+what you think should be enabled by default and/or remain available as an option
+in the stable release.
 
-Over time, *PrettyPHP* will become more opinionated and have fewer options, so
-reliance on formatting options is discouraged.
+## Support
+
+Bug reports, feature requests and support questions are always welcome and
+should be submitted [here][issues].
 
 
 [Black]: https://github.com/psf/black
+[direct download]: https://github.com/lkrms/pretty-php/releases/latest/download/pretty-php.phar
+[issues]: https://github.com/lkrms/pretty-php/issues
+[php-cs-fixer]: https://github.com/PHP-CS-Fixer/PHP-CS-Fixer
+[phpcbf]: https://github.com/squizlabs/PHP_CodeSniffer
 [pragmatic exceptions]: https://github.com/lkrms/pretty-php#pragmatism
 [PrettyPHP]: https://github.com/lkrms/pretty-php
 [PSR-12]: https://www.php-fig.org/psr/psr-12/
-[tokenize]: https://www.php.net/manual/en/phptoken.tokenize.php
-[version 1.0.0]: https://semver.org/#spec-item-5
-
+[PSR-12 issue]: https://github.com/lkrms/pretty-php/issues/4
+[why-so-many-options]: #if-its-so-opinionated-why-does-it-have-so-many-options
