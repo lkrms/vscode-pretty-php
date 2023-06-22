@@ -4,6 +4,23 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.4.12] - 2023-06-22
+
+### Added
+
+- Move all interfaces in `extends` and `implements` lists to their own line when the list spans multiple lines
+
+### Changed
+
+- Shorten empty class and function bodies to `{}` and move them to the previous line
+- Improve formatting of anonymous classes and attributes
+- Add a blank line between file-level docblocks and `declare` statements
+
+### Fixed
+
+- Many small bugs you probably hadn't noticed
+
+
 ## [0.4.11] - 2023-06-17
 
 ### Changed
@@ -270,6 +287,7 @@ Add settings:
 - Initial release
 
 
+[0.4.12]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.12
 [0.4.11]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.11
 [0.4.8]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.8
 [0.4.7]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.7
