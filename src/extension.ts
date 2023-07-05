@@ -22,7 +22,6 @@ export function activate (context: vscode.ExtensionContext) {
     { config: 'formatting.alignment.alignFn', arg: 'align-fn' },
     { config: 'formatting.alignment.alignLists', arg: 'align-lists' },
     { config: 'formatting.alignment.alignTernaryOperators', arg: 'align-ternary' },
-    { config: 'formatting.oneLineArguments', arg: 'one-line-arguments' },
     { config: 'formatting.preserveOneLineStatements', arg: 'preserve-one-line' }
   ]
 
@@ -170,13 +169,6 @@ export function activate (context: vscode.ExtensionContext) {
     const sortImports = config.get<boolean>('formatting.sortImports')
     if (sortImports != null && !sortImports) {
       prettyPhpArgs.push('-M')
-    }
-
-    const trailingSpaces = config.get<number[]>('formatting.preserveTrailingSpaces')
-    if (trailingSpaces != null) {
-      trailingSpaces.forEach((map) => {
-        prettyPhpArgs.push('-T' + String(map))
-      })
     }
 
     const honourConfigurationFiles = config.get<boolean>('honourConfigurationFiles')

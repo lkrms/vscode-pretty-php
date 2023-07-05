@@ -4,6 +4,45 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.4.14] - 2023-07-05
+
+### Added
+
+- Add initial support for the WordPress code style via command line option `--preset wordpress`
+
+### Changed
+
+- Improve support for attributes when running on PHP 7.4
+
+### Removed
+
+- Remove settings:
+
+  - Formatting: Preserve Trailing Spaces
+  - Formatting: One Line Arguments
+
+### Fixed
+
+- Fix undesirable output when preserving newlines between brackets
+
+  ```php
+  <?php
+  // Input
+  $a = $b->c
+      ($d);
+
+  // Output (before)
+  $a = $b->c(
+      $d
+  );
+
+  // Output (after)
+  $a = $b->c($d);
+  ```
+
+- Fix issue where `if` in `else if` is treated as a new statement (fixes [#12](https://github.com/lkrms/pretty-php/issues/12))
+
+
 ## [0.4.12] - 2023-06-22
 
 ### Added
@@ -287,6 +326,7 @@ Add settings:
 - Initial release
 
 
+[0.4.14]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.14
 [0.4.12]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.12
 [0.4.11]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.11
 [0.4.8]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.8
