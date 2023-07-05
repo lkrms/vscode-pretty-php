@@ -2,7 +2,7 @@
   "name": "pretty-php",
   "displayName": "PrettyPHP",
   "description": "The opinionated formatter for modern, expressive PHP",
-  "version": "0.4.12",
+  "version": "0.4.14",
   "publisher": "lkrms",
   "engines": {
     "vscode": "^1.74.0"
@@ -117,20 +117,6 @@
           "type": "boolean",
           "default": false,
           "order": 32
-        },
-        "pretty-php.formatting.preserveTrailingSpaces": {
-          "description": "In comments, preserve Markdown-style line breaks consisting of exactly this number of trailing spaces",
-          "type": "array",
-          "items": {
-            "type": "integer"
-          },
-          "order": 38
-        },
-        "pretty-php.formatting.oneLineArguments": {
-          "description": "Suppress newlines between arguments in function declarations",
-          "type": "boolean",
-          "default": false,
-          "order": 50
         },
         "pretty-php.honourConfigurationFiles": {
           "markdownDescription": "Options in PrettyPHP configuration files (e.g. `.prettyphp`) take precedence over these settings",
