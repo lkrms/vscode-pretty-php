@@ -4,6 +4,30 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.4.15] - 2023-07-13
+
+### Changed
+
+- Group alias/import statements by `use`, `use function`, `use const` for PSR-12 compliance (previous order was `use`,
+  `use const`, `use function`)
+- Sort trait imports
+- Tighten the criteria for a DocBlock to follow a blank line
+- Move every `->` in a multi-line method chain to a new line, including any before the first newline
+- In `align-chains`, collapse the first object operator after tokens with fewer characters than a soft tab
+- In `align-lists`, don't allow close bracket placement to be the only reason a list is not aligned, and refine the
+  criteria for aligning lists with nested brackets
+- Rewrite the `align-assignments` rule
+  - Align multiple tokens per line
+  - Vary context matching rules by token type, e.g. only align commas adjacent to comparable tokens over consecutive
+    lines
+  - Apply spacing to the previous or following token as needed, e.g. right-align numeric columns in data arrays
+  - Allow aligned tokens to be separated by multiple lines when every inner line has a higher effective indentation
+    level than the tokens
+  - Ignore series of alignable tokens that would otherwise be split and aligned separately due to a disruption (e.g. a
+    comment, or nested code at a lower indentation level)
+  - Align statements in one-line `switch` cases (`preserve-one-line` must also be enabled)
+
+
 ## [0.4.14] - 2023-07-05
 
 ### Added
@@ -326,6 +350,7 @@ Add settings:
 - Initial release
 
 
+[0.4.15]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.15
 [0.4.14]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.14
 [0.4.12]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.12
 [0.4.11]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.11
