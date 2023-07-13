@@ -2,7 +2,7 @@
   "name": "pretty-php",
   "displayName": "PrettyPHP",
   "description": "The opinionated formatter for modern, expressive PHP",
-  "version": "0.4.14",
+  "version": "0.4.15",
   "publisher": "lkrms",
   "engines": {
     "vscode": "^1.74.0"
