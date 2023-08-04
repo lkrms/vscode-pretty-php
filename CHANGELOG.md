@@ -4,6 +4,13 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.4.17] - 2023-08-04
+
+### Fixed
+
+* Fix regression in `AddHangingIndentation`
+
+
 ## [0.4.16] - 2023-08-04
 
 ### Added
@@ -390,6 +397,7 @@ Add settings:
 - Initial release
 
 
+[0.4.17]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.17
 [0.4.16]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.16
 [0.4.15]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.15
 [0.4.14]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.14
