@@ -1,8 +1,8 @@
 {
   "name": "pretty-php",
   "displayName": "PrettyPHP",
-  "description": "The opinionated formatter for modern, expressive PHP",
-  "version": "0.4.15",
+  "description": "The opinionated formatter for modern PHP",
+  "version": "0.4.16",
   "publisher": "lkrms",
   "engines": {
     "vscode": "^1.74.0"
@@ -34,10 +34,22 @@
     "configuration": {
       "title": "PrettyPHP",
       "properties": {
-        "pretty-php.formatting.sortImports": {
-          "description": "Sort consecutive alias/import statements",
-          "type": "boolean",
-          "default": true,
+        "pretty-php.formatting.sortImportsBy": {
+          "description": "Set the sort order for consecutive alias/import statements",
+          "type": "string",
+          "enum": [
+            "off",
+            "none",
+            "name",
+            "depth"
+          ],
+          "markdownEnumDescriptions": [
+            "Don't sort or group imports",
+            "Group imports by type without changing order",
+            "Order imports by name\n\n```php\n<?php\nuse A;\nuse A\\B;\nuse A\\B\\C;\nuse A\\B\\{D, E};\n```",
+            "Order imports by name, depth-first\n\n```php\n<?php\nuse A\\B\\{D, E};\nuse A\\B\\C;\nuse A\\B;\nuse A;\n```"
+          ],
+          "default": "name",
           "order": 9
         },
         "pretty-php.formatting.simplifyStrings": {
@@ -58,10 +70,22 @@
           "default": true,
           "order": 12
         },
-        "pretty-php.formatting.indentHeredocs": {
-          "description": "Apply indentation to heredocs",
-          "type": "boolean",
-          "default": true,
+        "pretty-php.formatting.heredocIndentation": {
+          "description": "Set the indentation level of heredocs and nowdocs",
+          "type": "string",
+          "enum": [
+            "none",
+            "line",
+            "mixed",
+            "hanging"
+          ],
+          "markdownEnumDescriptions": [
+            "Do not indent heredocs\n\n```php\n<?php\nfunction f()\n{\n    $a = <<<EOF\nContent\nEOF;\n}\n```",
+            "Apply line indentation to heredocs\n\n```php\n<?php\nfunction f()\n{\n    $a = <<<EOF\n    Content\n    EOF;\n}\n```",
+            "Apply hanging indentation to inline heredocs\n\n```php\n<?php\n$alpha = <<<EOF\n    Content\n    EOF;\n$bravo =\n    <<<EOF\n    Content\n    EOF;\n```",
+            "Always apply hanging indentation to heredocs\n\n```php\n<?php\n$alpha = <<<EOF\n    Content\n    EOF;\n$bravo =\n    <<<EOF\n        Content\n        EOF;\n```"
+          ],
+          "default": "mixed",
           "order": 13
         },
         "pretty-php.formatting.alignment.alignAssignments": {
@@ -117,6 +141,12 @@
           "type": "boolean",
           "default": false,
           "order": 32
+        },
+        "pretty-php.formatting.psr12": {
+          "markdownDescription": "Enforce strict compliance with [PSR-12](https://www.php-fig.org/psr/psr-12/) / [PER Coding Style](https://www.php-fig.org/per/coding-style/) where implemented\n- **Other settings are overridden if necessary**\n- Progress towards full compliance can be followed [here](https://github.com/lkrms/pretty-php/issues/4)",
+          "type": "boolean",
+          "default": false,
+          "order": 40
         },
         "pretty-php.honourConfigurationFiles": {
           "markdownDescription": "Options in PrettyPHP configuration files (e.g. `.prettyphp`) take precedence over these settings",
