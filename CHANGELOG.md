@@ -4,6 +4,46 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.4.16] - 2023-08-04
+
+### Added
+
+- Preserve newline after `throw`
+- Add optional depth-first sort order for imports
+  - Replace "Sort Imports" setting with "Sort Imports By" and migrate previous values
+- Make heredoc indentation configurable
+  - Replace "Indent Heredocs" setting with "Heredoc Indentation" and migrate previous values
+- Add "Formatting: Psr12" setting
+- Write messages to an output channel instead of `console`
+
+### Changed
+
+- Don't apply hanging indentation in unambiguous single-expression contexts
+- Improve comment formatting
+  - Normalise whitespace at the beginning and end of one-line C-style and docblock comments
+  - Reindent text in multi-line comments to maintain original alignment
+  - Expand leading tabs in comments to spaces (and unexpand leading spaces to tabs if using tabs for indentation)
+  - Only treat comments indented by at least one space (relative to code in the same context) as continuations of
+    comments beside code
+  - Improve comment placement in `switch` structures
+- Refactor "Align Lists"
+  - Improve consistency by removing complex eligibility checks and problematic enforcement of newlines between items
+  - Propagate alignment to adjacent code recursively and unconditionally, allowing structures like:
+    ```php
+    <?php
+    [':', [$a,
+           $b, $c], [$d, $e,
+                     $f], [$g,
+                           $h, $i]];
+    ```
+- Apply magic commas to `list` and other destructuring constructs, not just arrays and argument lists
+
+### Fixed
+
+- Detect more unary contexts
+- Refactor block detection to fix alignment anomalies when PHP and markup are mixed
+
+
 ## [0.4.15] - 2023-07-13
 
 ### Changed
@@ -350,6 +390,7 @@ Add settings:
 - Initial release
 
 
+[0.4.16]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.16
 [0.4.15]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.15
 [0.4.14]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.14
 [0.4.12]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.12

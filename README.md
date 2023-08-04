@@ -1,17 +1,13 @@
 # PrettyPHP for Visual Studio Code
 
-## The opinionated formatter for modern, expressive PHP
+## The opinionated formatter for modern PHP
 
 This extension integrates the latest release of [PrettyPHP], a code formatter
 inspired by [Black], with Visual Studio Code.
 
-Like Black, *PrettyPHP* runs with sensible defaults and doesn't need to be
-configured. It's also deterministic (with some [pragmatic exceptions]), so no
-matter how the input is formatted, it produces the same output.
-
-> *PrettyPHP*'s default output is unlikely to change significantly between now
-> and version 1.0, but if you're already using it in production, locking
-> `lkrms/pretty-php` to a specific version is recommended.
+Like Black, *PrettyPHP* has sensible defaults and doesn't need to be configured.
+It's also deterministic (with some [pragmatic exceptions]), so no matter how
+your code is formatted, it produces the same output.
 
 ## Requirements
 
@@ -21,6 +17,14 @@ matter how the input is formatted, it produces the same output.
   - `json`
   - `tokenizer`
 
+### A note about PHP versions
+
+Your PHP runtime must be able to parse the code you're formatting, so if
+*PrettyPHP* is running on PHP 7.4, for example, you won't be able to format code
+that requires PHP 8.0. Similarly, to format PHP 8.1 code, *PrettyPHP* must be
+running on PHP 8.1 or above. If formatting fails and your syntax is valid, check
+your PHP version.
+
 ## FAQ
 
 ### How is *PrettyPHP* different to other formatters?
@@ -28,7 +32,7 @@ matter how the input is formatted, it produces the same output.
 #### It's opinionated
 
 - No configuration is required
-- Formatting options are [deliberately limited][why-so-many-options]
+- Formatting options are deliberately limited
 - Readable code, small diffs, and fast batch processing are the main priorities
 
 #### It's a formatter, not a fixer<sup>\*</sup>
@@ -45,7 +49,8 @@ matter how the input is formatted, it produces the same output.
 
 #### It's CI-friendly
 
-- Installs via `composer require --dev lkrms/pretty-php` or [direct download]
+- Installs via `composer require --dev lkrms/pretty-php` or [direct
+  download][download]
 - Runs on Linux, macOS and Windows
 - MIT-licensed
 
@@ -60,26 +65,22 @@ matter how the input is formatted, it produces the same output.
 Progress towards full compliance with the formatting-related requirements of
 [PSR-12] can be followed [here][PSR-12 issue].
 
-### If it's so opinionated, why does it have so many options?
-
-*PrettyPHP*'s formatting options will be simplified before version 1.0 is
-released. Until then, feel free to experiment and provide [feedback][issues] on
-what you think should be enabled by default and/or remain available as an option
-in the stable release.
-
 ## Support
 
-Bug reports, feature requests and support questions are always welcome and
-should be submitted [here][issues].
+Please [submit an issue][new-issue] to report a bug, request a feature or ask
+for help.
+
+## License
+
+MIT
 
 
 [Black]: https://github.com/psf/black
-[direct download]: https://github.com/lkrms/pretty-php/releases/latest/download/pretty-php.phar
-[issues]: https://github.com/lkrms/pretty-php/issues
+[download]: https://github.com/lkrms/pretty-php/releases/latest/download/pretty-php.phar
+[new-issue]: https://github.com/lkrms/pretty-php/issues/new
 [php-cs-fixer]: https://github.com/PHP-CS-Fixer/PHP-CS-Fixer
 [phpcbf]: https://github.com/squizlabs/PHP_CodeSniffer
 [pragmatic exceptions]: https://github.com/lkrms/pretty-php#pragmatism
 [PrettyPHP]: https://github.com/lkrms/pretty-php
 [PSR-12]: https://www.php-fig.org/psr/psr-12/
 [PSR-12 issue]: https://github.com/lkrms/pretty-php/issues/4
-[why-so-many-options]: #if-its-so-opinionated-why-does-it-have-so-many-options

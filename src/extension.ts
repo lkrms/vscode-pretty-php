@@ -9,8 +9,7 @@ export function activate (context: vscode.ExtensionContext) {
   const skipMaps = [
     { config: 'formatting.declarationSpacing', arg: 'declaration-spacing' },
     { config: 'formatting.simplifyStrings', arg: 'simplify-strings' },
-    { config: 'formatting.magicCommas', arg: 'magic-commas' },
-    { config: 'formatting.indentHeredocs', arg: 'indent-heredocs' }
+    { config: 'formatting.magicCommas', arg: 'magic-commas' }
   ]
 
   const ruleMaps = [
@@ -25,12 +24,12 @@ export function activate (context: vscode.ExtensionContext) {
     { config: 'formatting.preserveOneLineStatements', arg: 'preserve-one-line' }
   ]
 
-  function migrateConfiguration<T> (from: string, to: string): void {
+  function migrateConfiguration<T0, T1> (from: string, to: string, valueCallback?: (value: any) => any): void {
     const config = vscode.workspace.getConfiguration('pretty-php')
-    const currentFrom = config.inspect<T>(from)
-    const currentTo = config.inspect<T>(to)
-    maybeUpdateConfiguration(config, from, to, currentFrom?.globalValue, currentTo?.globalValue, true)
-    maybeUpdateConfiguration(config, from, to, currentFrom?.workspaceValue, currentTo?.workspaceValue, false)
+    const currentFrom = config.inspect<T0>(from)
+    const currentTo = config.inspect<T1>(to)
+    maybeUpdateConfiguration(config, from, to, currentFrom?.globalValue, currentTo?.globalValue, valueCallback, true)
+    maybeUpdateConfiguration(config, from, to, currentFrom?.workspaceValue, currentTo?.workspaceValue, valueCallback, false)
   }
 
   function maybeUpdateConfiguration (
@@ -39,10 +38,21 @@ export function activate (context: vscode.ExtensionContext) {
     to: string,
     fromValue: any,
     toValue: any,
+    valueCallback: ((value: any) => any) | undefined,
     global: boolean): void {
     // Old setting not set?
     if (fromValue == null) {
       return
+    }
+
+    if (valueCallback != null) {
+      // Replace old value with equivalent new value
+      fromValue = valueCallback(fromValue)
+      // Remove old setting if old value is equivalent to being unset
+      if (fromValue == null) {
+        void config.update(from, undefined, global)
+        return
+      }
     }
 
     // New setting already set?
@@ -83,7 +93,7 @@ export function activate (context: vscode.ExtensionContext) {
         ]
       )
 
-      console.log('Spawned:', ...php.spawnargs)
+      log.info('Spawned:', ...php.spawnargs)
 
       let stdout = ''
       php.stdout.setEncoding('utf8')
@@ -95,10 +105,10 @@ export function activate (context: vscode.ExtensionContext) {
 
       php.on('close', (code: number) => {
         if (stderr.length > 0) {
-          console.error(stderr)
+          log.error(stderr)
         }
         if (code === 0) {
-          console.log('%s succeeded (output length: %i)', php.spawnfile, stdout.length)
+          log.info(`${php.spawnfile} succeeded (output length: ${stdout.length})`)
           if (stdout.length > 0 && stdout !== text) {
             resolve([
               new vscode.TextEdit(new vscode.Range(
@@ -107,14 +117,14 @@ export function activate (context: vscode.ExtensionContext) {
               ), stdout)
             ])
           } else {
-            console.log('Nothing to change')
+            log.info('Nothing to change')
             resolve([])
           }
         } else if (code === 2) {
-          console.log('%s reported invalid input (exit status: %i)', php.spawnfile, code)
+          log.info(`${php.spawnfile} reported invalid input (exit status: ${code})`)
           resolve([])
         } else {
-          console.error('%s failed (exit status: %i)', php.spawnfile, code)
+          log.error(`${php.spawnfile} failed (exit status: ${code})`)
           showErrorMessage('PrettyPHP failed: ' + stderr)
           resolve([])
         }
@@ -166,9 +176,18 @@ export function activate (context: vscode.ExtensionContext) {
       }
     })
 
-    const sortImports = config.get<boolean>('formatting.sortImports')
-    if (sortImports != null && !sortImports) {
+    maybeAddArgs(prettyPhpArgs, 'formatting.heredocIndentation', '-h')
+
+    const sortImportsBy = config.get<string>('formatting.sortImportsBy')
+    if (sortImportsBy === 'off') {
       prettyPhpArgs.push('-M')
+    } else {
+      maybeAddArgs(prettyPhpArgs, 'formatting.sortImportsBy', '-m')
+    }
+
+    const psr12 = config.get<boolean>('formatting.psr12')
+    if (psr12 != null && psr12) {
+      prettyPhpArgs.push('--psr12')
     }
 
     const honourConfigurationFiles = config.get<boolean>('honourConfigurationFiles')
@@ -189,6 +208,14 @@ export function activate (context: vscode.ExtensionContext) {
     }
 
     return prettyPhpArgs
+  }
+
+  function maybeAddArgs (args: string[], setting: string, option: string): void {
+    const config = vscode.workspace.getConfiguration('pretty-php')
+    const value = config.get<string>(setting)
+    if (value != null && value !== config.inspect<string>(setting)?.defaultValue) {
+      args.push(option, value)
+    }
   }
 
   function getPath (
@@ -256,7 +283,38 @@ export function activate (context: vscode.ExtensionContext) {
     }
   }
 
-  migrateConfiguration<boolean>('formatting.blankBeforeDeclaration', 'formatting.declarationSpacing')
+  const log = vscode.window.createOutputChannel('PrettyPHP', { log: true })
+
+  migrateConfiguration<boolean, boolean>(
+    'formatting.blankBeforeDeclaration',
+    'formatting.declarationSpacing'
+  )
+
+  migrateConfiguration<boolean, string>(
+    'formatting.indentHeredocs',
+    'formatting.heredocIndentation',
+    function (value: any): string | undefined {
+      switch (value) {
+        case true:
+          return undefined
+        case false:
+          return 'none'
+      }
+    }
+  )
+
+  migrateConfiguration<boolean, string>(
+    'formatting.sortImports',
+    'formatting.sortImportsBy',
+    function (value: any): string | undefined {
+      switch (value) {
+        case true:
+          return undefined
+        case false:
+          return 'off'
+      }
+    }
+  )
 
   vscode.languages.registerDocumentFormattingEditProvider('php', {
     provideDocumentFormattingEdits (
