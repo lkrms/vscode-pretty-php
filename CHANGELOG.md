@@ -4,6 +4,24 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [0.4.18] - 2023-08-07
+
+### Added
+
+- Add support for inline parameter attributes
+
+### Changed
+
+- Suppress hanging indents in `match` expressions
+- Preserve blank lines between the arms of `match` expressions
+
+### Fixed
+
+- Fix header spacing issue caused by inconsistent handling of `?>` tags that double as statement terminators
+- Fix edge case where multi-line anonymous class interface lists are not indented
+- Fix PHP 7.4 issue where `T_ATTRIBUTE_COMMENT` may not be the last token on the line
+
+
 ## [0.4.17] - 2023-08-04
 
 ### Fixed
@@ -397,6 +415,7 @@ Add settings:
 - Initial release
 
 
+[0.4.18]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.18
 [0.4.17]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.17
 [0.4.16]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.16
 [0.4.15]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.15
