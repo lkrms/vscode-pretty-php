@@ -8,14 +8,13 @@ import { spawn } from 'child_process'
 export function activate (context: vscode.ExtensionContext) {
   const skipMaps = [
     { config: 'formatting.declarationSpacing', arg: 'declaration-spacing' },
-    { config: 'formatting.simplifyStrings', arg: 'simplify-strings' },
-    { config: 'formatting.magicCommas', arg: 'magic-commas' }
+    { config: 'formatting.simplifyStrings', arg: 'simplify-strings' }
   ]
 
   const ruleMaps = [
     { config: 'formatting.blankBeforeReturn', arg: 'blank-before-return' },
     { config: 'formatting.strictLists', arg: 'strict-lists' },
-    { config: 'formatting.alignment.alignAssignments', arg: 'align-assignments' },
+    { config: 'formatting.alignment.alignData', arg: 'align-data' },
     { config: 'formatting.alignment.alignChains', arg: 'align-chains' },
     { config: 'formatting.alignment.alignComments', arg: 'align-comments' },
     { config: 'formatting.alignment.alignFn', arg: 'align-fn' },
@@ -288,6 +287,11 @@ export function activate (context: vscode.ExtensionContext) {
   migrateConfiguration<boolean, boolean>(
     'formatting.blankBeforeDeclaration',
     'formatting.declarationSpacing'
+  )
+
+  migrateConfiguration<boolean, boolean>(
+    'formatting.alignment.alignAssignments',
+    'formatting.alignment.alignData'
   )
 
   migrateConfiguration<boolean, string>(
