@@ -4,7 +4,52 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## [0.4.18] - 2023-08-07
+## v0.4.20 - 2023-08-24
+
+### Fixed
+
+- Fix issue where `pretty-php.phar` fails with an exception on Windows
+
+
+## v0.4.19 - 2023-08-11
+
+> This version of *PrettyPHP for Visual Studio Code* was not released.
+
+### Added
+
+- Add initial support for Symfony's coding standards via `--preset symfony` (CLI only)
+
+### Changed
+
+- Remove the "Magic Commas" setting (magic commas are now mandatory)
+- Rename "Align Assignments" to "Align Data"
+- Adopt Box for cleaner, leaner PHAR builds
+- Remove upper limit on PHP version to allow testing on PHP 8.3
+- Suppress `E_COMPILE_WARNING` errors (they can't be caught or actioned, don't affect output and aren't user-friendly)
+
+### Fixed
+
+- Fix issue where hanging indentation is not consistent within lists
+
+  e.g. `'e'` should be aligned with `'g'` here:
+
+  ```php
+  <?php
+  $a = array('b' => array('c' => 'd',
+              'e' => 'f',
+          'g' => 'h'),
+      'i' => array(1,
+          2,
+          3,
+          4,
+          5,
+          6),
+      'j' => array('k',
+          7 => 'l',
+          'm'));
+
+
+## v0.4.18 - 2023-08-07
 
 ### Added
 
@@ -22,14 +67,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fix PHP 7.4 issue where `T_ATTRIBUTE_COMMENT` may not be the last token on the line
 
 
-## [0.4.17] - 2023-08-04
+## v0.4.17 - 2023-08-04
 
 ### Fixed
 
 * Fix regression in `AddHangingIndentation`
 
 
-## [0.4.16] - 2023-08-04
+## v0.4.16 - 2023-08-04
 
 ### Added
 
@@ -69,7 +114,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Refactor block detection to fix alignment anomalies when PHP and markup are mixed
 
 
-## [0.4.15] - 2023-07-13
+## v0.4.15 - 2023-07-13
 
 ### Changed
 
@@ -93,7 +138,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - Align statements in one-line `switch` cases (`preserve-one-line` must also be enabled)
 
 
-## [0.4.14] - 2023-07-05
+## v0.4.14 - 2023-07-05
 
 ### Added
 
@@ -132,7 +177,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fix issue where `if` in `else if` is treated as a new statement (fixes [#12](https://github.com/lkrms/pretty-php/issues/12))
 
 
-## [0.4.12] - 2023-06-22
+## v0.4.12 - 2023-06-22
 
 ### Added
 
@@ -149,7 +194,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Many small bugs you probably hadn't noticed
 
 
-## [0.4.11] - 2023-06-17
+## v0.4.11 - 2023-06-17
 
 ### Changed
 
@@ -160,7 +205,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fix possible exception when rules `align-lists` and `align-fn` are combined
 
 
-## [0.4.8] - 2023-05-25
+## v0.4.8 - 2023-05-25
 
 ### Changed
 
@@ -176,7 +221,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Add tests for idempotent output and fix issues subsequently detected in comment placement and the `align-fn` rule
 
 
-## [0.4.7] - 2023-05-23
+## v0.4.7 - 2023-05-23
 
 > You didn't miss anything—I've started releasing the extension with the same version number as *PrettyPHP* itself, and
 > some versions of the formatter don't make it to the extension.
@@ -186,7 +231,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Reinstate support for PHP 7.4
 
 
-## [0.4.6] - 2023-05-18
+## v0.4.6 - 2023-05-18
 
 ### Changed
 
@@ -202,7 +247,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Suppress formatting of tokens between backticks
 
 
-## [0.4.4] - 2023-05-16
+## v0.4.4 - 2023-05-16
 
 ### Changed
 
@@ -228,7 +273,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   applies to the file being formatted
 
 
-## [0.4.0] - 2023-04-28
+## v0.4.0 - 2023-04-28
 
 ### Added
 
@@ -247,7 +292,7 @@ Add settings:
   - Improved `match` handling
 
 
-## [0.3.5] - 2023-04-04
+## v0.3.5 - 2023-04-04
 
 ### Changed
 
@@ -259,14 +304,14 @@ Add settings:
   - Nested heredocs no longer produce unparsable output
 
 
-## [0.3.4] - 2023-03-28
+## v0.3.4 - 2023-03-28
 
 ### Changed
 
 - Update documentation
 
 
-## [0.3.3] - 2023-03-27
+## v0.3.3 - 2023-03-27
 
 ### Added
 
@@ -298,7 +343,7 @@ Add settings:
   - Many fixes and refinements
 
 
-## [0.3.2] - 2023-03-14
+## v0.3.2 - 2023-03-14
 
 ### Added
 
@@ -310,7 +355,7 @@ Add settings:
   placement, assignment alignment and unenclosed control structure body handling.
 
 
-## [0.3.1] - 2023-03-07
+## v0.3.1 - 2023-03-07
 
 ### Added
 
@@ -328,7 +373,7 @@ Add settings:
   - 2 spaces instead of 4 are added between code and adjacent comments.
 
 
-## [0.3.0] - 2023-02-24
+## v0.3.0 - 2023-02-24
 
 > PHP 8+ is now required.
 
@@ -359,7 +404,7 @@ Add settings:
     - Undesirable alignment of multi-line comments beside code
 
 
-## [0.2.0] - 2023-02-06
+## v0.2.0 - 2023-02-06
 
 ### Changed
 
@@ -372,14 +417,14 @@ Add settings:
   - Multiple bugs related to indentation and alignment have been fixed.
 
 
-## [0.1.7] - 2023-01-27
+## v0.1.7 - 2023-01-27
 
 ### Changed
 
 - Update [PrettyPHP] to v0.1.10 for improved argument alignment and related bug fixes.
 
 
-## [0.1.6] - 2023-01-25
+## v0.1.6 - 2023-01-25
 
 ### Added
 
@@ -392,7 +437,7 @@ Add settings:
 - Report errors via VSCode notifications.
 
 
-## [0.1.5] - 2023-01-23
+## v0.1.5 - 2023-01-23
 
 ### Added
 
@@ -410,32 +455,9 @@ Add settings:
 - Fix PHP startup errors appearing in formatted code.
 
 
-## [0.1.4] - 2023-01-20
+## v0.1.4 - 2023-01-20
 
 - Initial release
 
 
-[0.4.18]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.18
-[0.4.17]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.17
-[0.4.16]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.16
-[0.4.15]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.15
-[0.4.14]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.14
-[0.4.12]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.12
-[0.4.11]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.11
-[0.4.8]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.8
-[0.4.7]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.7
-[0.4.6]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.6
-[0.4.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.4
-[0.4.0]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.4.0
-[0.3.5]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.5
-[0.3.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.4
-[0.3.3]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.3
-[0.3.2]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.2
-[0.3.1]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.1
-[0.3.0]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.3.0
-[0.2.0]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.2.0
-[0.1.7]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.1.7
-[0.1.6]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.1.6
-[0.1.5]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.1.5
-[0.1.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.1.4
 [PrettyPHP]: https://github.com/lkrms/pretty-php

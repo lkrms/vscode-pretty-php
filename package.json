@@ -1,8 +1,8 @@
 {
   "name": "pretty-php",
-  "displayName": "PrettyPHP",
-  "description": "The opinionated formatter for modern PHP",
-  "version": "0.4.18",
+  "displayName": "Opinionated PHP Formatter",
+  "description": "The official VS Code integration for PrettyPHP, a code formatter for PHP in the tradition of Black, Prettier and shfmt",
+  "version": "0.4.20",
   "publisher": "lkrms",
   "engines": {
     "vscode": "^1.74.0"
@@ -58,12 +58,6 @@
           "default": true,
           "order": 10
         },
-        "pretty-php.formatting.magicCommas": {
-          "markdownDescription": "Explode arrays and arguments with a trailing comma into one item per line\n\n```php\n<?php\n$arr = [\n  'a',\n];\n```",
-          "type": "boolean",
-          "default": true,
-          "order": 11
-        },
         "pretty-php.formatting.declarationSpacing": {
           "description": "Normalise whitespace between declarations",
           "type": "boolean",
@@ -88,8 +82,8 @@
           "default": "mixed",
           "order": 13
         },
-        "pretty-php.formatting.alignment.alignAssignments": {
-          "description": "Align consecutive assignment operators and double arrows when they have the same context",
+        "pretty-php.formatting.alignment.alignData": {
+          "description": "Align consecutive operators and values",
           "type": "boolean",
           "default": false,
           "order": 20
