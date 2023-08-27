@@ -1,12 +1,21 @@
 {
   "name": "pretty-php",
-  "displayName": "Opinionated PHP Formatter",
-  "description": "The official VS Code integration for PrettyPHP, a code formatter for PHP in the tradition of Black, Prettier and shfmt",
-  "version": "0.4.20",
+  "displayName": "PrettyPHP - opinionated PHP formatter",
+  "description": "An opinionated code formatter for PHP in the tradition of Black for Python and Prettier for JavaScript",
+  "version": "0.4.21",
   "publisher": "lkrms",
   "engines": {
     "vscode": "^1.74.0"
   },
+  "keywords": [
+    "php",
+    "formatter",
+    "beautifier",
+    "pretty",
+    "opinionated",
+    "deterministic",
+    "determinism"
+  ],
   "categories": [
     "Formatters"
   ],
@@ -46,10 +55,10 @@
           "markdownEnumDescriptions": [
             "Don't sort or group imports",
             "Group imports by type without changing order",
-            "Order imports by name\n\n```php\n<?php\nuse A;\nuse A\\B;\nuse A\\B\\C;\nuse A\\B\\{D, E};\n```",
-            "Order imports by name, depth-first\n\n```php\n<?php\nuse A\\B\\{D, E};\nuse A\\B\\C;\nuse A\\B;\nuse A;\n```"
+            "Order imports by name\n\n```php\n<?php\nuse A;\nuse B\\C\\E;\nuse B\\C\\F\\G;\nuse B\\C\\F\\{H, I};\nuse B\\C\\F\\J;\nuse B\\D;\n```",
+            "Order imports by name, depth-first\n\n```php\n<?php\nuse B\\C\\F\\{H, I};\nuse B\\C\\F\\G;\nuse B\\C\\F\\J;\nuse B\\C\\E;\nuse B\\D;\nuse A;\n```"
           ],
-          "default": "name",
+          "default": "depth",
           "order": 9
         },
         "pretty-php.formatting.simplifyStrings": {

@@ -4,6 +4,28 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## v0.4.21 - 2023-08-27
+
+### Changed
+
+- **Change default sort order of alias/import statements to depth-first**
+  - Set "Sort Imports By" to "name" to restore the previous behaviour
+- When sorting by name, don't place grouped alias/import statements below ungrouped imports
+- Collapse space after `;` in `for` loops if the next expression is empty
+- Preserve newlines before and after attributes
+- Add a newline before every parameter, not just annotated parameters, when splitting parameter lists to accommodate
+  attributes
+
+### Fixed
+
+- Fix issue where blocks that start with an empty statement (e.g. `function () { ; // ...`) are not indented correctly
+- Fix issue where anonymous class declarations are not always recognised
+- Fix issue where newlines are added after inline comments between control structure tokens, leading to unnecessary
+  indentation
+- Fix issue where arrow function alignment fails in strict PSR-12 mode
+- Fix `align-lists` issue where list items appearing consecutively on the same line are not always aligned correctly
+
+
 ## v0.4.20 - 2023-08-24
 
 ### Fixed
