@@ -4,6 +4,43 @@ All notable changes to the [PrettyPHP] extension will be documented in this file
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## v0.4.22 - 2023-09-01
+
+### Changed
+
+- Adjust preservation of newlines and blank lines:
+
+  - Don't preserve newlines after close braces that aren't structural (where "structural" basically means "able to
+    contain statements")
+  - Collapse blank lines between list items and in other expression contexts (e.g. `for` loop expressions), including
+    before comments
+  - If one expression in a `for` loop is at the start of a line, add a newline before the others
+
+- Don't sort `use <trait>` statements
+
+  Changing the order of traits inserted into a class changes the order its members are reported, so behaviour removed in
+  v0.4.15 has been restored
+
+- When sorting imports, don't treat one-line comments as continuations if there is a change of type
+
+- If chained method calls would render as below, move the first call in the chain to the next line:
+
+  ```php
+  // Before
+  $foxtrot->foo(
+      //
+  )
+      ->baz();
+
+  // After
+  $foxtrot
+      ->foo(
+          //
+      )
+      ->baz();
+  ```
+
+
 ## v0.4.21 - 2023-08-27
 
 ### Changed
