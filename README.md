@@ -4,7 +4,7 @@
 
 This extension integrates the latest release of [PrettyPHP], a code formatter
 for PHP in the tradition of [Black] for Python, [Prettier] for JavaScript and
-[shfmt] for shell scripts.
+[shfmt] for shell scripts, with Visual Studio Code.
 
 [PrettyPHP] aims to bring the benefits of fast, deterministic, minimally
 configurable, automated code formatting tools to PHP development.
