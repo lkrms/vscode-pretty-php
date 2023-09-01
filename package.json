@@ -1,7 +1,7 @@
 {
   "name": "pretty-php",
   "displayName": "PrettyPHP - opinionated PHP formatter",
-  "description": "An opinionated code formatter for PHP in the tradition of Black for Python and Prettier for JavaScript",
+  "description": "An opinionated code formatter for PHP in the tradition of Black and Prettier",
   "version": "0.4.22",
   "publisher": "lkrms",
   "engines": {
@@ -183,9 +183,14 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "postinstall": "npm run update-phar",
+    "postversion": "npm run update-phar",
+    "vscode:prepublish": "npm run update-changelog && npm run compile",
+    "update-changelog": "scripts/update-changelog.sh",
+    "update-phar": "scripts/update-phar.sh && npm run check-phar",
+    "check-phar": "scripts/check-phar.sh",
+    "compile": "npm run check-phar && tsc -p ./",
+    "watch": "npm run check-phar && tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "ts-standard"
   },
@@ -193,11 +198,13 @@
     "which": "^3.0.1"
   },
   "devDependencies": {
-    "@types/node": "18.x",
+    "@types/node": "^18.x",
     "@types/vscode": "^1.74.0",
     "@types/which": "^3.0.0",
+    "@vscode/vsce": "^2.21.0",
+    "ovsx": "^0.8.3",
     "ts-standard": "^12.0.2",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   },
   "icon": "images/pretty-php.png"
 }

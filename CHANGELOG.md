@@ -1,25 +1,25 @@
 # Changelog
 
-All notable changes to the [PrettyPHP] extension will be documented in this file.
+Notable changes to this extension and to [PrettyPHP] itself are documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+The format is based on [Keep a Changelog].
 
-## v0.4.22 - 2023-09-01
+[PrettyPHP]: https://github.com/lkrms/pretty-php
+[Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
-### Changed
+## [v0.4.22] - 2023-08-31
 
-- Adjust preservation of newlines and blank lines:
+#### Changed
 
-  - Don't preserve newlines after close braces that aren't structural (where "structural" basically means "able to
-    contain statements")
-  - Collapse blank lines between list items and in other expression contexts (e.g. `for` loop expressions), including
-    before comments
+- Adjust preservation of line breaks and blank lines
+
+  - Don't preserve newlines after close braces that aren't structural (where "structural" essentially means "may enclose statements")
+  - Collapse blank lines between list items and in other expression contexts (e.g. `for` loop expressions), including before comments
   - If one expression in a `for` loop is at the start of a line, add a newline before the others
 
 - Don't sort `use <trait>` statements
 
-  Changing the order of traits inserted into a class changes the order its members are reported, so behaviour removed in
-  v0.4.15 has been restored
+  Changing the order of traits inserted into a class changes the order its members are reported, so behaviour removed in v0.4.15 has been restored
 
 - When sorting imports, don't treat one-line comments as continuations if there is a change of type
 
@@ -40,53 +40,55 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
       ->baz();
   ```
 
+## [v0.4.21] - 2023-08-31
 
-## v0.4.21 - 2023-08-27
+#### Changed
 
-### Changed
-
-- **Change default sort order of alias/import statements to depth-first**
-  - Set "Sort Imports By" to "name" to restore the previous behaviour
+- Change default sort order of alias/import statements to depth-first
+  - To restore the previous behaviour, use `--sort-imports-by name` or set "Sort Imports By" to "name"
 - When sorting by name, don't place grouped alias/import statements below ungrouped imports
 - Collapse space after `;` in `for` loops if the next expression is empty
 - Preserve newlines before and after attributes
-- Add a newline before every parameter, not just annotated parameters, when splitting parameter lists to accommodate
-  attributes
+- Add a newline before every parameter, not just annotated parameters, when splitting parameter lists to accommodate attributes
 
-### Fixed
+#### Fixed
 
 - Fix issue where blocks that start with an empty statement (e.g. `function () { ; // ...`) are not indented correctly
 - Fix issue where anonymous class declarations are not always recognised
-- Fix issue where newlines are added after inline comments between control structure tokens, leading to unnecessary
-  indentation
+- Fix issue where newlines are added after inline comments between control structure tokens, leading to unnecessary indentation
 - Fix issue where arrow function alignment fails in strict PSR-12 mode
 - Fix `align-lists` issue where list items appearing consecutively on the same line are not always aligned correctly
 
+## [v0.4.20] - 2023-08-24
 
-## v0.4.20 - 2023-08-24
+#### Changed
 
-### Fixed
+- Remove "Magic Commas" setting
+- Rename "Align Assignments" setting to "Align Data"
 
-- Fix issue where `pretty-php.phar` fails with an exception on Windows
+### PrettyPHP [v0.4.20][lkrms/pretty-php v0.4.20]
 
+#### Fixed
 
-## v0.4.19 - 2023-08-11
+- Downgrade Box to fix an issue where `pretty-php.phar` fails with an exception on Windows
 
-> This version of *PrettyPHP for Visual Studio Code* was not released.
+## [v0.4.19] - 2023-08-11
 
-### Added
+> PrettyPHP for Visual Studio Code v0.4.19 was not released
 
-- Add initial support for Symfony's coding standards via `--preset symfony` (CLI only)
+#### Added
 
-### Changed
+- Add `symfony` preset (CLI only)
 
-- Remove the "Magic Commas" setting (magic commas are now mandatory)
-- Rename "Align Assignments" to "Align Data"
+#### Changed
+
+- Make `magic-commas` rule mandatory and remove it from command line options
+- Rename `align-assignments` rule to `align-data`
 - Adopt Box for cleaner, leaner PHAR builds
-- Remove upper limit on PHP version to allow testing on PHP 8.3
+- Remove upper limit on PHP version to allow running on PHP 8.3
 - Suppress `E_COMPILE_WARNING` errors (they can't be caught or actioned, don't affect output and aren't user-friendly)
 
-### Fixed
+#### Fixed
 
 - Fix issue where hanging indentation is not consistent within lists
 
@@ -99,63 +101,68 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
           'g' => 'h'),
       'i' => array(1,
           2,
-          3,
-          4,
-          5,
-          6),
+          3),
       'j' => array('k',
           7 => 'l',
           'm'));
+  ```
 
+## [v0.4.18] - 2023-08-07
 
-## v0.4.18 - 2023-08-07
-
-### Added
+#### Added
 
 - Add support for inline parameter attributes
 
-### Changed
+#### Changed
 
 - Suppress hanging indents in `match` expressions
 - Preserve blank lines between the arms of `match` expressions
 
-### Fixed
+#### Fixed
 
 - Fix header spacing issue caused by inconsistent handling of `?>` tags that double as statement terminators
 - Fix edge case where multi-line anonymous class interface lists are not indented
 - Fix PHP 7.4 issue where `T_ATTRIBUTE_COMMENT` may not be the last token on the line
 
+## [v0.4.17] - 2023-08-04
 
-## v0.4.17 - 2023-08-04
+#### Fixed
 
-### Fixed
+- Fix hanging indentation regression
 
-* Fix regression in `AddHangingIndentation`
+## [v0.4.16] - 2023-08-04
 
+#### Added
 
-## v0.4.16 - 2023-08-04
-
-### Added
-
-- Preserve newline after `throw`
-- Add optional depth-first sort order for imports
-  - Replace "Sort Imports" setting with "Sort Imports By" and migrate previous values
-- Make heredoc indentation configurable
-  - Replace "Indent Heredocs" setting with "Heredoc Indentation" and migrate previous values
-- Add "Formatting: Psr12" setting
+- Add "Psr12" setting
 - Write messages to an output channel instead of `console`
 
-### Changed
+#### Changed
+
+- Replace "Sort Imports" setting with "Sort Imports By"
+- Replace "Indent Heredocs" setting with "Heredoc Indentation"
+- Migrate previous values of replaced settings
+
+### PrettyPHP [v0.4.16][lkrms/pretty-php v0.4.16]
+
+#### Added
+
+- Preserve newline after `throw`
+- Add optional depth-first import sort order (available via `--sort-imports-by`)
+- Make heredoc indentation configurable via `--heredoc-indent`
+- Add `--operators-first` and `--operators-last` flags (CLI only)
+- Apply strict PSR-12 `<?php declare...` formatting and heredoc indentation when `--psr12` is given (CLI only)
+
+#### Changed
 
 - Don't apply hanging indentation in unambiguous single-expression contexts
 - Improve comment formatting
   - Normalise whitespace at the beginning and end of one-line C-style and docblock comments
   - Reindent text in multi-line comments to maintain original alignment
   - Expand leading tabs in comments to spaces (and unexpand leading spaces to tabs if using tabs for indentation)
-  - Only treat comments indented by at least one space (relative to code in the same context) as continuations of
-    comments beside code
+  - Only treat comments indented by at least one space (relative to code in the same context) as continuations of comments beside code
   - Improve comment placement in `switch` structures
-- Refactor "Align Lists"
+- Refactor `align-lists`
   - Improve consistency by removing complex eligibility checks and problematic enforcement of newlines between items
   - Propagate alignment to adjacent code recursively and unconditionally, allowing structures like:
     ```php
@@ -166,357 +173,360 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
                            $h, $i]];
     ```
 - Apply magic commas to `list` and other destructuring constructs, not just arrays and argument lists
+- Expand WordPress preset
+- Optimize for improved performance (in a 200-file batch test, v0.4.16 is 17% faster than with v0.4.15)
 
-### Fixed
+#### Removed
+
+- Remove `one-line-arguments` from available rules
+- Remove `--disable indent-heredocs` (replaced with `--heredoc-indent none`)
+
+#### Fixed
 
 - Detect more unary contexts
 - Refactor block detection to fix alignment anomalies when PHP and markup are mixed
 
+## [v0.4.15] - 2023-07-13
 
-## v0.4.15 - 2023-07-13
+#### Changed
 
-### Changed
-
-- Group alias/import statements by `use`, `use function`, `use const` for PSR-12 compliance (previous order was `use`,
-  `use const`, `use function`)
+- Group alias/import statements by `use`, `use function`, `use const` for PSR-12 compliance (previous order was `use`, `use const`, `use function`)
 - Sort trait imports
 - Tighten the criteria for a DocBlock to follow a blank line
-- Move every `->` in a multi-line method chain to a new line, including any before the first newline
+- Move every `->` in a multi-line method chain to a new line
 - In `align-chains`, collapse the first object operator after tokens with fewer characters than a soft tab
-- In `align-lists`, don't allow close bracket placement to be the only reason a list is not aligned, and refine the
-  criteria for aligning lists with nested brackets
+- In `align-lists`, don't allow close bracket placement to be the only reason a list is not aligned, and refine the criteria for aligning lists with nested brackets
 - Rewrite the `align-assignments` rule
   - Align multiple tokens per line
-  - Vary context matching rules by token type, e.g. only align commas adjacent to comparable tokens over consecutive
-    lines
+  - Vary context matching rules by token type, e.g. only align commas adjacent to comparable tokens over consecutive lines
   - Apply spacing to the previous or following token as needed, e.g. right-align numeric columns in data arrays
-  - Allow aligned tokens to be separated by multiple lines when every inner line has a higher effective indentation
-    level than the tokens
-  - Ignore series of alignable tokens that would otherwise be split and aligned separately due to a disruption (e.g. a
-    comment, or nested code at a lower indentation level)
+  - Allow aligned tokens to be separated by multiple lines when every inner line has a higher effective indentation level than the tokens
+  - Ignore series of alignable tokens that would otherwise be split and aligned separately due to a disruption (e.g. a comment, or nested code at a lower indentation level)
   - Align statements in one-line `switch` cases (`preserve-one-line` must also be enabled)
 
+#### Removed
 
-## v0.4.14 - 2023-07-05
+- Remove "preserve trailing spaces" option
+- Don't report unnecessary parentheses
 
-### Added
+#### Fixed
 
-- Add initial support for the WordPress code style via command line option `--preset wordpress`
+- Track and report output position to fix inaccurate problem report locations
 
-### Changed
+## [v0.4.14] - 2023-07-05
+
+#### Removed
+
+- Remove "Preserve Trailing Spaces", "One Line Arguments" settings
+
+### PrettyPHP [v0.4.14][lkrms/pretty-php v0.4.14]
+
+#### Added
+
+- Add initial support for the WordPress code style via `--preset wordpress` (CLI only)
+
+#### Changed
 
 - Improve support for attributes when running on PHP 7.4
 
-### Removed
+#### Fixed
 
-- Remove settings:
+- Fix issue where `if` in `else if` is treated as a new statement
 
-  - Formatting: Preserve Trailing Spaces
-  - Formatting: One Line Arguments
+## [v0.4.13] - 2023-06-29
 
-### Fixed
+> PrettyPHP for Visual Studio Code v0.4.13 was not released
+
+#### Removed
+
+- Remove Laravel-specific formatting rules (`--preset laravel` output is unchanged):
+  - `space-after-fn`
+  - `space-after-not`
+  - `no-concat-spaces`
+
+#### Fixed
 
 - Fix undesirable output when preserving newlines between brackets
 
+  Previously:
+
   ```php
   <?php
-  // Input
   $a = $b->c
       ($d);
+  ```
 
-  // Output (before)
+  Became:
+
+  ```php
   $a = $b->c(
       $d
   );
-
-  // Output (after)
-  $a = $b->c($d);
   ```
 
-- Fix issue where `if` in `else if` is treated as a new statement (fixes [#12](https://github.com/lkrms/pretty-php/issues/12))
+  And with `--preset laravel`, this:
 
+  ```php
+  <?php
+  function a($b)
+  {
+      c();
+  }
+  ```
 
-## v0.4.12 - 2023-06-22
+  Became:
 
-### Added
+  ```php
+  <?php
+  function a($b
+  ) {
+      c();
+  }
+  ```
 
-- Move all interfaces in `extends` and `implements` lists to their own line when the list spans multiple lines
+- Fix issue where indentation settings are not printed by `--print-config`
 
-### Changed
+## [v0.4.12] - 2023-06-22
+
+#### Added
+
+- When a list of interfaces after `extends` or `implements` spans multiple lines, move every interface to its own line
+
+#### Changed
 
 - Shorten empty class and function bodies to `{}` and move them to the previous line
 - Improve formatting of anonymous classes and attributes
 - Add a blank line between file-level docblocks and `declare` statements
 
-### Fixed
+#### Fixed
 
 - Many small bugs you probably hadn't noticed
 
+## [v0.4.11] - 2023-06-16
 
-## v0.4.11 - 2023-06-17
-
-### Changed
+#### Changed
 
 - Improve handling of control structures where braced and unbraced bodies are combined and/or nested
 
-### Fixed
+#### Fixed
 
-- Fix possible exception when rules `align-lists` and `align-fn` are combined
+- Fix possible exception when "Align Lists" and "Align Fn" are combined
 
+## [v0.4.10] - 2023-06-15
 
-## v0.4.8 - 2023-05-25
+> PrettyPHP for Visual Studio Code v0.4.10 was not released
 
-### Changed
+#### Changed
+
+- Update dependencies
+
+## [v0.4.9] - 2023-06-06
+
+> PrettyPHP for Visual Studio Code v0.4.9 was not released
+
+#### Fixed
+
+- Fix issue where config files above the working directory are not found
+- Fix issue where invalid or empty config files trigger an unrelated exception
+
+## [v0.4.8] - 2023-05-25
+
+#### Changed
 
 - Improve formatting of chained method calls
 - Ignore all but the last of any incompatible rules given on the command line
-- Update `laravel` preset
+- Update `laravel` preset (CLI only)
 
-### Fixed
+#### Fixed
 
 - Fix issue where operators after `$object->{$property}` expressions are sometimes treated as unary operators
-- Fix issue where `align-lists` adds newlines between method chain arguments
+- Fix issue where "Align Lists" adds newlines between method chain arguments
 - Fix handling of one-line comments with a subsequent close bracket
-- Add tests for idempotent output and fix issues subsequently detected in comment placement and the `align-fn` rule
+- Add tests for idempotent output and fix issues subsequently detected in comment placement and "Align Fn"
 
+## [v0.4.7] - 2023-05-23
 
-## v0.4.7 - 2023-05-23
+#### Added
 
-> You didn't miss anything—I've started releasing the extension with the same version number as *PrettyPHP* itself, and
-> some versions of the formatter don't make it to the extension.
+- Add `--timers` and `--fast` options to `pretty-php` (CLI only)
 
-### Changed
+#### Changed
 
-- Reinstate support for PHP 7.4
+- Restore PHP 7.4 support, courtesy of upstream `PhpToken` polyfill
+- Normalise alias/import statements before sorting to fix inconsistent output between PHP 7.4 and PHP 8.0+ (grouped imports now appear after ungrouped ones)
 
+## [v0.4.6] - 2023-05-18
 
-## v0.4.6 - 2023-05-18
+#### Changed
 
-### Changed
+- Update *PrettyPHP* to v0.4.6
 
-- **Improve alignment with `<?php` tags.** The first cut of this feature adhered more closely to "move fast and break
-  things" than intended. Runaway indentation has been fixed, and the formatter's heuristics now take the context of each
-  `?>` ... `<?php` pair into account.
+## [v0.4.4] - 2023-05-16
 
-### Fixed
+#### Changed
 
-- Fix errors related to alternative syntax parsing
-- Fix issue where strings with content other than valid UTF-8 sequences cannot be normalised
-- Fix inconsistent union and intersection type formatting
-- Suppress formatting of tokens between backticks
-
-
-## v0.4.4 - 2023-05-16
-
-### Changed
-
+- Peg the version of the extension to the bundled *PrettyPHP* version, e.g. this version comes with *PrettyPHP* v0.4.4
 - Improve Windows support, including clearer feedback and instructions when PHP can't be found
-- Update bundled [PrettyPHP] to v0.4.4. Highlights:
 
-  - Tokens between indented `<?php` and `?>` tags are aligned with the opening tag (finally!)
-  - Unicode sequences ("👍") are never encoded (`"\360\237\221\215"`) when simplifying strings (an environment
-    configured with a UTF-8 locale was required previously)
-  - End-of-line sequences are preserved by default (previous versions converted `CRLF` to `LF`, which made no difference
-    to this extension but may have been a deal-breaker for command-line users)
+#### Removed
 
-### Removed
+- Remove the "Formatter Path" setting because versions other than the bundled version of *PrettyPHP* are likely to introduce compatibility issues
 
-- Remove the "Formatter Path" setting because versions other than the bundled version of *PrettyPHP* are likely to
-  introduce compatibility issues
+#### Fixed
 
-### Fixed
+- Fix PHP 8.0 issue where *PrettyPHP* reports `Your Composer dependencies require a PHP version ">= 8.1.0"` (sorry!)
+- Fix regression where the "Format PHP without Preserving Newlines" command preserves newlines when a config file applicable to the file being formatted is found
 
-- Fix PHP 8.0 issue where *PrettyPHP* reports `Your Composer dependencies require a PHP version ">= 8.1.0"`. Apologies
-  for the packaging oversight.
-- Fix regression where the "Format PHP without Preserving Newlines" command preserves newlines when a config file
-  applies to the file being formatted
+## [v0.4.0] - 2023-04-27
 
+#### Added
 
-## v0.4.0 - 2023-04-28
+- Add "Preserve Trailing Spaces", "Honour Configuration Files" settings
 
-### Added
+#### Changed
 
-Add settings:
+- Update *PrettyPHP* to v0.4.1
 
-- Formatting: Preserve Trailing Spaces
-- Honour Configuration Files
+## [v0.3.5] - 2023-04-04
 
-### Changed
+#### Changed
 
-- Update bundled [PrettyPHP] to v0.4.1. Highlights:
+- Update *PrettyPHP* to v0.3.22
 
-  - Support for JSON configuration files (e.g. `.prettyphp`, `prettyphp.json`) that specify how files in and below a
-    directory should be formatted
-  - Optional preservation of Markdown-style line breaks (aka trailing spaces) in comments
-  - Improved `match` handling
+## [v0.3.4] - 2023-03-28
 
-
-## v0.3.5 - 2023-04-04
-
-### Changed
-
-- Update bundled [PrettyPHP] to v0.3.22. Highlights:
-
-  - Lists of interfaces after `extends` or `implements` are handled correctly
-  - If one ternary operator is found at the start of a line, its counterpart is also moved to the start of a line
-  - Improved chain alignment heuristics (apologies for any inexplicable whitespace diffs you encounter)
-  - Nested heredocs no longer produce unparsable output
-
-
-## v0.3.4 - 2023-03-28
-
-### Changed
+#### Changed
 
 - Update documentation
 
+## [v0.3.3] - 2023-03-27
 
-## v0.3.3 - 2023-03-27
-
-### Added
+#### Added
 
 - Add settings:
 
-  - Formatter Arguments
-  - Formatting:
+  - "Formatter Arguments"
+  - "Sort Imports"
+  - "Magic Commas"
+  - "Indent Heredocs"
+  - "Blank Before Return"
+  - "Strict Lists"
+  - "Align Chains"
+  - "Align Fn"
+  - "Align Lists"
+  - "Align Ternary Operators"
 
-    - Sort Imports
-    - Magic Commas
-    - Indent Heredocs
-    - Blank Before Return
-    - Strict Lists
-    - Alignment:
-
-      - Align Chains
-      - Align Fn
-      - Align Lists
-      - Align Ternary Operators
-
-### Changed
+#### Changed
 
 - Suppress error notification when syntax is invalid
 - Rename "Blank Before Declaration" setting to "Declaration Spacing"
-- Update bundled [PrettyPHP] to v0.3.19. Highlights:
+- Update *PrettyPHP* to v0.3.19
 
-  - New alignment rules for ternary operators and arrow functions
-  - Improved array and argument list handling
-  - Many fixes and refinements
+## [v0.3.2] - 2023-03-14
 
+#### Added
 
-## v0.3.2 - 2023-03-14
+- Add "One Line Arguments" setting
 
-### Added
+#### Changed
 
-- Add formatting setting: "One Line Arguments"
+- Update *PrettyPHP* to v0.3.17
 
-### Changed
+## [v0.3.1] - 2023-03-07
 
-- Update bundled [PrettyPHP] to v0.3.17, with fixes and heuristic improvements to hanging indentation, brace and newline
-  placement, assignment alignment and unenclosed control structure body handling.
+#### Added
 
+- Add "Blank Before Declaration", "Align Comments" settings
 
-## v0.3.1 - 2023-03-07
+#### Changed
 
-### Added
+- Update *PrettyPHP* to v0.3.13
 
-- Add formatting settings:
+## [v0.3.0] - 2023-02-24
 
-  - Blank Before Declaration
-  - Align Comments
+#### Added
 
-### Changed
+- Add "Format PHP without Preserving Newlines" command
+- Add "Simplify Strings", "Align Assignments", "Preserve One Line Statements" settings
 
-- Update bundled [PrettyPHP] to v0.3.13. Highlights (aside from bug fixes and performance improvements):
+#### Changed
 
-  - Newlines between declarations are more consistent, e.g. when formatting three or more consecutive `public const`
-    declarations, the gap between the first two declarations is applied to the others.
-  - 2 spaces instead of 4 are added between code and adjacent comments.
+- Require PHP 8+
+- Update *PrettyPHP* to v0.3.6
 
+## [v0.2.0] - 2023-02-06
 
-## v0.3.0 - 2023-02-24
+#### Changed
 
-> PHP 8+ is now required.
+- Update *PrettyPHP* to v0.2.0
 
-### Added
+## [v0.1.7] - 2023-01-27
 
-- Add command: "Format PHP without Preserving Newlines"
-- Add formatting settings (a few more to come):
+#### Changed
 
-  - Simplify Strings
-  - Align Assignments
-  - Preserve One Line Statements
+- Update *PrettyPHP* to v0.1.10
 
-### Changed
+## [v0.1.6] - 2023-01-25
 
-- Update [PrettyPHP] to v0.3.6. Highlights:
+#### Added
 
-  - v0.3.6 is 54% faster than v0.2.0, give or take.
-  - Alias/import statements are grouped by type (`use`, `use const`, `use function`) and sorted.
-  - Entire control structures are regarded as one statement, e.g. when preserving one-line statements.
-  - Hanging indentation is applied to heredocs.
-  - Newlines are added between items in lists that have a trailing comma.
-  - Ternary operator detection and indentation is more robust.
-  - Multiple issues have been resolved, including:
+- Add "Formatter Path" setting
 
-    - Inconsistent formatting of control structures with missing braces
-    - Inconsistent detection of `do ... while` blocks
-    - Undesirable blank lines above some PHPDoc comments
-    - Undesirable alignment of multi-line comments beside code
+#### Changed
 
+- Update *PrettyPHP* to v0.1.8
+- Report errors via VS Code notifications
 
-## v0.2.0 - 2023-02-06
+## [v0.1.5] - 2023-01-23
 
-### Changed
+#### Added
 
-- Update [PrettyPHP] to v0.2.0. Highlights:
+- Add "PHP Path" setting
 
-  - Newlines are added before `->` or `?->` operators that appear after an aligned call in a method chain.
-  - Newlines are added before items in argument lists and arrays where one or more items already have a leading newline.
-  - Multi-line comments are supported beside code.
-  - Standard multi-line comments (`/* ... */`) are formatted like their PHPDoc counterparts (`/** ... */`).
-  - Multiple bugs related to indentation and alignment have been fixed.
+#### Changed
 
+- Update *PrettyPHP* to v0.1.6
+- Pass the active editor's indentation options to *PrettyPHP*
+- Format code that uses PHP's short open tag (`<?`)
 
-## v0.1.7 - 2023-01-27
+#### Fixed
 
-### Changed
+- Fix PHP startup errors appearing in formatted code
 
-- Update [PrettyPHP] to v0.1.10 for improved argument alignment and related bug fixes.
+## [v0.1.4] - 2023-01-20
 
+Initial release
 
-## v0.1.6 - 2023-01-25
-
-### Added
-
-- Add a formatter path setting for integration with custom versions of [PrettyPHP].
-
-### Changed
-
-- Update [PrettyPHP] to v0.1.8. Fixes an issue where subsequent empty lines weren't truncated correctly in heredocs.
-- Rename `pretty-php.php` setting to `pretty-php.phpPath`.
-- Report errors via VSCode notifications.
-
-
-## v0.1.5 - 2023-01-23
-
-### Added
-
-- Add PHP executable path setting.
-
-### Changed
-
-- Update [PrettyPHP] to v0.1.6.
-- Pass the active editor's indentation options to [PrettyPHP].
-- Log output written to STDERR to the developer console even if no error occurs.
-- Allow code being formatted to use PHP's short open tag (`<?`).
-
-### Fixed
-
-- Fix PHP startup errors appearing in formatted code.
-
-
-## v0.1.4 - 2023-01-20
-
-- Initial release
-
-
-[PrettyPHP]: https://github.com/lkrms/pretty-php
+[v0.4.22]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.21...v0.4.22
+[v0.4.21]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.20...v0.4.21
+[v0.4.20]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.18...v0.4.20
+[v0.4.19]: https://github.com/lkrms/pretty-php/compare/v0.4.18...v0.4.19
+[v0.4.18]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.17...v0.4.18
+[v0.4.17]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.16...v0.4.17
+[v0.4.16]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.15...v0.4.16
+[v0.4.15]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.14...v0.4.15
+[v0.4.14]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.12...v0.4.14
+[v0.4.13]: https://github.com/lkrms/pretty-php/compare/v0.4.12...v0.4.13
+[v0.4.12]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.11...v0.4.12
+[v0.4.11]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.8...v0.4.11
+[v0.4.10]: https://github.com/lkrms/pretty-php/compare/v0.4.9...v0.4.10
+[v0.4.9]: https://github.com/lkrms/pretty-php/compare/v0.4.8...v0.4.9
+[v0.4.8]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.7...v0.4.8
+[v0.4.7]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.6...v0.4.7
+[v0.4.6]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.4...v0.4.6
+[v0.4.4]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.0...v0.4.4
+[v0.4.0]: https://github.com/lkrms/vscode-pretty-php/compare/v0.3.5...v0.4.0
+[v0.3.5]: https://github.com/lkrms/vscode-pretty-php/compare/v0.3.4...v0.3.5
+[v0.3.4]: https://github.com/lkrms/vscode-pretty-php/compare/v0.3.3...v0.3.4
+[v0.3.3]: https://github.com/lkrms/vscode-pretty-php/compare/v0.3.2...v0.3.3
+[v0.3.2]: https://github.com/lkrms/vscode-pretty-php/compare/v0.3.1...v0.3.2
+[v0.3.1]: https://github.com/lkrms/vscode-pretty-php/compare/v0.3.0...v0.3.1
+[v0.3.0]: https://github.com/lkrms/vscode-pretty-php/compare/v0.2.0...v0.3.0
+[v0.2.0]: https://github.com/lkrms/vscode-pretty-php/compare/v0.1.7...v0.2.0
+[v0.1.7]: https://github.com/lkrms/vscode-pretty-php/compare/v0.1.6...v0.1.7
+[v0.1.6]: https://github.com/lkrms/vscode-pretty-php/compare/v0.1.5...v0.1.6
+[v0.1.5]: https://github.com/lkrms/vscode-pretty-php/compare/v0.1.4...v0.1.5
+[v0.1.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.1.4
+[lkrms/pretty-php v0.4.20]: https://github.com/lkrms/pretty-php/compare/v0.4.19...v0.4.20
+[lkrms/pretty-php v0.4.16]: https://github.com/lkrms/pretty-php/compare/v0.4.15...v0.4.16
+[lkrms/pretty-php v0.4.14]: https://github.com/lkrms/pretty-php/compare/v0.4.13...v0.4.14
