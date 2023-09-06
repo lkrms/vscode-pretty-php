@@ -10,4 +10,8 @@ src/**
 
 out/test/**
 
+.github/**
+build/**
+scripts/**
+
 *.code-workspace
