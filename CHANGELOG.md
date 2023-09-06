@@ -7,6 +7,12 @@ The format is based on [Keep a Changelog].
 [PrettyPHP]: https://github.com/lkrms/pretty-php
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.23] - 2023-09-05
+
+#### Changed
+
+- Improve performance by removing unnecessary type checking
+
 ## [v0.4.22] - 2023-08-31
 
 #### Changed
@@ -497,6 +503,7 @@ The format is based on [Keep a Changelog].
 
 Initial release
 
+[v0.4.23]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.22...v0.4.23
 [v0.4.22]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.21...v0.4.22
 [v0.4.21]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.20...v0.4.21
 [v0.4.20]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.18...v0.4.20
