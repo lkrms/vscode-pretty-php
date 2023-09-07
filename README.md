@@ -1,20 +1,21 @@
-<div align="center">
+# pretty-php: the opinionated code formatter for Visual Studio Code
 
-# PrettyPHP for Visual Studio Code
+<p>
+  <a href="https://packagist.org/packages/lkrms/pretty-php"><img src="https://poser.pugx.org/lkrms/pretty-php/v" alt="Latest Stable Version" /></a>
+  <a href="https://packagist.org/packages/lkrms/pretty-php"><img src="https://poser.pugx.org/lkrms/pretty-php/license" alt="License" /></a>
+  <a href="https://github.com/lkrms/pretty-php/actions"><img src="https://github.com/lkrms/pretty-php/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
+  <a href="https://codecov.io/gh/lkrms/pretty-php"><img src="https://codecov.io/gh/lkrms/pretty-php/graph/badge.svg?token=W0KVZU718K" alt="Code Coverage" /></a>
+</p>
 
-## The opinionated code formatter for PHP
-
-> This extension integrates the latest release of [PrettyPHP][] with Visual
+> This extension integrates the latest release of [pretty-php][] with Visual
 > Studio Code.
 
-</div>
-
-*PrettyPHP* is a code formatter for PHP in the tradition of [Black][] for
+`pretty-php` is a code formatter for PHP in the tradition of [Black][] for
 Python, [Prettier][] for JavaScript and [shfmt][] for shell scripts. It aims to
 bring the benefits of fast, deterministic, minimally configurable, automated
 code formatting tools to PHP development.
 
-To that end, you can also use *PrettyPHP* as a standalone tool, or pair it with
+To that end, you can also use `pretty-php` as a standalone tool, or pair it with
 a linter like [phpcbf][] or [php-cs-fixer][] and add it to your CI workflows.
 
 Or you could just give it a try and [let me know what you think][discuss]. 😉
@@ -62,7 +63,7 @@ MIT
 [phpcbf]: https://github.com/squizlabs/PHP_CodeSniffer
 [pragmatic exceptions]: https://github.com/lkrms/pretty-php#pragmatism
 [Prettier]: https://prettier.io/
-[PrettyPHP]: https://github.com/lkrms/pretty-php
+[pretty-php]: https://github.com/lkrms/pretty-php
 [PSR-12]: https://www.php-fig.org/psr/psr-12/
 [PSR-12 issue]: https://github.com/lkrms/pretty-php/issues/4
 [docs/PSR-12.md]: https://github.com/lkrms/pretty-php/blob/main/docs/PSR-12.md

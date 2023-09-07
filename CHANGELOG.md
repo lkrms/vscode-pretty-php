@@ -1,13 +1,13 @@
 # Changelog
 
-Notable changes to this extension and to [PrettyPHP] itself are documented in this file.
+Notable changes to this extension and to [pretty-php] itself are documented in this file.
 
 The format is based on [Keep a Changelog].
 
-[PrettyPHP]: https://github.com/lkrms/pretty-php
+[pretty-php]: https://github.com/lkrms/pretty-php
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
-## [v0.4.23] - 2023-09-05
+## [v0.4.23] - 2023-09-06
 
 #### Changed
 
@@ -72,7 +72,7 @@ The format is based on [Keep a Changelog].
 - Remove "Magic Commas" setting
 - Rename "Align Assignments" setting to "Align Data"
 
-### PrettyPHP [v0.4.20][lkrms/pretty-php v0.4.20]
+### pretty-php [v0.4.20][lkrms/pretty-php v0.4.20]
 
 #### Fixed
 
@@ -80,7 +80,7 @@ The format is based on [Keep a Changelog].
 
 ## [v0.4.19] - 2023-08-11
 
-> PrettyPHP for Visual Studio Code v0.4.19 was not released
+> pretty-php for Visual Studio Code v0.4.19 was not released
 
 #### Added
 
@@ -149,7 +149,7 @@ The format is based on [Keep a Changelog].
 - Replace "Indent Heredocs" setting with "Heredoc Indentation"
 - Migrate previous values of replaced settings
 
-### PrettyPHP [v0.4.16][lkrms/pretty-php v0.4.16]
+### pretty-php [v0.4.16][lkrms/pretty-php v0.4.16]
 
 #### Added
 
@@ -225,7 +225,7 @@ The format is based on [Keep a Changelog].
 
 - Remove "Preserve Trailing Spaces", "One Line Arguments" settings
 
-### PrettyPHP [v0.4.14][lkrms/pretty-php v0.4.14]
+### pretty-php [v0.4.14][lkrms/pretty-php v0.4.14]
 
 #### Added
 
@@ -241,7 +241,7 @@ The format is based on [Keep a Changelog].
 
 ## [v0.4.13] - 2023-06-29
 
-> PrettyPHP for Visual Studio Code v0.4.13 was not released
+> pretty-php for Visual Studio Code v0.4.13 was not released
 
 #### Removed
 
@@ -320,7 +320,7 @@ The format is based on [Keep a Changelog].
 
 ## [v0.4.10] - 2023-06-15
 
-> PrettyPHP for Visual Studio Code v0.4.10 was not released
+> pretty-php for Visual Studio Code v0.4.10 was not released
 
 #### Changed
 
@@ -328,7 +328,7 @@ The format is based on [Keep a Changelog].
 
 ## [v0.4.9] - 2023-06-06
 
-> PrettyPHP for Visual Studio Code v0.4.9 was not released
+> pretty-php for Visual Studio Code v0.4.9 was not released
 
 #### Fixed
 

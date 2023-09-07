@@ -1,7 +1,7 @@
 {
   "name": "pretty-php",
-  "displayName": "PrettyPHP - opinionated PHP formatter",
-  "description": "An opinionated code formatter for PHP in the tradition of Black and Prettier",
+  "displayName": "pretty-php",
+  "description": "The opinionated PHP code formatter",
   "version": "0.4.23",
   "publisher": "lkrms",
   "engines": {
@@ -41,7 +41,7 @@
       }
     ],
     "configuration": {
-      "title": "PrettyPHP",
+      "title": "pretty-php",
       "properties": {
         "pretty-php.formatting.sortImportsBy": {
           "description": "Set the sort order for consecutive alias/import statements",
@@ -152,13 +152,13 @@
           "order": 40
         },
         "pretty-php.honourConfigurationFiles": {
-          "markdownDescription": "Options in PrettyPHP configuration files (e.g. `.prettyphp`) take precedence over these settings",
+          "markdownDescription": "Options in `pretty-php` configuration files (e.g. `.prettyphp`) take precedence over these settings",
           "type": "boolean",
           "default": true,
           "order": 58
         },
         "pretty-php.formatterArguments": {
-          "markdownDescription": "Pass additional arguments to PrettyPHP, e.g. `--one-true-brace-style`",
+          "markdownDescription": "Pass additional arguments to `pretty-php`, e.g. `--one-true-brace-style`",
           "type": "array",
           "items": {
             "type": "string"

@@ -18,6 +18,6 @@ chmod a+x build/changelog.phar
 build/changelog.phar \
     --releases=yes --releases=yes \
     --missing=yes --missing=no \
-    --name "PrettyPHP for Visual Studio Code" --name "PrettyPHP" \
+    --name "pretty-php for Visual Studio Code" --name "pretty-php" \
     --output CHANGELOG.md \
     lkrms/vscode-pretty-php lkrms/pretty-php

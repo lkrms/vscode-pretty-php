@@ -86,7 +86,7 @@ export function activate (context: vscode.ExtensionContext) {
       const php = spawn(
         command, [
           ...args,
-          '-qqq', // Silence PrettyPHP unless there's an error
+          '-qqq', // Silence pretty-php unless there's an error
           '--',
           '-' // Specify that code to format should be taken from the standard input
         ]
@@ -124,7 +124,7 @@ export function activate (context: vscode.ExtensionContext) {
           resolve([])
         } else {
           log.error(`${php.spawnfile} failed (exit status: ${code})`)
-          showErrorMessage('PrettyPHP failed: ' + stderr)
+          showErrorMessage('pretty-php failed: ' + stderr)
           resolve([])
         }
       })
@@ -202,7 +202,7 @@ export function activate (context: vscode.ExtensionContext) {
     }
 
     if (insertSpaces !== undefined && tabSize !== undefined) {
-      // Pass the editor's indent type and size to PrettyPHP
+      // Pass the editor's indent type and size to pretty-php
       prettyPhpArgs.push((insertSpaces ? '-s' : '-t') + String(normaliseTabSize(tabSize)))
     }
 
@@ -282,7 +282,7 @@ export function activate (context: vscode.ExtensionContext) {
     }
   }
 
-  const log = vscode.window.createOutputChannel('PrettyPHP', { log: true })
+  const log = vscode.window.createOutputChannel('pretty-php', { log: true })
 
   migrateConfiguration<boolean, boolean>(
     'formatting.blankBeforeDeclaration',
