@@ -62,7 +62,7 @@
           "order": 9
         },
         "pretty-php.formatting.simplifyStrings": {
-          "description": "Replace single- and double-quoted strings with whichever is clearer and more efficient",
+          "description": "Normalise escape sequences in strings, and replace single- and double-quoted strings with whichever syntax is most readable and economical",
           "type": "boolean",
           "default": true,
           "order": 10
@@ -116,7 +116,7 @@
           "order": 23
         },
         "pretty-php.formatting.alignment.alignLists": {
-          "markdownDescription": "Align arguments and array elements with their enclosing brackets\n\n```php\n<?php\n$obj->method($arg1,\n             $arg2);\n```",
+          "markdownDescription": "Align arguments, array elements and other list items with their owners\n\n```php\n<?php\n$obj->method($arg1,\n             $arg2);\n```",
           "type": "boolean",
           "default": false,
           "order": 24
