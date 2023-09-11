@@ -7,12 +7,24 @@ The format is based on [Keep a Changelog].
 [pretty-php]: https://github.com/lkrms/pretty-php
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.25] - 2023-09-11
+
+#### Changed
+
+- Normalise constant parts of all strings--including heredocs and between backtick operators--not just single- and double-quoted constant strings
+- Remove unnecessary backslash escapes
+- Escape `"\x1b"` as `"\e"`
+
+#### Fixed
+
+- Fix regression in v0.4.24 where unnecessary backslashes are added in some contexts (sorry!)
+
 ## [v0.4.24] - 2023-09-09
 
 #### Changed
 
-- Remove `T_BAD_CHARACTER` tokens
 - Unescape leading tabs in strings when using tabs for indentation
+- Remove `T_BAD_CHARACTER` tokens
 
 ## [v0.4.23] - 2023-09-06
 
@@ -510,7 +522,8 @@ The format is based on [Keep a Changelog].
 
 Initial release
 
-[v0.4.24]: https://github.com/lkrms/pretty-php/compare/v0.4.23...v0.4.24
+[v0.4.25]: https://github.com/lkrms/pretty-php/compare/v0.4.24...v0.4.25
+[v0.4.24]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.23...v0.4.24
 [v0.4.23]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.22...v0.4.23
 [v0.4.22]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.21...v0.4.22
 [v0.4.21]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.20...v0.4.21
