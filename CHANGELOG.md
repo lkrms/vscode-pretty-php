@@ -7,7 +7,20 @@ The format is based on [Keep a Changelog].
 [pretty-php]: https://github.com/lkrms/pretty-php
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.26] - 2023-09-14
+
+#### Fixed
+
+- Fix issue where backslashes in heredocs are escaped unnecessarily
+- Fix additional escaping issues, e.g. in strings like `"\\\{$a}"`
+
 ## [v0.4.25] - 2023-09-11
+
+#### Changed
+
+- Update setting descriptions
+
+### pretty-php [v0.4.25][lkrms/pretty-php v0.4.25]
 
 #### Changed
 
@@ -522,7 +535,8 @@ The format is based on [Keep a Changelog].
 
 Initial release
 
-[v0.4.25]: https://github.com/lkrms/pretty-php/compare/v0.4.24...v0.4.25
+[v0.4.26]: https://github.com/lkrms/pretty-php/compare/v0.4.25...v0.4.26
+[v0.4.25]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.24...v0.4.25
 [v0.4.24]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.23...v0.4.24
 [v0.4.23]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.22...v0.4.23
 [v0.4.22]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.21...v0.4.22
@@ -555,6 +569,7 @@ Initial release
 [v0.1.6]: https://github.com/lkrms/vscode-pretty-php/compare/v0.1.5...v0.1.6
 [v0.1.5]: https://github.com/lkrms/vscode-pretty-php/compare/v0.1.4...v0.1.5
 [v0.1.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.1.4
+[lkrms/pretty-php v0.4.25]: https://github.com/lkrms/pretty-php/compare/v0.4.24...v0.4.25
 [lkrms/pretty-php v0.4.20]: https://github.com/lkrms/pretty-php/compare/v0.4.19...v0.4.20
 [lkrms/pretty-php v0.4.16]: https://github.com/lkrms/pretty-php/compare/v0.4.15...v0.4.16
 [lkrms/pretty-php v0.4.14]: https://github.com/lkrms/pretty-php/compare/v0.4.13...v0.4.14
