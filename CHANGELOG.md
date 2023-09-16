@@ -7,6 +7,23 @@ The format is based on [Keep a Changelog].
 [pretty-php]: https://github.com/lkrms/pretty-php
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.27] - 2023-09-16
+
+#### Added
+
+- Add `StrictExpressions` rule for PSR-12-compliant handling of multi-line
+  control structure expressions
+
+#### Changed
+
+- Move logical operators to the start of the line in contexts where hanging
+  indentation will not be applied
+
+#### Fixed
+
+- Improve `PreserveLineBreaks` heuristics to fix an issue where leading
+  operators remain at the end of a line when followed by `!` on the next line
+
 ## [v0.4.26] - 2023-09-14
 
 #### Fixed
@@ -535,6 +552,7 @@ The format is based on [Keep a Changelog].
 
 Initial release
 
+[v0.4.27]: https://github.com/lkrms/pretty-php/compare/v0.4.26...v0.4.27
 [v0.4.26]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.25...v0.4.26
 [v0.4.25]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.24...v0.4.25
 [v0.4.24]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.23...v0.4.24
