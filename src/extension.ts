@@ -86,7 +86,7 @@ export function activate (context: vscode.ExtensionContext) {
       const php = spawn(
         command, [
           ...args,
-          '-qqq', // Silence pretty-php unless there's an error
+          '-q', // Silence pretty-php aside from errors and warnings
           '--',
           '-' // Specify that code to format should be taken from the standard input
         ]
@@ -104,7 +104,7 @@ export function activate (context: vscode.ExtensionContext) {
 
       php.on('close', (code: number) => {
         if (stderr.length > 0) {
-          log.error(stderr)
+          log.info(`${php.spawnfile} reported:\n${stderr}`)
         }
         if (code === 0) {
           log.info(`${php.spawnfile} succeeded (output length: ${stdout.length})`)
