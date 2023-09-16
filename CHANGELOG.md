@@ -535,7 +535,7 @@ The format is based on [Keep a Changelog].
 
 Initial release
 
-[v0.4.26]: https://github.com/lkrms/pretty-php/compare/v0.4.25...v0.4.26
+[v0.4.26]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.25...v0.4.26
 [v0.4.25]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.24...v0.4.25
 [v0.4.24]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.23...v0.4.24
 [v0.4.23]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.22...v0.4.23
