@@ -7,7 +7,58 @@ The format is based on [Keep a Changelog].
 [pretty-php]: https://github.com/lkrms/pretty-php
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.28] - 2023-09-18
+
+#### Changed
+
+- **Revert change to logical operator placement in v0.4.27**
+
+  This change was intended to improve the readability of PSR-12-compliant control structure expressions, but output was inconsistent and there were unforeseen side-effects, so v0.4.26 behaviour has been restored. Apologies for the disruption!
+
+- In strict PSR-12 mode, move comments beside the closing brace of classes, interfaces, etc. to the next line
+- Move multi-line docblocks beside code to their own line
+- When adding blank lines before statements, respect continuation of earlier comments
+- Remove blank lines between subsequent one-line `declare` statements
+- For vertical spacing purposes, treat consecutive property declarations as the same declaration type, regardless of syntax (e.g. when `var` is mixed with `private`)
+
+#### Fixed
+
+- Fix issue where blank lines are added after `<?php` when there are two or more subsequent declarations of the same type
+- If subsequent declaration types are different, propagate spacing from earlier siblings of the same type to avoid output like the following (there should be a blank line between `class B` and `class C`):
+
+  ```php
+  <?php
+  class A
+  {
+      public function a() {}
+  }
+
+  class B {}
+  class C {}
+  ```
+
+- Add blank lines before comments that trigger vertical expansion of declarations, preventing output like:
+
+  ```php
+  <?php
+  class A
+  {
+      public $foo;
+      public $bar;
+      // There should be a blank line above this
+      public $baz;
+
+      public $qux;
+  }
+  ```
+
 ## [v0.4.27] - 2023-09-16
+
+#### Changed
+
+- Report output from `pretty-php` to stderr in the output channel
+
+### pretty-php [v0.4.27][lkrms/pretty-php v0.4.27]
 
 #### Added
 
@@ -552,7 +603,8 @@ The format is based on [Keep a Changelog].
 
 Initial release
 
-[v0.4.27]: https://github.com/lkrms/pretty-php/compare/v0.4.26...v0.4.27
+[v0.4.28]: https://github.com/lkrms/pretty-php/compare/v0.4.27...v0.4.28
+[v0.4.27]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.26...v0.4.27
 [v0.4.26]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.25...v0.4.26
 [v0.4.25]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.24...v0.4.25
 [v0.4.24]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.23...v0.4.24
@@ -587,6 +639,7 @@ Initial release
 [v0.1.6]: https://github.com/lkrms/vscode-pretty-php/compare/v0.1.5...v0.1.6
 [v0.1.5]: https://github.com/lkrms/vscode-pretty-php/compare/v0.1.4...v0.1.5
 [v0.1.4]: https://github.com/lkrms/vscode-pretty-php/releases/tag/v0.1.4
+[lkrms/pretty-php v0.4.27]: https://github.com/lkrms/pretty-php/compare/v0.4.26...v0.4.27
 [lkrms/pretty-php v0.4.25]: https://github.com/lkrms/pretty-php/compare/v0.4.24...v0.4.25
 [lkrms/pretty-php v0.4.20]: https://github.com/lkrms/pretty-php/compare/v0.4.19...v0.4.20
 [lkrms/pretty-php v0.4.16]: https://github.com/lkrms/pretty-php/compare/v0.4.15...v0.4.16
