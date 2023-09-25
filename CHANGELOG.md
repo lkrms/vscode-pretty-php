@@ -7,6 +7,24 @@ The format is based on [Keep a Changelog].
 [pretty-php]: https://github.com/lkrms/pretty-php
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.29] - 2023-09-25
+
+#### Changed
+
+- Convert shell-style comments (`#`) to C++-style comments (`//`)
+- Add a space between `//` and subsequent text
+- Remove leading and trailing empty lines from PHP docblocks
+- Preserve indentation when normalising PHP docblocks
+- Improve heuristics so C-style comments (`/* ... */`) are normalised like PHP docblocks more consistently
+- Don't reindent multiline comments beside code if they have text in column 1, e.g.
+
+```php
+<?php
+foo(); /* this comment
+starts after column 1
+but has text in column 1 */
+```
+
 ## [v0.4.28] - 2023-09-18
 
 #### Changed
@@ -603,7 +621,8 @@ The format is based on [Keep a Changelog].
 
 Initial release
 
-[v0.4.28]: https://github.com/lkrms/pretty-php/compare/v0.4.27...v0.4.28
+[v0.4.29]: https://github.com/lkrms/pretty-php/compare/v0.4.28...v0.4.29
+[v0.4.28]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.27...v0.4.28
 [v0.4.27]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.26...v0.4.27
 [v0.4.26]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.25...v0.4.26
 [v0.4.25]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.24...v0.4.25
