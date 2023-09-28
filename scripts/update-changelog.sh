@@ -20,4 +20,5 @@ build/changelog.phar \
     --missing=yes --missing=no \
     --name "pretty-php for Visual Studio Code" --name "pretty-php" \
     --output CHANGELOG.md \
+    --merge \
     lkrms/vscode-pretty-php lkrms/pretty-php
