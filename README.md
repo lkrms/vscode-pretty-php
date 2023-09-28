@@ -9,18 +9,18 @@
   <a href="https://codecov.io/gh/lkrms/pretty-php"><img src="https://codecov.io/gh/lkrms/pretty-php/graph/badge.svg?token=W0KVZU718K" alt="Code Coverage" /></a>
 </p>
 
-----
+---
 
 `pretty-php` is a fast, deterministic, minimally configurable code formatter for
 PHP.
 
 Using `pretty-php` absolves you of responsibility for the whitespace in your
-code, leaving you with more time and mental energy to focus on the content.
+code, giving you freedom to do more important things with the time and mental
+energy you didn't realise you were spending on such minutiae.
 
-In addition to producing the smallest diffs possible, code formatted by
-`pretty-php` looks the same regardless of the project you're working on,
-eliminating visual dissonance and improving the speed and effectiveness of code
-review.
+Code formatted by `pretty-php` produces the smallest diffs possible and looks
+the same regardless of the project you're working on, eliminating visual
+dissonance and improving the speed and effectiveness of code review.
 
 Aside from running it in VS Code, you can use `pretty-php` as a standalone tool,
 pair it with a linter, or add it to your CI workflows. Configuration is optional
@@ -61,17 +61,17 @@ but exceptions are occasionally made and documented here.
 
 - **Newlines are preserved** \
   Line breaks adjacent to most operators, separators and brackets are copied
-  from the input to the output. *To suppress this behaviour temporarily, use the
-  "Format PHP without Preserving Newlines" command.*
+  from the input to the output. _To suppress this behaviour temporarily, use the
+  "Format PHP without Preserving Newlines" command._
 
 - **Strings are normalised** \
   Single-quoted strings are preferred unless the alternative is shorter or
-  backslash escapes are required. *Turn the "Formatting: Simplify Strings"
-  setting off disable this behaviour.*
+  backslash escapes are required. _Turn the "Formatting: Simplify Strings"
+  setting off disable this behaviour._
 
 - **Alias/import statements are grouped and sorted alphabetically** \
-  *The "Formatting: Sort Imports By" setting can be used to disable or modify
-  this behaviour.*
+  _The "Formatting: Sort Imports By" setting can be used to disable or modify
+  this behaviour._
 
 - **Comments beside code are not moved to the next line**
 
@@ -80,7 +80,6 @@ but exceptions are occasionally made and documented here.
 ## License
 
 MIT
-
 
 [discuss]: https://github.com/lkrms/pretty-php/discussions
 [PER]: https://www.php-fig.org/per/coding-style/
