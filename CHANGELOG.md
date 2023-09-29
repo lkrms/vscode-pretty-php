@@ -8,6 +8,12 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.31] - 2023-09-29
+
+### Added
+
+- Add JSON schema for .prettyphp files
+
 ## [v0.4.30] - 2023-09-28
 
 ### Changed
@@ -601,7 +607,8 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 
 Initial release
 
-[v0.4.30]: https://github.com/lkrms/pretty-php/compare/v0.4.29...v0.4.30
+[v0.4.31]: https://github.com/lkrms/pretty-php/compare/v0.4.30...v0.4.31
+[v0.4.30]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.29...v0.4.30
 [v0.4.29]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.28...v0.4.29
 [v0.4.28]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.27...v0.4.28
 [v0.4.27]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.26...v0.4.27
