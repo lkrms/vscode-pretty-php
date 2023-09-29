@@ -180,6 +180,15 @@
           ".prettyphp"
         ]
       }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": [
+          ".prettyphp",
+          "prettyphp.json"
+        ],
+        "url": "./resources/prettyphp-schema.json"
+      }
     ]
   },
   "scripts": {

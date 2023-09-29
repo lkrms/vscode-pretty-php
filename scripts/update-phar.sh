@@ -20,3 +20,7 @@ printf 'downloading pretty-php.phar %s\n' "$version"
 mkdir -p bin
 curl -fsSLRo bin/pretty-php.phar "https://github.com/lkrms/pretty-php/releases/download/$version/pretty-php.phar"
 chmod a+x bin/pretty-php.phar
+
+printf 'downloading prettyphp-schema.json %s\n' "$version"
+mkdir -p resources
+curl -fsSRo resources/prettyphp-schema.json "https://raw.githubusercontent.com/lkrms/pretty-php/$version/resources/prettyphp-schema.json"

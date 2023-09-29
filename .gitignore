@@ -6,4 +6,5 @@ package-lock.json
 *.vsix
 
 bin/pretty-php.phar
+resources/prettyphp-schema.json
 build/
