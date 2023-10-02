@@ -14,9 +14,10 @@
 `pretty-php` is a fast, deterministic, minimally configurable code formatter for
 PHP.
 
-Using `pretty-php` absolves you of responsibility for the whitespace in your
-code, giving you freedom to do more important things with the time and mental
-energy you didn't realise you were spending on such minutiae.
+By using `pretty-php`, you are absolved of responsibility for the whitespace in
+your code. You can disengage from the minutiae of how code is formatted and are
+better able to focus on its content. You have more time and mental energy
+available for other things.
 
 Code formatted by `pretty-php` produces the smallest diffs possible and looks
 the same regardless of the project you're working on, eliminating visual
@@ -60,18 +61,18 @@ ignored, and nothing in the original file other than whitespace is changed"),
 but exceptions are occasionally made and documented here.
 
 - **Newlines are preserved** \
-  Line breaks adjacent to most operators, separators and brackets are copied
-  from the input to the output. _To suppress this behaviour temporarily, use the
-  "Format PHP without Preserving Newlines" command._
+  Line breaks adjacent to most operators, separators and brackets are copied from
+  the input to the output. _To suppress this behaviour temporarily, use the "Format
+  PHP without Preserving Newlines" command._
 
 - **Strings are normalised** \
-  Single-quoted strings are preferred unless the alternative is shorter or
-  backslash escapes are required. _Turn the "Formatting: Simplify Strings"
-  setting off disable this behaviour._
+  Single-quoted strings are preferred unless the alternative is shorter or backslash
+  escapes are required. _Turn the "Formatting: Simplify Strings" setting off disable
+  this behaviour._
 
 - **Alias/import statements are grouped and sorted alphabetically** \
-  _The "Formatting: Sort Imports By" setting can be used to disable or modify
-  this behaviour._
+  _The "Formatting: Sort Imports By" setting can be used to disable or modify this
+  behaviour._
 
 - **Comments beside code are not moved to the next line**
 
