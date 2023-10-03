@@ -8,6 +8,42 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.32] - 2023-10-03
+
+### Changed
+
+- In strict PSR-12 mode, add whitespace between exception delimiters in `catch` blocks
+- Always add a newline before the first object operator in a multi-line method chain (unless `align-chains` is enabled and strict PSR-12 mode is disabled)
+- Format `for` loop expressions as list items when `align-lists` is enabled
+- If an expression in a `for` loop breaks over multiple lines, add a newline after each comma-delimited expression, and a blank line between each semicolon-delimited expression
+- Suppress whitespace in empty `for` loop expressions
+
+### Fixed
+
+- Fix DNF type formatting
+
+  Before:
+
+  ```php
+  <?php
+  class Foo
+  {
+      public(Countable & ArrayAccess)|MyClass|string|null $Bar;
+  }
+  ```
+
+  After:
+
+  ```php
+  <?php
+  class Foo
+  {
+      public (Countable&ArrayAccess)|MyClass|string|null $Bar;
+  }
+  ```
+- Fix issue where parameter lists are not recognised as lists when they belong to an anonymous function that returns by reference
+- Fix `align-lists` issue where adjacent declaration and control structure bodies are aligned with the preceding list item
+
 ## [v0.4.31] - 2023-09-29
 
 ### Added
@@ -607,7 +643,8 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 
 Initial release
 
-[v0.4.31]: https://github.com/lkrms/pretty-php/compare/v0.4.30...v0.4.31
+[v0.4.32]: https://github.com/lkrms/pretty-php/compare/v0.4.31...v0.4.32
+[v0.4.31]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.30...v0.4.31
 [v0.4.30]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.29...v0.4.30
 [v0.4.29]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.28...v0.4.29
 [v0.4.28]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.27...v0.4.28
