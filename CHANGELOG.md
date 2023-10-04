@@ -8,6 +8,20 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.33] - 2023-10-04
+
+### Changed
+
+- Always move docblocks to the start of their own line to reflect their association with subsequent structural elements
+- Treat C-style comments that break over multiple lines as docblocks for vertical spacing purposes
+  - Multi-line C-style comments aren't "pinned" to subsequent code like docblocks are, but they are handled consistently otherwise
+- Improve inline comment handling when collapsing hanging indentation
+
+### Fixed
+
+- Fix issue where arrays created with square brackets are not treated as lists in some contexts
+- Fix inconsistent formatting of anonymous functions that return values by reference
+
 ## [v0.4.32] - 2023-10-03
 
 ### Changed
@@ -643,7 +657,8 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 
 Initial release
 
-[v0.4.32]: https://github.com/lkrms/pretty-php/compare/v0.4.31...v0.4.32
+[v0.4.33]: https://github.com/lkrms/pretty-php/compare/v0.4.32...v0.4.33
+[v0.4.32]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.31...v0.4.32
 [v0.4.31]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.30...v0.4.31
 [v0.4.30]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.29...v0.4.30
 [v0.4.29]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.28...v0.4.29
