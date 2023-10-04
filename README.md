@@ -7,6 +7,8 @@
   <a href="https://packagist.org/packages/lkrms/pretty-php"><img src="https://poser.pugx.org/lkrms/pretty-php/license" alt="License" /></a>
   <a href="https://github.com/lkrms/pretty-php/actions"><img src="https://github.com/lkrms/pretty-php/actions/workflows/ci.yml/badge.svg" alt="CI Status" /></a>
   <a href="https://codecov.io/gh/lkrms/pretty-php"><img src="https://codecov.io/gh/lkrms/pretty-php/graph/badge.svg?token=W0KVZU718K" alt="Code Coverage" /></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=lkrms.pretty-php"><img src="https://img.shields.io/visual-studio-marketplace/i/lkrms.pretty-php?label=Marketplace%20installs&color=%230066b8" alt="Visual Studio Marketplace install count" /></a>
+  <a href="https://open-vsx.org/extension/lkrms/pretty-php"><img src="https://img.shields.io/open-vsx/dt/lkrms/pretty-php?label=Open%20VSX%20downloads&color=%23a60ee5" alt="Open VSX Registry download count" /></a>
 </p>
 
 ---
@@ -14,10 +16,9 @@
 `pretty-php` is a fast, deterministic, minimally configurable code formatter for
 PHP.
 
-By using `pretty-php`, you are absolved of responsibility for the whitespace in
-your code. You can disengage from the minutiae of how code is formatted and are
-better able to focus on its content. You have more time and mental energy
-available for other things.
+By taking responsibility for the whitespace in your code, `pretty-php` makes it
+easier to focus on the content, providing time and mental energy savings that
+accrue over time.
 
 Code formatted by `pretty-php` produces the smallest diffs possible and looks
 the same regardless of the project you're working on, eliminating visual
