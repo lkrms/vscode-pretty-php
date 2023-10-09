@@ -8,6 +8,44 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.35] - 2023-10-09
+
+### Changed
+
+- Always preserve blank lines between statements (even when `--ignore-newlines` is given)
+- Suppress line breaks between `,` and `=>` in match expressions, e.g.
+
+  ```php
+  <?php
+  match ($a) {
+      0,
+      => false,
+  };
+  ```
+- Suppress blank lines before and after comments in intra-statement contexts, e.g.
+
+  ```php
+  <?php
+  class Foo
+  //
+
+  {
+    public function bar() {}
+  }
+  ```
+
+### Fixed
+
+- Fix issue where, in strict PSR-12 mode, the `=>` operator after an arrow function that returns by reference is not moved to the next line
+
+## [v0.4.34] - 2023-10-07
+
+> pretty-php for Visual Studio Code v0.4.34 was not released
+
+### Fixed
+
+- Fix issue where `vendor/bin/pretty-php` fails
+
 ## [v0.4.33] - 2023-10-04
 
 ### Changed
@@ -657,7 +695,9 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 
 Initial release
 
-[v0.4.33]: https://github.com/lkrms/pretty-php/compare/v0.4.32...v0.4.33
+[v0.4.35]: https://github.com/lkrms/pretty-php/compare/v0.4.34...v0.4.35
+[v0.4.34]: https://github.com/lkrms/pretty-php/compare/v0.4.33...v0.4.34
+[v0.4.33]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.32...v0.4.33
 [v0.4.32]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.31...v0.4.32
 [v0.4.31]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.30...v0.4.31
 [v0.4.30]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.29...v0.4.30
