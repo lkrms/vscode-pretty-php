@@ -8,6 +8,36 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.37] - 2023-10-13
+
+### Changed
+
+- Improve hanging indentation heuristics
+
+  Before:
+
+  ```php
+  <?php
+  $a =
+      $b
+          . $c
+          . $d;
+  ```
+
+  After:
+
+  ```php
+  <?php
+  $a =
+      $b
+      . $c
+      . $d;
+  ```
+
+### Fixed
+
+- Fix issue where newlines between arrow functions and bodies are not always preserved
+
 ## [v0.4.36] - 2023-10-10
 
 ### Fixed
@@ -701,7 +731,8 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 
 Initial release
 
-[v0.4.36]: https://github.com/lkrms/pretty-php/compare/v0.4.35...v0.4.36
+[v0.4.37]: https://github.com/lkrms/pretty-php/compare/v0.4.36...v0.4.37
+[v0.4.36]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.35...v0.4.36
 [v0.4.35]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.33...v0.4.35
 [v0.4.34]: https://github.com/lkrms/pretty-php/compare/v0.4.33...v0.4.34
 [v0.4.33]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.32...v0.4.33
