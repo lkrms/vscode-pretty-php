@@ -92,19 +92,19 @@
           "order": 13
         },
         "pretty-php.formatting.alignment.alignData": {
-          "description": "Align consecutive operators and values",
+          "markdownDescription": "Align consecutive operators and values\n\n```php\n<?php\n$start = [  0, 'first', $foo];\n$end   = [100, 'last',  $bar];\n```",
           "type": "boolean",
           "default": false,
           "order": 20
         },
         "pretty-php.formatting.alignment.alignChains": {
-          "description": "Align consecutive object operators in the same chain of method calls",
+          "markdownDescription": "Align consecutive object operators in the same chain of method calls\n\n```php\n<?php\n$result = $foo->bar()\n              ->baz();\n```",
           "type": "boolean",
           "default": false,
           "order": 21
         },
         "pretty-php.formatting.alignment.alignComments": {
-          "description": "Align comments beside code",
+          "markdownDescription": "Align comments beside code\n\n```php\n<?php\n$i = 0;               // index\n$value = Foo::bar();  // value\n```",
           "type": "boolean",
           "default": false,
           "order": 22
@@ -122,7 +122,7 @@
           "order": 24
         },
         "pretty-php.formatting.alignment.alignTernaryOperators": {
-          "description": "Align ternary operators with their expressions",
+          "markdownDescription": "Align ternary and null coalescing operators with their expressions\n\n```php\n<?php\n$alpha = $bravo\n             ? $charlie\n             : $delta;\n```",
           "type": "boolean",
           "default": false,
           "order": 25
@@ -140,13 +140,13 @@
           "order": 31
         },
         "pretty-php.formatting.preserveOneLineStatements": {
-          "description": "Suppress newlines in statements and control structures that start and end on the same line, including individual case statements",
+          "markdownDescription": "Suppress newlines in statements and control structures that start and end on the same line, including individual `case` statements",
           "type": "boolean",
           "default": false,
           "order": 32
         },
         "pretty-php.formatting.psr12": {
-          "markdownDescription": "Enforce strict compliance with [PSR-12](https://www.php-fig.org/psr/psr-12/) / [PER Coding Style](https://www.php-fig.org/per/coding-style/) where implemented\n- **Other settings are overridden if necessary**\n- Progress towards full compliance can be followed [here](https://github.com/lkrms/pretty-php/issues/4)",
+          "markdownDescription": "Enforce strict compliance with [PSR-12](https://www.php-fig.org/psr/psr-12/) / [PER Coding Style](https://www.php-fig.org/per/coding-style/) where implemented, ignoring other settings if necessary",
           "type": "boolean",
           "default": false,
           "order": 40
