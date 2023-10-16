@@ -8,6 +8,18 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.38] - 2023-10-16
+
+### Changed
+
+- Treat null coalescing operators (`??`) the same as ternary operators (`?:`) for hanging indentation and alignment purposes
+- Improve robustness of declaration type matching
+
+### Fixed
+
+- Fix regression in hanging indentation where some expressions are indented unnecessarily
+- Fix issue where output may not be idempotent in strict PSR-12 mode when comments appear after closing braces in the input
+
 ## [v0.4.37] - 2023-10-13
 
 ### Changed
@@ -731,7 +743,8 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 
 Initial release
 
-[v0.4.37]: https://github.com/lkrms/pretty-php/compare/v0.4.36...v0.4.37
+[v0.4.38]: https://github.com/lkrms/pretty-php/compare/v0.4.37...v0.4.38
+[v0.4.37]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.36...v0.4.37
 [v0.4.36]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.35...v0.4.36
 [v0.4.35]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.33...v0.4.35
 [v0.4.34]: https://github.com/lkrms/pretty-php/compare/v0.4.33...v0.4.34
