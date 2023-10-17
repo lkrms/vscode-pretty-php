@@ -8,10 +8,22 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.39] - 2023-10-17
+
+### Changed
+
+- Suppress a level of hanging indentation in lists with one item
+
+### Fixed
+
+- Fix regression where hanging indentation isn't always applied after assignment operators
+- Fix bug where tokens adjacent to brackets that enclose one token on its own line are indented incorrectly
+
 ## [v0.4.38] - 2023-10-16
 
 ### Changed
 
+- Add code samples to the descriptions of more settings
 - Treat null coalescing operators (`??`) the same as ternary operators (`?:`) for hanging indentation and alignment purposes
 - Improve robustness of declaration type matching
 
@@ -743,7 +755,8 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 
 Initial release
 
-[v0.4.38]: https://github.com/lkrms/pretty-php/compare/v0.4.37...v0.4.38
+[v0.4.39]: https://github.com/lkrms/pretty-php/compare/v0.4.38...v0.4.39
+[v0.4.38]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.37...v0.4.38
 [v0.4.37]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.36...v0.4.37
 [v0.4.36]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.35...v0.4.36
 [v0.4.35]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.33...v0.4.35
