@@ -8,6 +8,39 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.40] - 2023-10-19
+
+### Fixed
+
+- Fix issue where XML files are incorrectly identified as PHP files
+- Fix issue where ternary operators are not always identified correctly
+
+  Before:
+
+  ```php
+  <?php
+  $filter =
+      $exclude
+          ? function ($value, $key, $iterator) use ($exclude)
+          : bool {
+              return (bool) preg_match($exclude, $key);
+          }
+      : null;
+  ```
+
+  After:
+
+  ```php
+  <?php
+  $filter =
+      $exclude
+          ? function ($value, $key, $iterator) use ($exclude): bool {
+              return (bool) preg_match($exclude, $key);
+          }
+          : null;
+
+  ```
+
 ## [v0.4.39] - 2023-10-17
 
 ### Changed
@@ -755,7 +788,8 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 
 Initial release
 
-[v0.4.39]: https://github.com/lkrms/pretty-php/compare/v0.4.38...v0.4.39
+[v0.4.40]: https://github.com/lkrms/pretty-php/compare/v0.4.39...v0.4.40
+[v0.4.39]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.38...v0.4.39
 [v0.4.38]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.37...v0.4.38
 [v0.4.37]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.36...v0.4.37
 [v0.4.36]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.35...v0.4.36
