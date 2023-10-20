@@ -8,6 +8,39 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.41] - 2023-10-20
+
+### Added
+
+- Add experimental `drupal` preset (available via `--preset drupal`)
+
+### Changed
+
+- Review files excluded by default when running from the command line
+  - The default regex is now case sensitive: `/\/(\.git|\.hg|\.svn|_?build|dist|vendor)\/$/`
+  - Files in `**/tests*/` and `**/var/` are no longer excluded by default
+
+### Fixed
+
+- Fix issue where indentation is incorrect when arguments to `new static(...` break over multiple lines
+- Fix same issue with `isset()` lists
+
+  Before:
+
+  ```php
+  <?php
+  isset($a,
+  $b);
+  ```
+
+  After:
+
+  ```php
+  <?php
+  isset($a,
+      $b);
+  ```
+
 ## [v0.4.40] - 2023-10-19
 
 ### Fixed
@@ -788,6 +821,7 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
+[v0.4.41]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.40...v0.4.41
 [v0.4.40]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.39...v0.4.40
 [v0.4.39]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.38...v0.4.39
 [v0.4.38]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.37...v0.4.38
