@@ -2,7 +2,7 @@
 
 Notable changes to this extension and to [pretty-php][] itself are documented in this file.
 
-It is auto-generated from the GitHub release notes of both projects by [salient/changelog][]. The format is based on [Keep a Changelog][].
+It is generated from the GitHub release notes of both projects by [salient/changelog][]. The format is based on [Keep a Changelog][].
 
 [pretty-php]: https://github.com/lkrms/pretty-php
 [salient/changelog]: https://github.com/salient-labs/php-changelog
@@ -788,7 +788,7 @@ It is auto-generated from the GitHub release notes of both projects by [salient/
 
 Initial release
 
-[v0.4.40]: https://github.com/lkrms/pretty-php/compare/v0.4.39...v0.4.40
+[v0.4.40]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.39...v0.4.40
 [v0.4.39]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.38...v0.4.39
 [v0.4.38]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.37...v0.4.38
 [v0.4.37]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.36...v0.4.37

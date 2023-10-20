@@ -189,11 +189,6 @@ export function activate (context: vscode.ExtensionContext) {
       prettyPhpArgs.push('--psr12')
     }
 
-    const honourConfigurationFiles = config.get<boolean>('honourConfigurationFiles')
-    if (honourConfigurationFiles != null && !honourConfigurationFiles) {
-      prettyPhpArgs.push('--no-config')
-    }
-
     if (document !== undefined) {
       const filename = document.uri.scheme === 'file' ? document.uri.fsPath : null
       if (filename !== null) {

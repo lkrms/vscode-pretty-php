@@ -151,14 +151,8 @@
           "default": false,
           "order": 40
         },
-        "pretty-php.honourConfigurationFiles": {
-          "markdownDescription": "Options in `pretty-php` configuration files (e.g. `.prettyphp`) take precedence over these settings",
-          "type": "boolean",
-          "default": true,
-          "order": 58
-        },
         "pretty-php.formatterArguments": {
-          "markdownDescription": "Pass additional arguments to `pretty-php`, e.g. `--one-true-brace-style`",
+          "markdownDescription": "Pass [additional arguments](https://github.com/lkrms/pretty-php/blob/main/docs/Usage.md) to `pretty-php`",
           "type": "array",
           "items": {
             "type": "string"

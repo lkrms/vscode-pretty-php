@@ -50,6 +50,42 @@ If you have questions or feedback, I'd love to [hear from you][discuss].
 - Output is optionally compliant with [PSR-12][] and [PER][] (details
   [here][docs/PSR-12.md] and [here][PSR-12 issue])
 
+## Configuration
+
+To configure `pretty-php`, you can use the extension's VS Code settings, or you
+can add a `.prettyphp` or `prettyphp.json` file to your project:
+
+![.prettyphp file IntelliSense](images/json-schema-screenshot.png)
+
+**VS Code settings are ignored if an applicable configuration file is found.**
+
+More information about configuring `pretty-php` is available
+[here][configuration].
+
+### Examples
+
+- Enforce the default code style
+- Format `*.php` files in the directory and its descendants
+
+```json
+{
+  "src": ["."]
+}
+```
+
+- Enforce the default code style
+- Enable strict PSR-12/PER compliance
+- Format `*.php` files in the `bin`, `src` and `tests` directories and their
+  descendants
+- Format `bootstrap.php`
+
+```json
+{
+  "src": ["bin", "src", "tests", "bootstrap.php"],
+  "psr12": true
+}
+```
+
 ## Requirements
 
 - PHP 8.2, 8.1, 8.0 or 7.4 with `tokenizer`, `mbstring` and `json` extensions
@@ -83,6 +119,8 @@ but exceptions are occasionally made and documented here.
 
 MIT
 
+[configuration]:
+  https://github.com/lkrms/pretty-php/blob/main/docs/Usage.md#configuration
 [discuss]: https://github.com/lkrms/pretty-php/discussions
 [PER]: https://www.php-fig.org/per/coding-style/
 [pretty-php]: https://github.com/lkrms/pretty-php
