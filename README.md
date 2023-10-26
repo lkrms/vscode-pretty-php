@@ -53,11 +53,11 @@ If you have questions or feedback, I'd love to [hear from you][discuss].
 ## Configuration
 
 To configure `pretty-php`, you can use the extension's VS Code settings, or you
-can add a `.prettyphp` or `prettyphp.json` file to your project:
+can create a `.prettyphp` or `prettyphp.json` file in your project:
 
 ![.prettyphp file IntelliSense](images/json-schema-screenshot.png)
 
-**VS Code settings are ignored if an applicable configuration file is found.**
+VS Code settings are ignored if an applicable configuration file is found.
 
 More information about configuring `pretty-php` is available
 [here][configuration].
