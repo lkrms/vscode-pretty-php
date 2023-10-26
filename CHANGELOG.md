@@ -8,17 +8,73 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.42] - 2023-10-26
+
+### Added
+
+- Add (experimental) support for PHP 8.3
+
+### Fixed
+
+- Fix issue where `CompileError` exceptions thrown by the PHP 8.3 tokenizer are not caught
+- Fix ternary alignment issue when `??` appears in the first expression
+
+  Before:
+
+  ```php
+  <?php
+  $foo = $bar
+      ? $qux[$i] ?? $fallback
+          : $quux;
+  ```
+
+  After:
+
+  ```php
+  <?php
+  $foo = $bar
+      ? $qux[$i] ?? $fallback
+      : $quux;
+  ```
+- Fix issue where labels after close braces are not correctly identified
+
+  Before:
+
+  ```php
+  <?php
+  if ($foo) {
+      goto bar;
+  }
+  bar: qux();
+  ```
+
+  After:
+
+  ```php
+  <?php
+  if ($foo) {
+      goto bar;
+  }
+  bar:
+  qux();
+  ```
+
 ## [v0.4.41] - 2023-10-20
+
+### Changed
+
+- Link to `pretty-php` usage information from the "Formatter Arguments" description
+- Review files excluded by default when running from the command line
+  - The default regex is now case sensitive: `/\/(\.git|\.hg|\.svn|_?build|dist|vendor)\/$/`
+  - Files in `**/tests*/` and `**/var/` are no longer excluded by default
+
+### Removed
+
+- Remove "Honour Configuration Files" setting (configuration files are always honoured)
 
 ### Added
 
 - Add experimental `drupal` preset (available via `--preset drupal`)
-
-### Changed
-
-- Review files excluded by default when running from the command line
-  - The default regex is now case sensitive: `/\/(\.git|\.hg|\.svn|_?build|dist|vendor)\/$/`
-  - Files in `**/tests*/` and `**/var/` are no longer excluded by default
 
 ### Fixed
 
@@ -821,6 +877,7 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
+[v0.4.42]: https://github.com/lkrms/pretty-php/compare/v0.4.41...v0.4.42
 [v0.4.41]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.40...v0.4.41
 [v0.4.40]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.39...v0.4.40
 [v0.4.39]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.38...v0.4.39
