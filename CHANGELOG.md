@@ -8,6 +8,15 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.43] - 2023-11-09
+
+### Changed
+
+- Always move doc comments (`/**` ... `*/`) to the next line
+- Don't add blank lines before multi-line doc comments or their C-style counterparts if they appear mid-statement
+- Collapse doc comments with one line of content to a single line (unless they appear to describe a file or are pinned to a declaration)
+- **Remove empty doc comments**
+
 ## [v0.4.42] - 2023-10-26
 
 ### Added
@@ -877,7 +886,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.42]: https://github.com/lkrms/pretty-php/compare/v0.4.41...v0.4.42
+[v0.4.43]: https://github.com/lkrms/pretty-php/compare/v0.4.42...v0.4.43
+[v0.4.42]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.41...v0.4.42
 [v0.4.41]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.40...v0.4.41
 [v0.4.40]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.39...v0.4.40
 [v0.4.39]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.38...v0.4.39
