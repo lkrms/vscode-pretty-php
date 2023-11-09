@@ -36,7 +36,7 @@ If you have questions or feedback, I'd love to [hear from you][discuss].
 
 ## Features
 
-- Supports code written for **PHP 8.2** and below (when running on a PHP version
+- Supports code written for **PHP 8.3** and below (when running on a PHP version
   that can parse it)
 - Code is formatted for **readability**, **consistency** and **small diffs**
 - With few [exceptions](#pragmatism), **previous formatting is ignored**, and
@@ -88,8 +88,8 @@ More information about configuring `pretty-php` is available
 
 ## Requirements
 
-- PHP 8.2, 8.1, 8.0 or 7.4 with `tokenizer`, `mbstring` and `json` extensions
-  enabled
+- PHP 8.3, 8.2, 8.1, 8.0 or 7.4 with `tokenizer`, `mbstring` and `json`
+  extensions enabled
 
 ## Pragmatism
 
@@ -104,7 +104,7 @@ but exceptions are occasionally made and documented here.
 
 - **Strings are normalised** \
   Single-quoted strings are preferred unless the alternative is shorter or backslash
-  escapes are required. _Turn the "Formatting: Simplify Strings" setting off disable
+  escapes are required. _Turn the "Formatting: Simplify Strings" setting off to disable
   this behaviour._
 
 - **Alias/import statements are grouped and sorted alphabetically** \
@@ -114,6 +114,8 @@ but exceptions are occasionally made and documented here.
 - **Comments beside code are not moved to the next line**
 
 - **Comments are trimmed and aligned**
+
+- **Empty DocBlocks are removed**
 
 ## License
 
