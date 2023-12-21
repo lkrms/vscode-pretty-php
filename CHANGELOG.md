@@ -8,6 +8,67 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.44] - 2023-12-21
+
+### Changed
+
+- Propagate newlines from logical and bitwise operators to others of equal or lower precedence in the same statement
+
+  ```php
+  <?php
+  // Input
+  foo(bar() ||
+      qux() && quux() || quuux());
+
+  // Output
+  foo(bar() ||
+      qux() && quux() ||
+      quuux());
+  ```
+- Place comments with subsequent statement delimiters after the delimiters, demoting DocBlocks to standard C-style comments as a precaution
+
+  ```php
+  <?php
+  // Input
+  [
+      // comment
+      0 => 'foo'
+      ,1 => 'bar'
+      // comment
+      ,2 => 'baz'
+  ];
+
+  // Before
+  [
+      // comment
+      0 => 'foo',
+      1 => 'bar'
+          // comment
+          , 2 => 'baz'
+  ];
+
+  // After
+  [
+      // comment
+      0 => 'foo',
+      1 => 'bar',
+      // comment
+      2 => 'baz'
+  ];
+  ```
+- Preserve newlines before `??=`, not after
+- Do not keep `<?php...?>` blocks on one line if they contain more than one statement
+- Improve indentation and alignment heuristics when HTML has embedded PHP
+- Stop looking for a configuration file when a `.svn` directory is found (`.git` and `.hg` directories already had this effect)
+- Rework `pretty-php` exit codes for more granular feedback
+- Update usage information and JSON schema
+- Refactor to consolidate functionality and improve performance
+
+### Fixed
+
+- Fix issue where output is written to standard output when an explicit `--output` file is given
+- Don't print "Formatting 1 of 1: php://stdin" when reading TTY input
+
 ## [v0.4.43] - 2023-11-09
 
 ### Changed
@@ -886,7 +947,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.43]: https://github.com/lkrms/pretty-php/compare/v0.4.42...v0.4.43
+[v0.4.44]: https://github.com/lkrms/pretty-php/compare/v0.4.43...v0.4.44
+[v0.4.43]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.42...v0.4.43
 [v0.4.42]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.41...v0.4.42
 [v0.4.41]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.40...v0.4.41
 [v0.4.40]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.39...v0.4.40
