@@ -2,16 +2,22 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as which from 'which'
-import { spawn } from 'child_process'
+import { spawn, spawnSync, SpawnSyncOptionsWithStringEncoding } from 'child_process'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function activate (context: vscode.ExtensionContext) {
-  const skipMaps = [
+  const configFiles = [
+    '.prettyphp',
+    'prettyphp.json'
+  ]
+
+  const disableMaps = [
     { config: 'formatting.declarationSpacing', arg: 'declaration-spacing' },
+    { config: 'formatting.moveComments', arg: 'move-comments' },
     { config: 'formatting.simplifyStrings', arg: 'simplify-strings' }
   ]
 
-  const ruleMaps = [
+  const enableMaps = [
     { config: 'formatting.blankBeforeReturn', arg: 'blank-before-return' },
     { config: 'formatting.strictLists', arg: 'strict-lists' },
     { config: 'formatting.alignment.alignData', arg: 'align-data' },
@@ -102,7 +108,7 @@ export function activate (context: vscode.ExtensionContext) {
       php.stderr.setEncoding('utf8')
       php.stderr.on('data', (chunk: string) => { stderr += chunk })
 
-      php.on('close', (code: number) => {
+      php.on('close', (code: number | null, signal: string | null) => {
         if (stderr.length > 0) {
           log.info(`${php.spawnfile} reported:\n${stderr}`)
         }
@@ -120,10 +126,18 @@ export function activate (context: vscode.ExtensionContext) {
             resolve([])
           }
         } else if (code === 2) {
+          log.error(`${php.spawnfile} found invalid configuration files (exit status: ${code})`)
+          showErrorMessage('pretty-php found invalid configuration files: ' + stderr)
+          resolve([])
+        } else if (code === 4) {
           log.info(`${php.spawnfile} reported invalid input (exit status: ${code})`)
           resolve([])
         } else {
-          log.error(`${php.spawnfile} failed (exit status: ${code})`)
+          if (signal === null) {
+            log.error(`${php.spawnfile} failed with exit status ${code ?? '<unknown>'}`)
+          } else {
+            log.error(`${php.spawnfile} terminated by signal ${signal}`)
+          }
           showErrorMessage('pretty-php failed: ' + stderr)
           resolve([])
         }
@@ -161,14 +175,14 @@ export function activate (context: vscode.ExtensionContext) {
       prettyPhpArgs.push(...formatterArguments)
     }
 
-    skipMaps.forEach((map) => {
+    disableMaps.forEach((map) => {
       const enabled = config.get<boolean>(map.config)
       if (enabled == null || !enabled) {
         prettyPhpArgs.push('-i', map.arg)
       }
     })
 
-    ruleMaps.forEach((map) => {
+    enableMaps.forEach((map) => {
       const enabled = config.get<boolean>(map.config)
       if (enabled != null && enabled) {
         prettyPhpArgs.push('-r', map.arg)
@@ -277,6 +291,143 @@ export function activate (context: vscode.ExtensionContext) {
     }
   }
 
+  async function createConfigFile (
+    resource?: vscode.Uri,
+    selection?: vscode.Uri[]
+  ): Promise<void> {
+    let folder: vscode.WorkspaceFolder
+    if (resource === undefined) {
+      if (vscode.workspace.workspaceFolders === undefined ||
+        vscode.workspace.workspaceFolders[0] === undefined) {
+        showErrorMessage('There are no folders in the current workspace.')
+        return
+      }
+      folder = vscode.workspace.workspaceFolders[0]
+    } else {
+      const workspaceFolder = vscode.workspace.getWorkspaceFolder(resource)
+      if (workspaceFolder === undefined) {
+        showErrorMessage(`'${resource.toString()}' does not belong to a workspace.`)
+        return
+      }
+      folder = workspaceFolder
+    }
+
+    function addSource (uri: vscode.Uri): void {
+      const relative = vscode.workspace.asRelativePath(uri, false)
+      src.push(relative === folder.uri.fsPath ? '.' : relative)
+    }
+
+    const src: string[] = []
+    if (selection !== undefined && selection.length > 1) {
+      for (const selectionUri of selection) {
+        const selectionFolder = vscode.workspace.getWorkspaceFolder(selectionUri)
+        if (selectionFolder === undefined || selectionFolder.index !== folder.index) {
+          showErrorMessage('Selected files do not belong to the same workspace.')
+          return
+        }
+        addSource(selectionUri)
+      }
+    } else {
+      addSource(folder.uri)
+    }
+
+    const notFound: vscode.Uri[] = []
+    const found: vscode.Uri[] = []
+    for (const configFile of configFiles) {
+      const configUri = vscode.Uri.joinPath(folder.uri, configFile)
+      try {
+        await vscode.workspace.fs.stat(configUri)
+        found.push(configUri)
+      } catch (ex) {
+        if (
+          ex instanceof vscode.FileSystemError &&
+          ex.code === 'FileNotFound'
+        ) {
+          notFound.push(configUri)
+          continue
+        }
+        throw ex
+      }
+    }
+
+    if (found.length > 1) {
+      showErrorMessage(`Invalid configuration. Delete one of these and try again: ${found.map((uri: vscode.Uri) => uri.fsPath).join(' ')}`)
+      return
+    }
+
+    let configUri: vscode.Uri
+
+    if (found.length === 1) {
+      const response = await vscode.window.showInformationMessage(
+        `'${found[0].fsPath}' already exists. Replace it?`,
+        'Replace',
+        'Cancel'
+      )
+
+      if (response !== 'Replace') {
+        return
+      }
+
+      configUri = found[0]
+    } else {
+      const configFile = await vscode.window.showQuickPick(
+        configFiles,
+        { title: 'Which would you like to create?' }
+      )
+
+      if (configFile === undefined) {
+        return
+      }
+
+      configUri = vscode.Uri.joinPath(folder.uri, configFile)
+    }
+
+    const args = getCommand()
+    const command = args?.shift()
+
+    if (args === undefined || command === undefined) {
+      return
+    }
+
+    args.push(
+      '--print-config',
+      '--',
+      ...src
+    )
+
+    const options: SpawnSyncOptionsWithStringEncoding = {
+      encoding: 'utf8',
+      cwd: folder.uri.fsPath
+    }
+
+    log.info('Spawning:', command, ...args)
+
+    const result = spawnSync(command, args, options)
+
+    if (result.stderr.length > 0) {
+      log.info(`${command} reported:\n${result.stderr}`)
+    }
+
+    if (result.status !== 0) {
+      if (result.signal === null) {
+        log.error(`${command} failed with exit status ${result.status ?? '<unknown>'}`)
+      } else {
+        log.error(`${command} terminated by signal ${result.signal}`)
+      }
+      showErrorMessage('pretty-php failed: ' + result.stderr)
+      return
+    }
+
+    log.info(`${command} succeeded (output length: ${result.stdout.length})`)
+
+    log.info(`Creating ${configUri.toString()}`)
+    await vscode.workspace.fs.writeFile(
+      configUri,
+      (new TextEncoder()).encode(result.stdout)
+    )
+    void vscode.window.showInformationMessage(`'${configUri.fsPath}' created successfully.`)
+  }
+
   const log = vscode.window.createOutputChannel('pretty-php', { log: true })
 
   migrateConfiguration<boolean, boolean>(
@@ -325,7 +476,8 @@ export function activate (context: vscode.ExtensionContext) {
 
   context.subscriptions.push(
     vscode.commands.registerCommand('pretty-php.format', () => handleCommand()),
-    vscode.commands.registerCommand('pretty-php.formatWithoutNewlines', () => handleCommand('-N'))
+    vscode.commands.registerCommand('pretty-php.formatWithoutNewlines', () => handleCommand('-N')),
+    vscode.commands.registerCommand('pretty-php.createConfigFile', createConfigFile)
   )
 }
 

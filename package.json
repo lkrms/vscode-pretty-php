@@ -38,8 +38,20 @@
         "command": "pretty-php.formatWithoutNewlines",
         "title": "Format PHP without Preserving Newlines",
         "enablement": "resourceLangId == php"
+      },
+      {
+        "command": "pretty-php.createConfigFile",
+        "title": "Create .prettyphp or prettyphp.json"
       }
     ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "pretty-php.createConfigFile",
+          "group": "pretty-php@1"
+        }
+      ]
+    },
     "configuration": {
       "title": "pretty-php",
       "properties": {
@@ -90,6 +102,12 @@
           ],
           "default": "mixed",
           "order": 13
+        },
+        "pretty-php.formatting.moveComments": {
+          "markdownDescription": "Move comments with one or more subsequent delimiters to the position after the last delimiter\n\n```php\n<?php\n// Disabled:\n[\n    'foo'\n        // comment\n        , 'bar'\n];\n// Enabled:\n[\n    'foo',\n    // comment\n    'bar'\n];\n```",
+          "type": "boolean",
+          "default": true,
+          "order": 14
         },
         "pretty-php.formatting.alignment.alignData": {
           "markdownDescription": "Align consecutive operators and values\n\n```php\n<?php\n$start = [  0, 'first', $foo];\n$end   = [100, 'last',  $bar];\n```",

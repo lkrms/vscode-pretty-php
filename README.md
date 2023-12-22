@@ -53,19 +53,23 @@ If you have questions or feedback, I'd love to [hear from you][discuss].
 ## Configuration
 
 To configure `pretty-php`, you can use the extension's VS Code settings, or you
-can create a `.prettyphp` or `prettyphp.json` file in your project:
+can add a configuration file to your project.
+
+**VS Code settings are ignored if an applicable `.prettyphp` or `prettyphp.json`
+file is found.**
+
+To create a configuration file based on your current VS Code settings, use the
+extension's "Create .prettyphp or prettyphp.json" command. The bundled JSON
+schema for `pretty-php` configuration files makes them easy to edit in VS Code:
 
 ![.prettyphp file IntelliSense](images/json-schema-screenshot.png)
-
-VS Code settings are ignored if an applicable configuration file is found.
 
 More information about configuring `pretty-php` is available
 [here][configuration].
 
 ### Examples
 
-- Enforce the default code style
-- Format `*.php` files in the directory and its descendants
+#### Minimal
 
 ```json
 {
@@ -74,17 +78,23 @@ More information about configuring `pretty-php` is available
 ```
 
 - Enforce the default code style
-- Enable strict PSR-12/PER compliance
-- Format `*.php` files in the `bin`, `src` and `tests` directories and their
-  descendants
-- Format `bootstrap.php`
+- Format `*.php` files in the directory and its descendants
+
+#### PSR-12 compliant
 
 ```json
 {
-  "src": ["bin", "src", "tests", "bootstrap.php"],
+  "src": ["bin", "src", "tests/unit", "bootstrap.php"],
+  "includeIfPhp": true,
   "psr12": true
 }
 ```
+
+- Enforce the default code style
+- Enable strict PSR-12/PER compliance
+- Format `*.php` files, and files with no extension that appear to be PHP files,
+  in the `bin`, `src` and `tests/unit` directories and their descendants
+- Format `bootstrap.php`
 
 ## Requirements
 
@@ -110,6 +120,10 @@ but exceptions are occasionally made and documented here.
 - **Alias/import statements are grouped and sorted alphabetically** \
   _The "Formatting: Sort Imports By" setting can be used to disable or modify this
   behaviour._
+
+- **Comments are placed after adjacent delimiters** \
+  Relocated DocBlocks are converted to standard C-style comments as a precaution.
+  _Turn the "Formatting: Move Comments" setting off to disable this behaviour._
 
 - **Comments beside code are not moved to the next line**
 
