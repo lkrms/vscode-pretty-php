@@ -8,28 +8,38 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.45] - 2023-12-22
+
+### Fixed
+
+- Fix regression where disabled rules are ignored in strict PSR-12 mode
+
 ## [v0.4.44] - 2023-12-21
+
+> pretty-php for Visual Studio Code v0.4.44 was not released
 
 ### Changed
 
-- Propagate newlines from logical and bitwise operators to others of equal or lower precedence in the same statement
+- Propagate line breaks after logical and bitwise operators to others of equal or lower precedence in the same statement
 
   ```php
   <?php
   // Input
   foo(bar() ||
-      qux() && quux() || quuux());
+      baz() || qux() && quux() || quuux());
 
   // Output
   foo(bar() ||
+      baz() ||
       qux() && quux() ||
       quuux());
   ```
-- Place comments with subsequent statement delimiters after the delimiters, demoting DocBlocks to standard C-style comments as a precaution
+- Place comments with subsequent delimiters after the delimiters, demoting DocBlocks to standard C-style comments as a precaution
+
+  Input:
 
   ```php
   <?php
-  // Input
   [
       // comment
       0 => 'foo'
@@ -38,7 +48,19 @@ It is generated from the GitHub release notes of both projects by [salient/chang
       ,2 => 'baz'
   ];
 
-  // Before
+  [
+      /** DocBlock */
+      0 => 'foo'
+      ,1 => 'bar'
+      /** invalid DocBlock */
+      ,2 => 'baz'
+  ];
+  ```
+
+  Previous output:
+
+  ```php
+  <?php
   [
       // comment
       0 => 'foo',
@@ -47,7 +69,18 @@ It is generated from the GitHub release notes of both projects by [salient/chang
           , 2 => 'baz'
   ];
 
-  // After
+  [
+      /** DocBlock */
+      0 => 'foo',
+      1 => 'bar'
+          /** invalid DocBlock */, 2 => 'baz'
+  ];
+  ```
+
+  Current output:
+
+  ```php
+  <?php
   [
       // comment
       0 => 'foo',
@@ -55,14 +88,21 @@ It is generated from the GitHub release notes of both projects by [salient/chang
       // comment
       2 => 'baz'
   ];
+
+  [
+      /** DocBlock */
+      0 => 'foo',
+      1 => 'bar',
+      /* invalid DocBlock */
+      2 => 'baz'
+  ];
   ```
 - Preserve newlines before `??=`, not after
 - Do not keep `<?php...?>` blocks on one line if they contain more than one statement
 - Improve indentation and alignment heuristics when HTML has embedded PHP
 - Stop looking for a configuration file when a `.svn` directory is found (`.git` and `.hg` directories already had this effect)
-- Rework `pretty-php` exit codes for more granular feedback
+- Rework exit codes for more granular feedback
 - Update usage information and JSON schema
-- Refactor to consolidate functionality and improve performance
 
 ### Fixed
 
@@ -947,6 +987,7 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
+[v0.4.45]: https://github.com/lkrms/pretty-php/compare/v0.4.44...v0.4.45
 [v0.4.44]: https://github.com/lkrms/pretty-php/compare/v0.4.43...v0.4.44
 [v0.4.43]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.42...v0.4.43
 [v0.4.42]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.41...v0.4.42
