@@ -8,7 +8,48 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.46] - 2023-12-29
+
+### Changed
+
+- Remove `align-lists` from the `laravel` preset
+- Don't force newlines between boolean operators and negated expressions
+
+  Before:
+
+  ```php
+  <?php
+  foo(bar() &&
+      qux() &&
+      quux() &&
+      !(
+          quuux() ||
+          quuuux()
+      ));
+  ```
+
+  After:
+
+  ```php
+  <?php
+  foo(bar() &&
+      qux() &&
+      quux() && !(
+          quuux() ||
+          quuuux()
+      ));
+  ```
+
+### Fixed
+
+- Fix `sort-imports` issue where traits inserted into enums are sorted in error
+
 ## [v0.4.45] - 2023-12-22
+
+### Added
+
+- Add "Create .prettyphp or prettyphp.json" command
+- Add "pretty-php.formatting.moveComments" setting
 
 ### Fixed
 
@@ -987,7 +1028,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.45]: https://github.com/lkrms/pretty-php/compare/v0.4.44...v0.4.45
+[v0.4.46]: https://github.com/lkrms/pretty-php/compare/v0.4.45...v0.4.46
+[v0.4.45]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.43...v0.4.45
 [v0.4.44]: https://github.com/lkrms/pretty-php/compare/v0.4.43...v0.4.44
 [v0.4.43]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.42...v0.4.43
 [v0.4.42]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.41...v0.4.42
