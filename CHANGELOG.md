@@ -8,6 +8,17 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.47] - 2024-01-08
+
+### Changed
+
+- Use `\x{####}` to escape UTF-8 characters with the Unicode `Default_Ignorable_Code_Point` property to improve code readability when working with invisible sequences, e.g. Unicode byte order marks
+
+### Fixed
+
+- Fix issue where escaped carriage returns (`"\r"`) are not preserved in multiline strings
+- Fix issue where strings with invalid UTF-8 sequences trigger an exception
+
 ## [v0.4.46] - 2023-12-29
 
 ### Changed
@@ -1028,7 +1039,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.46]: https://github.com/lkrms/pretty-php/compare/v0.4.45...v0.4.46
+[v0.4.47]: https://github.com/lkrms/pretty-php/compare/v0.4.46...v0.4.47
+[v0.4.46]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.45...v0.4.46
 [v0.4.45]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.43...v0.4.45
 [v0.4.44]: https://github.com/lkrms/pretty-php/compare/v0.4.43...v0.4.44
 [v0.4.43]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.42...v0.4.43
