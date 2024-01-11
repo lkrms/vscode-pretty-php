@@ -14,7 +14,8 @@ export function activate (context: vscode.ExtensionContext) {
   const disableMaps = [
     { config: 'formatting.declarationSpacing', arg: 'declaration-spacing' },
     { config: 'formatting.moveComments', arg: 'move-comments' },
-    { config: 'formatting.simplifyStrings', arg: 'simplify-strings' }
+    { config: 'formatting.simplifyStrings', arg: 'simplify-strings' },
+    { config: 'formatting.simplifyNumbers', arg: 'simplify-numbers' }
   ]
 
   const enableMaps = [

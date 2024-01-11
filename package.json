@@ -79,6 +79,12 @@
           "default": true,
           "order": 10
         },
+        "pretty-php.formatting.simplifyNumbers": {
+          "description": "Normalise integers and floats",
+          "type": "boolean",
+          "default": true,
+          "order": 11
+        },
         "pretty-php.formatting.declarationSpacing": {
           "description": "Normalise whitespace between declarations",
           "type": "boolean",
