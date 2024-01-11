@@ -8,6 +8,42 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.48] - 2024-01-11
+
+### Added
+
+- Normalise integers and floats
+
+  Before:
+
+  ```php
+  <?php
+  $decimal = [0, 1234567, 1_2_3, 12_34_56_7];
+  $hex = [0x1, 0x000b, 0xfe0, 0X00_CA_FE_F0_0D];
+  $octal = [00, 000_600, 0o755, 0O411];
+  $binary = [0b1, 0b0011, 0B101];
+  $float = [.14, 3., 03.00, 00.1400, 06.71E+083, 671.21e-4];
+  ```
+
+  After:
+
+  ```php
+  <?php
+  $decimal = [0, 1234567, 123, 1_234_567];
+  $hex = [0x01, 0x0B, 0x0FE0, 0xCAFE_F00D];
+  $octal = [0, 0600, 0755, 0411];
+  $binary = [0b01, 0b11, 0b0101];
+  $float = [0.14, 3.0, 3.0, 0.14, 6.71e83, 6.7121e-2];
+  ```
+- Add `--no-simplify-numbers` option
+- Sign `pretty-php.phar` releases for improved PHIVE support
+
+### Fixed
+
+- Fix regression in [v0.4.47] where some Unicode sequences are escaped incorrectly, producing output like `"🧑\u{200D}🚒"` instead of `'🧑‍🚒'`
+- Fix issue where strings containing sequences like `"\0002"` (`NUL` followed by `"2"`) are incorrectly normalised to `"\02"` (equivalent to `"\x02"`)
+- Fix output validation issue where all tokens are truncated for comparison, not just comments
+
 ## [v0.4.47] - 2024-01-08
 
 ### Changed
@@ -1039,7 +1075,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.47]: https://github.com/lkrms/pretty-php/compare/v0.4.46...v0.4.47
+[v0.4.48]: https://github.com/lkrms/pretty-php/compare/v0.4.47...v0.4.48
+[v0.4.47]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.46...v0.4.47
 [v0.4.46]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.45...v0.4.46
 [v0.4.45]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.43...v0.4.45
 [v0.4.44]: https://github.com/lkrms/pretty-php/compare/v0.4.43...v0.4.44
