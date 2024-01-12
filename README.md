@@ -31,8 +31,7 @@ in each case.
 If you have questions or feedback, I'd love to [hear from you][discuss].
 
 > `pretty-php` isn't stable yet, so updates may introduce formatting changes
-> that affect your code. Locking the `lkrms/pretty-php` package to a specific
-> version is recommended for production workflows.
+> that affect your code.
 
 ## Features
 
@@ -98,24 +97,24 @@ More information about configuring `pretty-php` is available
 
 ## Requirements
 
-- PHP 8.3, 8.2, 8.1, 8.0 or 7.4 with `tokenizer`, `mbstring` and `json`
-  extensions enabled
+- PHP 8.3, 8.2, 8.1, 8.0 or 7.4 with the standard `tokenizer`, `mbstring` and
+  `json` extensions enabled
 
 ## Pragmatism
 
-`pretty-php` generally abides by its own rules (e.g. "previous formatting is
-ignored, and nothing in the original file other than whitespace is changed"),
-but exceptions are occasionally made and documented here.
+`pretty-php` generally abides by its own rules ("previous formatting is ignored,
+and nothing in the original file other than whitespace is changed"), but
+exceptions are occasionally made and documented here.
 
 - **Newlines are preserved** \
   Line breaks adjacent to most operators, separators and brackets are copied from
   the input to the output. _To suppress this behaviour temporarily, use the "Format
   PHP without Preserving Newlines" command._
 
-- **Strings are normalised** \
+- **Strings and numbers are normalised** \
   Single-quoted strings are preferred unless the alternative is shorter or backslash
-  escapes are required. _Turn the "Formatting: Simplify Strings" setting off to disable
-  this behaviour._
+  escapes are required. _Use the "Formatting: Simplify Strings" and "Formatting:
+  Simplify Numbers" settings to disable or modify this behaviour._
 
 - **Alias/import statements are grouped and sorted alphabetically** \
   _The "Formatting: Sort Imports By" setting can be used to disable or modify this
