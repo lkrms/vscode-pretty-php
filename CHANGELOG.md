@@ -8,10 +8,29 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.49] - 2024-01-21
+
+### Added
+
+- Add another `--quiet` level so a summary of changes can be printed without reporting every file replaced
+- Add colour to unified `--diff` output when the standard output is a TTY
+
+### Changed
+
+- Escape non-ASCII characters with Unicode's "blank" property
+- Improve validation of options loaded from configuration files
+- Improve `--debug` output
+- Add `--log-progress` so `--debug` need not be combined with `--verbose` to generate progress-log files
+
+### Fixed
+
+- Fix bugs related to empty directories and configuration files, e.g. where `pretty-php` falls backs to reading from `STDIN` when directories given on the command line yield no files to format
+
 ## [v0.4.48] - 2024-01-11
 
 ### Added
 
+- Add "pretty-php.formatting.simplifyNumbers" setting
 - Normalise integers and floats
 
   Before:
@@ -1075,7 +1094,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.48]: https://github.com/lkrms/pretty-php/compare/v0.4.47...v0.4.48
+[v0.4.49]: https://github.com/lkrms/pretty-php/compare/v0.4.48...v0.4.49
+[v0.4.48]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.47...v0.4.48
 [v0.4.47]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.46...v0.4.47
 [v0.4.46]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.45...v0.4.46
 [v0.4.45]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.43...v0.4.45
