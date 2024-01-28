@@ -8,6 +8,20 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.51] - 2024-01-28
+
+### Fixed
+
+- Update dependencies to work around "Private methods cannot be final as they are never overridden by other classes" bug in PHP 8.3.2
+
+## [v0.4.50] - 2024-01-21
+
+> pretty-php for Visual Studio Code v0.4.50 was not released
+
+### Fixed
+
+- Copy build tools to the repository to fix downstream packaging issues
+
 ## [v0.4.49] - 2024-01-21
 
 ### Added
@@ -1094,7 +1108,9 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.49]: https://github.com/lkrms/pretty-php/compare/v0.4.48...v0.4.49
+[v0.4.51]: https://github.com/lkrms/pretty-php/compare/v0.4.50...v0.4.51
+[v0.4.50]: https://github.com/lkrms/pretty-php/compare/v0.4.49...v0.4.50
+[v0.4.49]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.48...v0.4.49
 [v0.4.48]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.47...v0.4.48
 [v0.4.47]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.46...v0.4.47
 [v0.4.46]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.45...v0.4.46
