@@ -8,6 +8,16 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.52] - 2024-01-29
+
+### Changed
+
+- Allow `--print-config` to be combined with `--config` without losing input files given on the command line
+
+### Fixed
+
+- Fix "file not found" exception when processing configuration files in directories other than the current working directory
+
 ## [v0.4.51] - 2024-01-28
 
 ### Fixed
@@ -1108,7 +1118,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.51]: https://github.com/lkrms/pretty-php/compare/v0.4.50...v0.4.51
+[v0.4.52]: https://github.com/lkrms/pretty-php/compare/v0.4.51...v0.4.52
+[v0.4.51]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.49...v0.4.51
 [v0.4.50]: https://github.com/lkrms/pretty-php/compare/v0.4.49...v0.4.50
 [v0.4.49]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.48...v0.4.49
 [v0.4.48]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.47...v0.4.48
