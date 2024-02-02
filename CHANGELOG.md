@@ -8,6 +8,16 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.53] - 2024-02-02
+
+### Changed
+
+- Suppress blank lines between `use`, `use function` and `use constant` groups when `sort-imports` is disabled
+
+### Fixed
+
+- Fix issue where `--no-sort-imports` fails with "--sort-imports-by and --no-sort-imports/--disable=sort-imports cannot both be given"
+
 ## [v0.4.52] - 2024-01-29
 
 ### Changed
@@ -1118,7 +1128,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.52]: https://github.com/lkrms/pretty-php/compare/v0.4.51...v0.4.52
+[v0.4.53]: https://github.com/lkrms/pretty-php/compare/v0.4.52...v0.4.53
+[v0.4.52]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.51...v0.4.52
 [v0.4.51]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.49...v0.4.51
 [v0.4.50]: https://github.com/lkrms/pretty-php/compare/v0.4.49...v0.4.50
 [v0.4.49]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.48...v0.4.49
