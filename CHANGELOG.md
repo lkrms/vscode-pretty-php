@@ -8,6 +8,18 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.54] - 2024-02-08
+
+### Changed
+
+- Don't insert space between `exit`/`die` and subsequent parentheses (#99)
+- Move assignment and comparison operators to the start of the line when `--operators-first` is given
+- Allow `--output` to be given when reading from standard input
+
+### Fixed
+
+- Fix issue where enum comments are indented like switch comments (#97)
+
 ## [v0.4.53] - 2024-02-02
 
 ### Changed
@@ -1128,7 +1140,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.53]: https://github.com/lkrms/pretty-php/compare/v0.4.52...v0.4.53
+[v0.4.54]: https://github.com/lkrms/pretty-php/compare/v0.4.53...v0.4.54
+[v0.4.53]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.52...v0.4.53
 [v0.4.52]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.51...v0.4.52
 [v0.4.51]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.49...v0.4.51
 [v0.4.50]: https://github.com/lkrms/pretty-php/compare/v0.4.49...v0.4.50
