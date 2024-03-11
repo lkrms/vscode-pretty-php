@@ -8,6 +8,25 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.56] - 2024-03-11
+
+### Added
+
+- Move comments if necessary for correct placement of adjacent delimiters and operators
+- Normalise casts to their canonical form (e.g. `( DOUBLE ) $var` -> `(float) $var`)
+
+### Changed
+
+- Refactor for clarity, speed and to reduce memory consumption
+- Improve underlying API, incl. removal of unused methods and creation of a standalone `Parser` class
+- Update dependencies
+
+### Fixed
+
+- Fix issue where an untrusted `PhpToken` polyfill may be extended from the `Token` class on PHP 7.4
+- Fix issue where `--operators-first` and `--operators-last` have no effect
+- Fix issue where hanging indentation is not always applied when `--operators-first` is given
+
 ## [v0.4.55] - 2024-02-27
 
 ### Changed
@@ -1146,7 +1165,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.55]: https://github.com/lkrms/pretty-php/compare/v0.4.54...v0.4.55
+[v0.4.56]: https://github.com/lkrms/pretty-php/compare/v0.4.55...v0.4.56
+[v0.4.55]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.54...v0.4.55
 [v0.4.54]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.53...v0.4.54
 [v0.4.53]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.52...v0.4.53
 [v0.4.52]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.51...v0.4.52
