@@ -192,6 +192,13 @@ export function activate (context: vscode.ExtensionContext) {
 
     maybeAddArgs(prettyPhpArgs, 'formatting.heredocIndentation', '-h')
 
+    const operatorPlacement = config.get<string>('formatting.operatorPlacement')
+    if (operatorPlacement === 'first') {
+      prettyPhpArgs.push('-O')
+    } else if (operatorPlacement === 'last') {
+      prettyPhpArgs.push('-L')
+    }
+
     const sortImportsBy = config.get<string>('formatting.sortImportsBy')
     if (sortImportsBy === 'off') {
       prettyPhpArgs.push('-M')

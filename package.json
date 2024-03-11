@@ -109,11 +109,27 @@
           "default": "mixed",
           "order": 13
         },
+        "pretty-php.formatting.operatorPlacement": {
+          "description": "Place operators before or after newlines when splitting code over multiple lines",
+          "type": "string",
+          "enum": [
+            "mixed",
+            "first",
+            "last"
+          ],
+          "markdownEnumDescriptions": [
+            "Place arithmetic operators at the start of the line\n\n```php\n<?php\n$baz =\n    $foo ||\n    $bar;\n$a = ($b\n        / $c)\n    * 100;\n```",
+            "Place operators at the start of the line\n\n```php\n<?php\n$baz =\n    $foo\n    || $bar;\n$a = ($b\n        / $c)\n    * 100;\n```",
+            "Place operators at the end of the line\n\n```php\n<?php\n$baz =\n    $foo ||\n    $bar;\n$a = ($b /\n        $c) *\n    100;\n```"
+          ],
+          "default": "mixed",
+          "order": 14
+        },
         "pretty-php.formatting.moveComments": {
-          "markdownDescription": "Move comments with one or more subsequent delimiters to the position after the last delimiter\n\n```php\n<?php\n// Disabled:\n[\n    'foo'\n        // comment\n        , 'bar'\n];\n// Enabled:\n[\n    'foo',\n    // comment\n    'bar'\n];\n```",
+          "markdownDescription": "Move comments if necessary for correct placement of adjacent delimiters and operators\n\n```php\n<?php\n// Disabled:\n[\n    'foo'\n        // comment\n        , 'bar'\n];\n// Enabled:\n[\n    'foo',\n    // comment\n    'bar'\n];\n```",
           "type": "boolean",
           "default": true,
-          "order": 14
+          "order": 16
         },
         "pretty-php.formatting.alignment.alignData": {
           "markdownDescription": "Align consecutive operators and values\n\n```php\n<?php\n$start = [  0, 'first', $foo];\n$end   = [100, 'last',  $bar];\n```",
@@ -152,7 +168,7 @@
           "order": 25
         },
         "pretty-php.formatting.blankBeforeReturn": {
-          "description": "Add a blank line before return and yield statements unless they appear consecutively or at the beginning of a compound statement",
+          "markdownDescription": "Add a blank line before `return` and `yield` statements unless they appear consecutively or at the beginning of a compound statement",
           "type": "boolean",
           "default": false,
           "order": 30
