@@ -107,22 +107,27 @@ and nothing in the original file other than whitespace is changed"), but
 exceptions are occasionally made and documented here.
 
 - **Newlines are preserved** \
-  Line breaks adjacent to most operators, separators and brackets are copied from
-  the input to the output. _To suppress this behaviour temporarily, use the "Format
-  PHP without Preserving Newlines" command._
+  Line breaks adjacent to most operators, delimiters and brackets are copied from
+  the input to the output.
+
+  To suppress this behaviour temporarily, use the "Format PHP without Preserving
+  Newlines" command.
 
 - **Strings and numbers are normalised** \
   Single-quoted strings are preferred unless the alternative is shorter or backslash
-  escapes are required. _Use the "Formatting: Simplify Strings" and "Formatting:
-  Simplify Numbers" settings to disable or modify this behaviour._
+  escapes are required.
+
+  Use the "Formatting: Simplify Strings" and "Formatting: Simplify Numbers"
+  settings to disable or modify this behaviour.
 
 - **Alias/import statements are grouped and sorted alphabetically** \
-  _The "Formatting: Sort Imports By" setting can be used to disable or modify this
-  behaviour._
+  The "Formatting: Sort Imports By" setting can be used to disable or modify this
+  behaviour.
 
-- **Comments are placed after adjacent delimiters** \
+- **Comments are moved if necessary for correct placement of adjacent tokens** \
   Relocated DocBlocks are converted to standard C-style comments as a precaution.
-  _Turn the "Formatting: Move Comments" setting off to disable this behaviour._
+
+  Turn the "Formatting: Move Comments" setting off to disable this behaviour.
 
 - **Comments beside code are not moved to the next line**
 
