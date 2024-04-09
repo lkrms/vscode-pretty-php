@@ -8,6 +8,12 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.59] - 2024-04-09
+
+### Fixed
+
+- Fix regression where horizontal whitespace is not applied to bitwise operators in switch `case` statements
+
 ## [v0.4.58] - 2024-04-09
 
 ### Fixed
@@ -1276,7 +1282,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.58]: https://github.com/lkrms/pretty-php/compare/v0.4.57...v0.4.58
+[v0.4.59]: https://github.com/lkrms/pretty-php/compare/v0.4.58...v0.4.59
+[v0.4.58]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.57...v0.4.58
 [v0.4.57]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.56...v0.4.57
 [v0.4.56]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.55...v0.4.56
 [v0.4.55]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.54...v0.4.55
