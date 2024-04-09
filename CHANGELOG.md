@@ -8,10 +8,115 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.57] - 2024-04-09
+
+### Added
+
+- Detect indentation of input files for more accurate tab expansion
+
+### Changed
+
+- Improve CLI option validation and error messages
+- Treat `case` statements in enumerations as declarations for more consistent vertical whitespace and DocBlock handling
+- Always collapse one-line DocBlocks before `global` and `static` variable declarations
+- Collapse and ignore one-line DocBlocks with a PHPDoc tag when applying vertical whitespace to consecutive one-line declarations
+
+  Before (DocBlock triggers vertical expansion):
+
+  ```php
+  <?php
+  class Foo
+  {
+      public int $Bar;
+      public string $Qux;
+
+      /**
+       * @var string[]
+       */
+      public array $Quux = [];
+  }
+  ```
+
+  After (DocBlock is collapsed if there are no blank lines between property declarations):
+
+  ```php
+  <?php
+  class Foo
+  {
+      public int $Bar;
+      public string $Qux;
+      /** @var string[] */
+      public array $Quux = [];
+  }
+  ```
+- Improve DocBlock normalisation when leading asterisks are missing
+
+  Input:
+
+  ```php
+  <?php
+
+  /**
+   * Comment
+   *
+   @api
+   */
+
+  /*
+   *
+
+  List:
+  * Item 1
+  * Item 2
+
+   */
+  ```
+
+  Previous output:
+
+  ```php
+  <?php
+
+  /**
+   * * Comment
+   * *
+   * @api
+   */
+
+  /*
+   * List:
+   * Item 1
+   * Item 2
+   */
+  ```
+
+  Current output:
+
+  ```php
+  <?php
+
+  /**
+   * Comment
+   *
+   * @api
+   */
+
+  /*
+   * List:
+   * * Item 1
+   * * Item 2
+   */
+  ```
+
+### Fixed
+
+- Fix issue where braces with a nested `match` expression may be incorrectly parsed as a complete statement
+
 ## [v0.4.56] - 2024-03-11
 
 ### Added
 
+- Add "pretty-php.formatting.operatorPlacement" setting
 - Move comments if necessary for correct placement of adjacent delimiters and operators
 - Normalise casts to their canonical form (e.g. `( DOUBLE ) $var` -> `(float) $var`)
 
@@ -1165,7 +1270,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.56]: https://github.com/lkrms/pretty-php/compare/v0.4.55...v0.4.56
+[v0.4.57]: https://github.com/lkrms/pretty-php/compare/v0.4.56...v0.4.57
+[v0.4.56]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.55...v0.4.56
 [v0.4.55]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.54...v0.4.55
 [v0.4.54]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.53...v0.4.54
 [v0.4.53]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.52...v0.4.53
