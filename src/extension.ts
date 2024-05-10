@@ -199,6 +199,11 @@ export function activate (context: vscode.ExtensionContext) {
       prettyPhpArgs.push('-L')
     }
 
+    const tightDeclarationSpacing = config.get<boolean>('formatting.tightDeclarationSpacing')
+    if (tightDeclarationSpacing != null && tightDeclarationSpacing) {
+      prettyPhpArgs.push('-T')
+    }
+
     const sortImportsBy = config.get<string>('formatting.sortImportsBy')
     if (sortImportsBy === 'off') {
       prettyPhpArgs.push('-M')

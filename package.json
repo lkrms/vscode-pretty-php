@@ -2,7 +2,7 @@
   "name": "pretty-php",
   "displayName": "pretty-php",
   "description": "The opinionated PHP code formatter",
-  "version": "0.4.62",
+  "version": "0.4.63",
   "publisher": "lkrms",
   "engines": {
     "vscode": "^1.74.0"
@@ -86,7 +86,7 @@
           "order": 11
         },
         "pretty-php.formatting.declarationSpacing": {
-          "description": "Normalise whitespace between declarations",
+          "description": "Normalise vertical spacing between declarations",
           "type": "boolean",
           "default": true,
           "order": 12
@@ -130,6 +130,12 @@
           "type": "boolean",
           "default": true,
           "order": 16
+        },
+        "pretty-php.formatting.tightDeclarationSpacing": {
+          "description": "Remove blank lines between declarations of the same type where possible",
+          "type": "boolean",
+          "default": false,
+          "order": 18
         },
         "pretty-php.formatting.alignment.alignData": {
           "markdownDescription": "Align consecutive operators and values\n\n```php\n<?php\n$start = [  0, 'first', $foo];\n$end   = [100, 'last',  $bar];\n```",
