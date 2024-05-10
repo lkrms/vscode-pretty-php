@@ -8,6 +8,25 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.63] - 2024-05-10
+
+### Added
+
+- Add `--tight` option to remove blank lines between declarations where possible
+
+### Changed
+
+- Rewrite declaration spacing to improve consistency and reduce diff size
+  - Allow subsequent groups of declarations to use "loose" and "tight" spacing alternately, i.e. do not simply propagate loose spacing from its first appearance onwards
+  - Allow properties and constants with multi-line values to maintain "tight" spacing
+  - Do not propagate "loose" spacing triggered by comments other than DocBlocks to subsequent declarations of the same type
+  - Preserve blank lines between declarations with mutually exclusive modifiers, e.g. between a group of `public` properties and a group of `protected` and `private` properties, but not between `public` properties and a group of `public` and `protected` properties
+
+### Fixed
+
+- Fix issue where a blank line is not always added between declarations and subsequent code
+- Fix declaration spacing issues with `function &()` constructs and nested declarations
+
 ## [v0.4.62] - 2024-04-30
 
 ### Fixed
@@ -1305,7 +1324,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.62]: https://github.com/lkrms/pretty-php/compare/v0.4.61...v0.4.62
+[v0.4.63]: https://github.com/lkrms/pretty-php/compare/v0.4.62...v0.4.63
+[v0.4.62]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.61...v0.4.62
 [v0.4.61]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.60...v0.4.61
 [v0.4.60]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.59...v0.4.60
 [v0.4.59]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.58...v0.4.59
