@@ -8,10 +8,26 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.64] - 2024-05-13
+
+### Changed
+
+- Don't ignore `--tight` when a configuration file or preset is applied
+- Collapse DocBlocks above standalone declarations if they were originally collapsed
+- Do not collapse DocBlocks that contain only `@inheritDoc`
+- Maintain the same gap between one-line declarations before and after any multi-line declarations of the same type
+- Don't allow multi-line properties or constants to maintain tight spacing
+  > This reverts a change in v0.4.63 that helped prevent unintended propagation of loose spacing. Other improvements have addressed this issue, and allowing multi-line declarations to run together makes code less readable, so `pretty-php`'s previous behaviour has been restored.
+
+### Fixed
+
+- Fix issue where declaration DocBlocks are not always collapsed correctly
+
 ## [v0.4.63] - 2024-05-10
 
 ### Added
 
+- Add `pretty-php.formatting.tightDeclarationSpacing` setting
 - Add `--tight` option to remove blank lines between declarations where possible
 
 ### Changed
@@ -1324,7 +1340,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.63]: https://github.com/lkrms/pretty-php/compare/v0.4.62...v0.4.63
+[v0.4.64]: https://github.com/lkrms/pretty-php/compare/v0.4.63...v0.4.64
+[v0.4.63]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.62...v0.4.63
 [v0.4.62]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.61...v0.4.62
 [v0.4.61]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.60...v0.4.61
 [v0.4.60]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.59...v0.4.60
