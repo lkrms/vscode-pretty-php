@@ -8,6 +8,26 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.65] - 2024-06-13
+
+### Changed
+
+- Improve CLI robustness, consistency and ergonomics
+
+  Changes include but are not limited to:
+
+  - Don't report syntax errors or non-critical code problems until formatting is complete
+  - Print a summary that includes resource usage when `--diff` or `--check` are given
+  - Report location of invalid syntax when formatting fails due to a syntax error
+  - Send messages to `STDERR` only, even when formatted code is not being written to `STDOUT`
+  - Don't hide progress updates while `--diff` output is rendering
+  - Remove superfluous `/./` segments from input paths when a directory with a configuration file is passed to `pretty-php`
+  - Don't index input directories unnecessarily when `--print-config` is given
+
+### Fixed
+
+- Fix string normalisation issue where some codepoints are escaped unnecessarily, e.g. `U+FE19`
+
 ## [v0.4.64] - 2024-05-13
 
 ### Changed
@@ -1340,7 +1360,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.64]: https://github.com/lkrms/pretty-php/compare/v0.4.63...v0.4.64
+[v0.4.65]: https://github.com/lkrms/pretty-php/compare/v0.4.64...v0.4.65
+[v0.4.64]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.63...v0.4.64
 [v0.4.63]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.62...v0.4.63
 [v0.4.62]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.61...v0.4.62
 [v0.4.61]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.60...v0.4.61
