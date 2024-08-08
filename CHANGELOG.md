@@ -8,6 +8,23 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.66] - 2024-08-08
+
+### Changed
+
+- In addition to `@inheritDoc`, never collapse one-line DocBlocks with one of the following tags, with or without a `@phan-`, `@psalm-`, or `@phpstan-` prefix:
+  - `@api`, `@internal`
+  - `@method`, `@property`, `@property-read`, `@property-write`
+  - `@param`, `@return`, `@throws`
+- Update dependencies
+
+### Fixed
+
+- Fix issue where a non-declaration token may be taken as the first token of a subsequent declaration if its sibling is a declaration token, e.g. the opening brace in `else { } case 6:`
+  - This issue surfaced during refactoring and is not known to have affected `pretty-php`'s output
+- Fail with an exception if invalid or non-unique token constants are defined by other libraries
+- Only use trusted polyfills on PHP 7.4
+
 ## [v0.4.65] - 2024-06-13
 
 ### Changed
@@ -1360,7 +1377,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.65]: https://github.com/lkrms/pretty-php/compare/v0.4.64...v0.4.65
+[v0.4.66]: https://github.com/lkrms/pretty-php/compare/v0.4.65...v0.4.66
+[v0.4.65]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.64...v0.4.65
 [v0.4.64]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.63...v0.4.64
 [v0.4.63]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.62...v0.4.63
 [v0.4.62]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.61...v0.4.62
