@@ -8,6 +8,22 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.67] - 2024-08-16
+
+### Changed
+
+- Improve performance and reduce memory consumption
+- Improve Symfony preset
+  - Don't collapse empty declaration bodies
+  - Don't collapse `<?php declare(...` to one line
+  - Add a blank line between `<?php` and subsequent declarations
+
+### Fixed
+
+- Fix issue where method chains are not always detected
+- Fix `AlignChains` issue where method chains with one object operator are not
+  aligned consistently
+
 ## [v0.4.66] - 2024-08-08
 
 ### Changed
@@ -1377,7 +1393,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.66]: https://github.com/lkrms/pretty-php/compare/v0.4.65...v0.4.66
+[v0.4.67]: https://github.com/lkrms/pretty-php/compare/v0.4.66...v0.4.67
+[v0.4.66]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.65...v0.4.66
 [v0.4.65]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.64...v0.4.65
 [v0.4.64]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.63...v0.4.64
 [v0.4.63]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.62...v0.4.63
