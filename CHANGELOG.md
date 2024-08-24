@@ -8,6 +8,22 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.68] - 2024-08-24
+
+### Added
+
+- Add support for new `T_PROPERTY_C` token in PHP 8.4
+
+### Changed
+
+- Don't add blank lines after, or normalise blank lines between, `global` or `static` variable declarations
+- Fix issue where property declarations like `static int|null $property` are not formatted correctly
+- Improve performance
+
+### Fixed
+
+- Fix `pretty-php` man page syntax issues
+
 ## [v0.4.67] - 2024-08-16
 
 ### Changed
@@ -1393,7 +1409,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.67]: https://github.com/lkrms/pretty-php/compare/v0.4.66...v0.4.67
+[v0.4.68]: https://github.com/lkrms/pretty-php/compare/v0.4.67...v0.4.68
+[v0.4.67]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.66...v0.4.67
 [v0.4.66]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.65...v0.4.66
 [v0.4.65]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.64...v0.4.65
 [v0.4.64]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.63...v0.4.64
