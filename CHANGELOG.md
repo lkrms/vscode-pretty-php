@@ -8,6 +8,16 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.69] - 2024-08-27
+
+### Changed
+
+- Improve performance
+
+### Fixed
+
+- Fix issue where close brace in `function &() {};` is parsed as a statement terminator, causing incorrect "empty statement" reports
+
 ## [v0.4.68] - 2024-08-24
 
 ### Added
@@ -1409,7 +1419,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.68]: https://github.com/lkrms/pretty-php/compare/v0.4.67...v0.4.68
+[v0.4.69]: https://github.com/lkrms/pretty-php/compare/v0.4.68...v0.4.69
+[v0.4.68]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.67...v0.4.68
 [v0.4.67]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.66...v0.4.67
 [v0.4.66]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.65...v0.4.66
 [v0.4.65]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.64...v0.4.65
