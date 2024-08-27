@@ -197,6 +197,14 @@
           "default": false,
           "order": 40
         },
+        "pretty-php.files.exclude": {
+          "markdownDescription": "Configure glob patterns for files to exclude from formatting, e.g. `**/vendor/**`",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "order": 50
+        },
         "pretty-php.formatterArguments": {
           "markdownDescription": "Pass [additional arguments](https://github.com/lkrms/pretty-php/blob/main/docs/Usage.md) to `pretty-php`",
           "type": "array",
@@ -244,9 +252,11 @@
     "lint": "ts-standard"
   },
   "dependencies": {
+    "minimatch": "^10.0.1",
     "which": "^3.0.1"
   },
   "devDependencies": {
+    "@types/minimatch": "^5.1.2",
     "@types/node": "^18.x",
     "@types/vscode": "^1.74.0",
     "@types/which": "^3.0.0",
