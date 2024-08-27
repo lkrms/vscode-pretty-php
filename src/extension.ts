@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as which from 'which'
 import { spawn, spawnSync, SpawnSyncOptionsWithStringEncoding } from 'child_process'
+import { minimatch } from 'minimatch'
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function activate (context: vscode.ExtensionContext) {
@@ -483,6 +484,18 @@ export function activate (context: vscode.ExtensionContext) {
     provideDocumentFormattingEdits (
       document: vscode.TextDocument, options: vscode.FormattingOptions
     ): Thenable<vscode.TextEdit[]> {
+      if (document.uri.scheme === 'file') {
+        const exclude = vscode.workspace.getConfiguration('pretty-php').get<string[]>('files.exclude')
+        if (exclude !== undefined && exclude.length > 0) {
+          const filename = document.uri.toString()
+          for (const pattern of exclude) {
+            if (minimatch(filename, pattern)) {
+              log.info(`${filename} excluded by pretty-php.files.exclude pattern: ${pattern}`)
+              return Promise.resolve([])
+            }
+          }
+        }
+      }
       return formatDocument(document, options.insertSpaces, options.tabSize)
     }
   })
