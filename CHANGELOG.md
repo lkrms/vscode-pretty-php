@@ -8,6 +8,29 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.71] - 2024-09-03
+
+### Changed
+
+- Sort imports by name when `--preset=symfony` is used
+- Include statements terminated by close tags (`?>`) when sorting imports
+
+### Fixed
+
+- Fix issue where sorting imports by name produces unexpected results when aliases are used, e.g.
+
+  ```php
+  <?php
+  // Before fix
+  use Doctrine\DBAL\Driver\Connection as ConnectionInterface;
+  use Doctrine\DBAL\Driver\Middleware\AbstractDriverMiddleware;
+  use Doctrine\DBAL\Driver as DriverInterface;
+  // After fix
+  use Doctrine\DBAL\Driver as DriverInterface;
+  use Doctrine\DBAL\Driver\Connection as ConnectionInterface;
+  use Doctrine\DBAL\Driver\Middleware\AbstractDriverMiddleware;
+  ```
+
 ## [v0.4.70] - 2024-08-31
 
 ### Fixed
@@ -1437,7 +1460,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.70]: https://github.com/lkrms/pretty-php/compare/v0.4.69...v0.4.70
+[v0.4.71]: https://github.com/lkrms/pretty-php/compare/v0.4.70...v0.4.71
+[v0.4.70]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.69...v0.4.70
 [v0.4.69]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.68...v0.4.69
 [v0.4.68]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.67...v0.4.68
 [v0.4.67]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.66...v0.4.67
