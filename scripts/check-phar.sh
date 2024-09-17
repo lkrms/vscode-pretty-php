@@ -16,5 +16,5 @@ version=v${version#v}
 [[ -n $version ]] ||
     die "error getting package version"
 
-bin/pretty-php.phar --version | grep -F "pretty-php $version-" >/dev/null ||
+bin/pretty-php.phar --version | grep -F "pretty-php $version (" >/dev/null ||
     die "invalid bin/pretty-php.phar"
