@@ -8,6 +8,17 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.73] - 2024-10-09
+
+### Changed
+
+- Preserve underscores in float literals with no exponent
+- Improve performance by skipping block detection when no block rules are enabled
+
+### Fixed
+
+- Fix issue where floats like `0.0e3` are not normalised to `0.0e0`
+
 ## [v0.4.72] - 2024-09-18
 
 ### Changed
@@ -1468,7 +1479,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.72]: https://github.com/lkrms/pretty-php/compare/v0.4.71...v0.4.72
+[v0.4.73]: https://github.com/lkrms/pretty-php/compare/v0.4.72...v0.4.73
+[v0.4.72]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.71...v0.4.72
 [v0.4.71]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.70...v0.4.71
 [v0.4.70]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.69...v0.4.70
 [v0.4.69]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.68...v0.4.69
