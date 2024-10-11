@@ -8,6 +8,12 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.74] - 2024-10-11
+
+### Fixed
+
+- Fix issue with ternary operator alignment after `static`
+
 ## [v0.4.73] - 2024-10-09
 
 ### Changed
@@ -1479,7 +1485,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.73]: https://github.com/lkrms/pretty-php/compare/v0.4.72...v0.4.73
+[v0.4.74]: https://github.com/lkrms/pretty-php/compare/v0.4.73...v0.4.74
+[v0.4.73]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.72...v0.4.73
 [v0.4.72]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.71...v0.4.72
 [v0.4.71]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.70...v0.4.71
 [v0.4.70]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.69...v0.4.70
