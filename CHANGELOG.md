@@ -669,6 +669,10 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 ## [v0.4.41] - 2023-10-20
 
+### Added
+
+- Add experimental `drupal` preset (available via `--preset drupal`)
+
 ### Changed
 
 - Link to `pretty-php` usage information from the "Formatter Arguments" description
@@ -679,10 +683,6 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 ### Removed
 
 - Remove "Honour Configuration Files" setting (configuration files are always honoured)
-
-### Added
-
-- Add experimental `drupal` preset (available via `--preset drupal`)
 
 ### Fixed
 
@@ -965,14 +965,14 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 ## [v0.4.27] - 2023-09-16
 
+### Added
+
+- Add `StrictExpressions` rule for PSR-12-compliant handling of multi-line control structure expressions
+
 ### Changed
 
 - Report output from `pretty-php` to stderr in the output channel
 - Move logical operators to the start of the line in contexts where hanging indentation will not be applied
-
-### Added
-
-- Add `StrictExpressions` rule for PSR-12-compliant handling of multi-line control structure expressions
 
 ### Fixed
 
@@ -1206,10 +1206,6 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 ## [v0.4.14] - 2023-07-05
 
-### Removed
-
-- Remove "Preserve Trailing Spaces", "One Line Arguments" settings
-
 ### Added
 
 - Add initial support for the WordPress code style via `--preset wordpress` (CLI only)
@@ -1217,6 +1213,10 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 ### Changed
 
 - Improve support for attributes when running on PHP 7.4
+
+### Removed
+
+- Remove "Preserve Trailing Spaces", "One Line Arguments" settings
 
 ### Fixed
 
@@ -1485,7 +1485,7 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.74]: https://github.com/lkrms/pretty-php/compare/v0.4.73...v0.4.74
+[v0.4.74]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.73...v0.4.74
 [v0.4.73]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.72...v0.4.73
 [v0.4.72]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.71...v0.4.72
 [v0.4.71]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.70...v0.4.71
