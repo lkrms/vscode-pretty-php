@@ -8,6 +8,64 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.75] - 2024-11-06
+
+### Changed
+
+- Don't preserve newlines after `return`, `yield`, `yield from` or `throw`
+- Preserve newlines after assignment operators, including `??=`, even when `--operators-first` is given
+  > This addresses inconsistent behaviour where `pretty-php` moved `??=` to the next line by default, and assignment operators other than `=` to the next line when `--operators-first` was given. Now they are always kept on the same line as the receiving variable.
+- Move comments if necessary for correct placement of `?`, `:`, `->` and `?->` operators
+- Never demote DocBlocks to standard C-style comments
+  > PHP recognises doc comments even when unrelated code or comments appear between them and the structural elements they document, so this "precaution" was unnecessary at best. Apologies for any confusion or frustration caused.
+
+### Fixed
+
+- Fix hanging indentation issue within ternary expressions ([#156](https://github.com/lkrms/pretty-php/issues/156))
+
+  Before:
+
+  ```php
+  <?php
+  foo(
+      $bar,
+      fn($a, $b) =>
+          $a->Foo <=> $b->Foo
+              ?: $a->Bar <=> $b->Bar
+              ?: $a->Baz <=>
+                  $b->Baz
+                  ?: $a->Qux <=> $b->Qux
+                  ?: $a->Quux <=> $b->Quux,
+  );
+  ```
+
+  After:
+
+  ```php
+  <?php
+  foo(
+      $bar,
+      fn($a, $b) =>
+          $a->Foo <=> $b->Foo
+              ?: $a->Bar <=> $b->Bar
+              ?: $a->Baz <=>
+                  $b->Baz
+              ?: $a->Qux <=> $b->Qux
+              ?: $a->Quux <=> $b->Quux,
+  );
+  ```
+- Fix issue where statements are not parsed correctly if there are inline comments like:
+
+  ```php
+  <?php
+  if ($foo):
+      foo();
+  else /* comment */:
+      bar();
+  endif;
+  ```
+- Fix issue where `--timers` output does not include individual metrics
+
 ## [v0.4.74] - 2024-10-11
 
 ### Fixed
@@ -1485,6 +1543,7 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
+[v0.4.75]: https://github.com/lkrms/pretty-php/compare/v0.4.74...v0.4.75
 [v0.4.74]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.73...v0.4.74
 [v0.4.73]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.72...v0.4.73
 [v0.4.72]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.71...v0.4.72
