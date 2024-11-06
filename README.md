@@ -125,8 +125,6 @@ exceptions are occasionally made and documented here.
   behaviour.
 
 - **Comments are moved if necessary for correct placement of adjacent tokens** \
-  Relocated DocBlocks are converted to standard C-style comments as a precaution.
-
   Turn the "Formatting: Move Comments" setting off to disable this behaviour.
 
 - **Comments beside code are not moved to the next line**
