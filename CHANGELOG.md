@@ -8,6 +8,30 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.76] - 2024-11-14
+
+### Added
+
+- Add CLI option `--indent-between-tags`
+
+### Changed
+
+- Improve indented tag handling
+  > Previously: indentation of code between indented tags was increased if
+  > necessary for it to align with the open tag, and an additional indent was
+  > applied to top-level code
+  >
+  > Now: indentation of code between indented tags is increased or decreased so
+  > it aligns with the open tag, unless `--indent-between-tags` is used to apply
+  > an additional indent in all contexts
+
+### Fixed
+
+- Fix issue where close tags may not be indented appropriately
+- Fix issue where whitespace in `yield from` is preserved
+- Fix issue where tabs may not be expanded correctly
+- Don't report version when `--print-config` is given
+
 ## [v0.4.75] - 2024-11-06
 
 ### Changed
@@ -1543,7 +1567,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.75]: https://github.com/lkrms/pretty-php/compare/v0.4.74...v0.4.75
+[v0.4.76]: https://github.com/lkrms/pretty-php/compare/v0.4.75...v0.4.76
+[v0.4.75]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.74...v0.4.75
 [v0.4.74]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.73...v0.4.74
 [v0.4.73]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.72...v0.4.73
 [v0.4.72]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.71...v0.4.72
