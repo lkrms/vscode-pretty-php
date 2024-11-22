@@ -8,6 +8,25 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.77] - 2024-11-22
+
+### Added
+
+- **Add PHP 8.4 support**
+  - Format property hooks
+  - Add support for asymmetric visibility modifiers
+
+### Changed
+
+- In constructors with promoted parameters, add newlines before all parameters
+- Allow parameters to appear with adjacent attributes on their own line instead of moving attributes to separate lines
+- Don't collapse one-line DocBlocks if there is no subsequent code in the same scope
+
+### Fixed
+
+- Fix issue where DocBlocks with trailing asterisks on every line are not formatted correctly if any leading asterisks are missing
+- Fix issue where `symfony` preset may not format parameters with attributes correctly
+
 ## [v0.4.76] - 2024-11-14
 
 ### Added
@@ -17,13 +36,9 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 ### Changed
 
 - Improve indented tag handling
-  > Previously: indentation of code between indented tags was increased if
-  > necessary for it to align with the open tag, and an additional indent was
-  > applied to top-level code
+  > Previously: indentation of code between indented tags was increased if necessary for it to align with the open tag, and an additional indent was applied to top-level code
   >
-  > Now: indentation of code between indented tags is increased or decreased so
-  > it aligns with the open tag, unless `--indent-between-tags` is used to apply
-  > an additional indent in all contexts
+  > Now: indentation of code between indented tags is increased or decreased so it aligns with the open tag, unless `--indent-between-tags` is used to apply an additional indent in all contexts
 
 ### Fixed
 
@@ -1567,7 +1582,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.76]: https://github.com/lkrms/pretty-php/compare/v0.4.75...v0.4.76
+[v0.4.77]: https://github.com/lkrms/pretty-php/compare/v0.4.76...v0.4.77
+[v0.4.76]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.75...v0.4.76
 [v0.4.75]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.74...v0.4.75
 [v0.4.74]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.73...v0.4.74
 [v0.4.73]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.72...v0.4.73
