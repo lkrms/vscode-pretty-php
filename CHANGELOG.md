@@ -8,6 +8,19 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.78] - 2024-11-24
+
+### Changed
+
+- Suppress blank lines between property hooks not declared over multiple lines (not including their bodies)
+- Don't preserve blank lines above property declarations that only vary by asymmetric visibility
+- Treat `@template` tags in declaration DocBlocks as non-collapsible
+
+### Fixed
+
+- Fix issue where `&` may not be spaced correctly in property hooks
+- Fix issue where "loose" spacing is incorrectly applied to one-line declarations with nested DocBlocks when `preserve-one-line` is enabled
+
 ## [v0.4.77] - 2024-11-22
 
 ### Added
@@ -1582,7 +1595,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.77]: https://github.com/lkrms/pretty-php/compare/v0.4.76...v0.4.77
+[v0.4.78]: https://github.com/lkrms/pretty-php/compare/v0.4.77...v0.4.78
+[v0.4.77]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.76...v0.4.77
 [v0.4.76]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.75...v0.4.76
 [v0.4.75]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.74...v0.4.75
 [v0.4.74]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.73...v0.4.74
