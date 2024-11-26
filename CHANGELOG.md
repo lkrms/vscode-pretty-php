@@ -8,6 +8,40 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.79] - 2024-11-26
+
+### Changed
+
+- When `strict-lists` are enabled, always remove newlines before the first item in horizontal lists (not just when `--psr12` is given)
+- Allow attributes to appear beside anonymous functions and arrow functions instead of moving them to separate lines (see example below)
+- When `align-fn` is enabled, align arrow function expressions with `static` instead of `fn` in `static fn` expressions:
+
+  ```php
+  <?php
+  // Before
+  $foo = bar($baz, fn() =>
+                       foo($bar));
+  $foo = bar($baz, static fn() =>
+                              foo($bar));
+  $foo = bar($baz,
+      #[Foo]
+      static fn() =>
+                 foo($bar));
+  $foo = static fn() =>
+                    foo($bar);
+
+  // After
+  $foo = bar($baz, fn() =>
+                       foo($bar));
+  $foo = bar($baz, static fn() =>
+                       foo($bar));
+  $foo = bar($baz, #[Foo] static fn() =>
+                       foo($bar));
+  $foo = static fn() =>
+             foo($bar);
+  ```
+- Refactor to reduce memory consumption
+
 ## [v0.4.78] - 2024-11-24
 
 ### Changed
@@ -1595,7 +1629,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.78]: https://github.com/lkrms/pretty-php/compare/v0.4.77...v0.4.78
+[v0.4.79]: https://github.com/lkrms/pretty-php/compare/v0.4.78...v0.4.79
+[v0.4.78]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.77...v0.4.78
 [v0.4.77]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.76...v0.4.77
 [v0.4.76]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.75...v0.4.76
 [v0.4.75]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.74...v0.4.75
