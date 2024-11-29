@@ -8,6 +8,16 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.80] - 2024-11-29
+
+### Changed
+
+- Add optional formatting rule `semi-strict-expressions`
+  > Unlike `strict-expressions`, this rule only moves control structure expressions to a new line if there are line breaks between siblings in the expression. If line breaks only appear between bracketed sub-expressions, the start of the expression is left on the same line as its open bracket.
+- Move `=>` to the other side of a comment if necessary for correct placement
+- Improve input indentation handling
+- Improve performance
+
 ## [v0.4.79] - 2024-11-26
 
 ### Changed
@@ -1629,7 +1639,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.79]: https://github.com/lkrms/pretty-php/compare/v0.4.78...v0.4.79
+[v0.4.80]: https://github.com/lkrms/pretty-php/compare/v0.4.79...v0.4.80
+[v0.4.79]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.78...v0.4.79
 [v0.4.78]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.77...v0.4.78
 [v0.4.77]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.76...v0.4.77
 [v0.4.76]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.75...v0.4.76
