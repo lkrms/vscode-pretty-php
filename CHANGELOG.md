@@ -8,6 +8,16 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.81] - 2024-12-04
+
+### Changed
+
+- Ignore placement of close brackets when `strict-expressions` and `semi-strict-expressions` check for control structure expressions that break over multiple lines
+
+### Fixed
+
+- Fix issue where warnings about invalid `--enable` or `--disable` rules in config files are printed twice
+
 ## [v0.4.80] - 2024-11-29
 
 ### Changed
@@ -1639,7 +1649,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.80]: https://github.com/lkrms/pretty-php/compare/v0.4.79...v0.4.80
+[v0.4.81]: https://github.com/lkrms/pretty-php/compare/v0.4.80...v0.4.81
+[v0.4.80]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.79...v0.4.80
 [v0.4.79]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.78...v0.4.79
 [v0.4.78]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.77...v0.4.78
 [v0.4.77]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.76...v0.4.77
