@@ -21,6 +21,7 @@ export function activate (context: vscode.ExtensionContext) {
 
   const enableMaps = [
     { config: 'formatting.blankBeforeReturn', arg: 'blank-before-return' },
+    { config: 'formatting.semiStrictExpressions', arg: 'semi-strict-expressions' },
     { config: 'formatting.strictLists', arg: 'strict-lists' },
     { config: 'formatting.alignment.alignData', arg: 'align-data' },
     { config: 'formatting.alignment.alignChains', arg: 'align-chains' },
