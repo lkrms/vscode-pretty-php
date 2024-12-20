@@ -8,7 +8,27 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.82] - 2024-12-20
+
+### Changed
+
+- Don't zero-pad integer literals that use hexadecimal or binary notation and have an odd number of digits
+- In expressions with newlines adjacent to boolean operators, collapse newlines between brackets on their own line
+- In chained ternary expressions, limit the scope of indentation and alignment changes to better reflect operator precedence and associativity
+- When `align-ternary` is enabled and ternary operators are aligned with an expression that breaks over multiple lines, align with the first token on the previous line (for consistency with `align-comments` and `align-fn`)
+
+### Fixed
+
+- Refactor unenclosed control structure body handling to fix multiple issues where they are not formatted correctly
+- Fix issue where comments after labels may be moved incorrectly
+- Fix issue where ternary expressions are incorrectly aligned across logical operator boundaries
+- Fix issue where lines that start with a `T_END_HEREDOC` may trigger incorrect alignment of subsequent tokens
+
 ## [v0.4.81] - 2024-12-04
+
+### Added
+
+- Add `formatting.semiStrictExpressions` setting
 
 ### Changed
 
@@ -1649,7 +1669,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.81]: https://github.com/lkrms/pretty-php/compare/v0.4.80...v0.4.81
+[v0.4.82]: https://github.com/lkrms/pretty-php/compare/v0.4.81...v0.4.82
+[v0.4.81]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.80...v0.4.81
 [v0.4.80]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.79...v0.4.80
 [v0.4.79]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.78...v0.4.79
 [v0.4.78]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.77...v0.4.78
