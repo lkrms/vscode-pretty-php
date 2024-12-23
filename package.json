@@ -200,6 +200,23 @@
           "default": false,
           "order": 78
         },
+        "pretty-php.formatting.preset": {
+          "description": "Apply a formatting preset, ignoring other settings",
+          "type": "string",
+          "enum": [
+            "symfony",
+            "drupal",
+            "laravel",
+            "wordpress"
+          ],
+          "enumDescriptions": [
+            "Use formatting options consistent with Symfony coding standards",
+            "Use formatting options consistent with Drupal coding standards",
+            "Use formatting options consistent with the Laravel code style",
+            "Use formatting options consistent with WordPress coding standards"
+          ],
+          "order": 80
+        },
         "pretty-php.formatting.psr12": {
           "markdownDescription": "Enforce strict compliance with [PSR-12](https://www.php-fig.org/psr/psr-12/) / [PER Coding Style](https://www.php-fig.org/per/coding-style/), ignoring other settings if necessary",
           "type": "boolean",
