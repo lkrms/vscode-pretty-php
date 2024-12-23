@@ -8,6 +8,24 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.83] - 2024-12-23
+
+### Changed
+
+- Rewrite `align-data` rule (enabled via `--enable align-data` or `--preset wordpress`) to improve output stability and performance
+- When `align-data` is enabled, only align consecutive assignment operators, `=>` delimiters in array syntax, and `=>` delimiters in `match` expressions
+
+### Removed
+
+- In `align-data`, don't align arbitrary comma-delimited expressions across multiple columns
+
+  > If removal of this experimental feature affects you, please let me know by starting a [discussion](https://github.com/lkrms/pretty-php/discussions) on GitHub.
+- In `align-data`, don't align delimiters after `case` and `default` in consecutive one-line `switch` cases
+
+### Fixed
+
+- Fix `blank-before-return` issue where blank lines may be added before `yield` or `yield from` in non-statement contexts
+
 ## [v0.4.82] - 2024-12-20
 
 ### Changed
@@ -1669,7 +1687,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.82]: https://github.com/lkrms/pretty-php/compare/v0.4.81...v0.4.82
+[v0.4.83]: https://github.com/lkrms/pretty-php/compare/v0.4.82...v0.4.83
+[v0.4.82]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.81...v0.4.82
 [v0.4.81]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.80...v0.4.81
 [v0.4.80]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.79...v0.4.80
 [v0.4.79]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.78...v0.4.79
