@@ -1,7 +1,7 @@
 {
   "name": "pretty-php",
-  "displayName": "pretty-php",
-  "description": "The opinionated PHP code formatter",
+  "displayName": "PHP Formatter - pretty-php",
+  "description": "The opinionated PHP code formatter, now with full PHP 8.4 support",
   "version": "0.4.82",
   "publisher": "lkrms",
   "engines": {
@@ -22,6 +22,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/lkrms/vscode-pretty-php.git"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/lkrms"
   },
   "activationEvents": [
     "onLanguage:php"
@@ -67,8 +70,8 @@
           "markdownEnumDescriptions": [
             "Don't sort or group imports",
             "Group imports by type without changing order",
-            "Order imports by name\n\n```php\n<?php\nuse A;\nuse B\\C\\E;\nuse B\\C\\F\\G;\nuse B\\C\\F\\{H, I};\nuse B\\C\\F\\J;\nuse B\\D;\n```",
-            "Order imports by name, depth-first\n\n```php\n<?php\nuse B\\C\\F\\{H, I};\nuse B\\C\\F\\G;\nuse B\\C\\F\\J;\nuse B\\C\\E;\nuse B\\D;\nuse A;\n```"
+            "Sort imports by name and group by type\n\n```php\n<?php\nuse A;\nuse B\\C\\E;\nuse B\\C\\F\\G;\nuse B\\C\\F\\{H, I};\nuse B\\C\\F\\J;\nuse B\\D;\n```",
+            "Sort imports by name, depth-first, and group by type\n\n```php\n<?php\nuse B\\C\\F\\{H, I};\nuse B\\C\\F\\G;\nuse B\\C\\F\\J;\nuse B\\C\\E;\nuse B\\D;\nuse A;\n```"
           ],
           "default": "depth",
           "order": 10
@@ -118,9 +121,9 @@
             "last"
           ],
           "markdownEnumDescriptions": [
-            "Place arithmetic operators at the start of the line\n\n```php\n<?php\n$baz =\n    $foo ||\n    $bar;\n$a = ($b\n        / $c)\n    * 100;\n```",
-            "Place operators at the start of the line\n\n```php\n<?php\n$baz =\n    $foo\n    || $bar;\n$a = ($b\n        / $c)\n    * 100;\n```",
-            "Place operators at the end of the line\n\n```php\n<?php\n$baz =\n    $foo ||\n    $bar;\n$a = ($b /\n        $c) *\n    100;\n```"
+            "Place arithmetic operators, bitwise operators, `??` and `.` at the start of the line, others at the end\n\n```php\n<?php\n$baz =\n    $foo ||\n    $bar;\n$a = ($b\n        / $c)\n    * 100;\n```",
+            "Place operators at the start of the line (except assignment operators, which are always at the end)\n\n```php\n<?php\n$baz =\n    $foo\n    || $bar;\n$a = ($b\n        / $c)\n    * 100;\n```",
+            "Place operators at the end of the line (except ternary operators, which are always at the start)\n\n```php\n<?php\n$baz =\n    $foo ||\n    $bar;\n$a = ($b /\n        $c) *\n    100;\n```"
           ],
           "default": "mixed",
           "order": 30
@@ -138,7 +141,7 @@
           "order": 38
         },
         "pretty-php.formatting.alignment.alignData": {
-          "markdownDescription": "Align consecutive operators and values\n\n```php\n<?php\n$start = [  0, 'first', $foo];\n$end   = [100, 'last',  $bar];\n```",
+          "markdownDescription": "Align consecutive assignment operators, `=>` delimiters in array syntax, and `=>` delimiters in `match` expressions\n\n```php\n<?php\n$i   = 0;\n$foo = [\n    'bar' => 1,\n    '_'   => 2,\n];\n```",
           "type": "boolean",
           "default": false,
           "order": 42
@@ -162,7 +165,7 @@
           "order": 54
         },
         "pretty-php.formatting.alignment.alignLists": {
-          "markdownDescription": "Align arguments, array elements and other list items with their owners\n\n```php\n<?php\n$obj->method($arg1,\n             $arg2);\n```",
+          "markdownDescription": "Align arguments, array elements and other list items with their parents\n\n```php\n<?php\n$obj->method($arg1,\n             $arg2);\n```",
           "type": "boolean",
           "default": false,
           "order": 58
@@ -174,7 +177,7 @@
           "order": 62
         },
         "pretty-php.formatting.blankBeforeReturn": {
-          "markdownDescription": "Add a blank line before `return` and `yield` statements unless they appear consecutively or at the beginning of a compound statement",
+          "markdownDescription": "Add a blank line before non-consecutive `return` and `yield` statements",
           "type": "boolean",
           "default": false,
           "order": 66
@@ -192,13 +195,30 @@
           "order": 74
         },
         "pretty-php.formatting.preserveOneLineStatements": {
-          "markdownDescription": "Suppress newlines in statements and control structures that start and end on the same line, including individual `case` statements",
+          "description": "Suppress newlines in statements and control structures that start and end on the same line",
           "type": "boolean",
           "default": false,
           "order": 78
         },
+        "pretty-php.formatting.preset": {
+          "description": "Apply a formatting preset, ignoring other settings",
+          "type": "string",
+          "enum": [
+            "symfony",
+            "drupal",
+            "laravel",
+            "wordpress"
+          ],
+          "enumDescriptions": [
+            "Use formatting options consistent with Symfony coding standards",
+            "Use formatting options consistent with Drupal coding standards",
+            "Use formatting options consistent with the Laravel code style",
+            "Use formatting options consistent with WordPress coding standards"
+          ],
+          "order": 80
+        },
         "pretty-php.formatting.psr12": {
-          "markdownDescription": "Enforce strict compliance with [PSR-12](https://www.php-fig.org/psr/psr-12/) / [PER Coding Style](https://www.php-fig.org/per/coding-style/) where implemented, ignoring other settings if necessary",
+          "markdownDescription": "Enforce strict compliance with [PSR-12](https://www.php-fig.org/psr/psr-12/) / [PER Coding Style](https://www.php-fig.org/per/coding-style/), ignoring other settings if necessary",
           "type": "boolean",
           "default": false,
           "order": 82

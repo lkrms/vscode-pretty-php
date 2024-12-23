@@ -213,6 +213,8 @@ export function activate (context: vscode.ExtensionContext) {
       maybeAddArgs(prettyPhpArgs, 'formatting.sortImportsBy', '-m')
     }
 
+    maybeAddArgs(prettyPhpArgs, 'formatting.preset', '-p')
+
     const psr12 = config.get<boolean>('formatting.psr12')
     if (psr12 != null && psr12) {
       prettyPhpArgs.push('--psr12')

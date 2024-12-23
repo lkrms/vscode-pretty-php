@@ -37,6 +37,7 @@ If you have questions or feedback, I'd love to [hear from you][discuss].
 
 - Supports code written for **PHP 8.4** and below (when running on a PHP version
   that can parse it)
+- Formats [property hooks][property-hooks] introduced in PHP 8.4
 - Code is formatted for **readability**, **consistency** and **small diffs**
 - With few [exceptions](#pragmatism), **previous formatting is ignored**, and
   nothing in the original file other than whitespace is changed
@@ -59,9 +60,8 @@ file is found.**
 
 To create a configuration file based on your current VS Code settings, use the
 extension's "Create .prettyphp or prettyphp.json" command. The bundled JSON
-schema for `pretty-php` configuration files makes them easy to edit in VS Code:
-
-![.prettyphp file IntelliSense](images/json-schema-screenshot.png)
+schema for `pretty-php` configuration files makes them easy to edit using VS
+Code's IntelliSense features.
 
 More information about configuring `pretty-php` is available
 [here][configuration].
@@ -142,6 +142,7 @@ MIT
 [discuss]: https://github.com/lkrms/pretty-php/discussions
 [PER]: https://www.php-fig.org/per/coding-style/
 [pretty-php]: https://github.com/lkrms/pretty-php
+[property-hooks]: https://wiki.php.net/rfc/property-hooks
 [PSR-12]: https://www.php-fig.org/psr/psr-12/
 [PSR-12 issue]: https://github.com/lkrms/pretty-php/issues/4
 [docs/PSR-12.md]: https://github.com/lkrms/pretty-php/blob/main/docs/PSR-12.md
