@@ -8,7 +8,21 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.84] - 2024-12-26
+
+### Changed
+
+- Don't collapse DocBlocks with `@mixin` or `@param-*` tags
+
+### Fixed
+
+- Fix issue where `switch` cases with expressions that contain ternary operators or closures with native return types may be formatted incorrectly
+
 ## [v0.4.83] - 2024-12-23
+
+### Added
+
+- Make `symfony`, `drupal`, `laravel` and `wordpress` presets user-selectable via new `formatting.preset` setting
 
 ### Changed
 
@@ -1687,7 +1701,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.83]: https://github.com/lkrms/pretty-php/compare/v0.4.82...v0.4.83
+[v0.4.84]: https://github.com/lkrms/pretty-php/compare/v0.4.83...v0.4.84
+[v0.4.83]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.82...v0.4.83
 [v0.4.82]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.81...v0.4.82
 [v0.4.81]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.80...v0.4.81
 [v0.4.80]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.79...v0.4.80
