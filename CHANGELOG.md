@@ -8,6 +8,27 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.85] - 2025-01-03
+
+### Changed
+
+- Refactor hanging indentation to improve output quality and consistency, especially when formatting complex expressions that break over multiple lines
+  - Vary indentation to reflect operator precedence where possible
+  - Suppress the first level of hanging indentation in more single-expression contexts
+- Format more lists when `strict-lists` or `align-lists` are enabled:
+  - import lists (e.g. `use Foo\Bar, Foo\Baz`)
+  - import list groups (e.g. `use Foo\{Bar, Baz}`)
+  - trait insertion lists
+  - `insteadof` lists when inserting traits
+  - property and constant declaration lists
+  - `static` and `global` variable lists
+- Add newlines between comma-delimited property and constant declarations
+
+### Fixed
+
+- Fix multiple issues with runaway mid-expression indentation
+- Fix issue where anonymous classes that implement multiple interfaces may not be formatted correctly in list contexts
+
 ## [v0.4.84] - 2024-12-26
 
 ### Changed
@@ -1701,7 +1722,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.84]: https://github.com/lkrms/pretty-php/compare/v0.4.83...v0.4.84
+[v0.4.85]: https://github.com/lkrms/pretty-php/compare/v0.4.84...v0.4.85
+[v0.4.84]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.83...v0.4.84
 [v0.4.83]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.82...v0.4.83
 [v0.4.82]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.81...v0.4.82
 [v0.4.81]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.80...v0.4.81
