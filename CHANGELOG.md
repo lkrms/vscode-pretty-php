@@ -8,6 +8,32 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.86] - 2025-01-08
+
+A lot of refactoring has gone into this release, so there may be changes not picked up in testing or not mentioned here.
+
+If you think this version of `pretty-php` does something worse, not better, please [open an issue](https://github.com/lkrms/pretty-php/issues) or [start a discussion](https://github.com/lkrms/pretty-php/discussions).
+
+### Added
+
+- Add `--no-problems` option to CLI command for better control of output verbosity
+
+### Changed
+
+- Improve formatting of `for` loops with expressions that break over multiple lines
+- When `align-data` is enabled, don't align `=` in parameter lists with no leading newline unless `strict-lists` or `align-lists` are also enabled
+- When the `symfony` preset is enabled, don't suppress newlines in parameter lists with no promoted constructor parameters if they have a trailing comma
+
+### Fixed
+
+- Fix issue where newlines are collapsed between close braces and subsequent increment or decrement operators
+- Fix issue where blank lines before and after comments are not preserved in alternative syntax constructs
+- Fix issue where unnecessary whitespace is not removed from empty lines in nested heredocs
+- Fix inconsistent formatting of lists with trailing AND leading commas
+- Fix `blank-before-return` issue where blank lines are not added before `yield` statements in alternative syntax constructs
+- Fix `align-lists` issue where alternative syntax constructs may not be indented correctly
+- Fix `align-data` issue where assignments in alternative syntax constructs are not aligned
+
 ## [v0.4.85] - 2025-01-03
 
 ### Changed
@@ -1722,7 +1748,8 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 
 Initial release
 
-[v0.4.85]: https://github.com/lkrms/pretty-php/compare/v0.4.84...v0.4.85
+[v0.4.86]: https://github.com/lkrms/pretty-php/compare/v0.4.85...v0.4.86
+[v0.4.85]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.84...v0.4.85
 [v0.4.84]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.83...v0.4.84
 [v0.4.83]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.82...v0.4.83
 [v0.4.82]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.81...v0.4.82
