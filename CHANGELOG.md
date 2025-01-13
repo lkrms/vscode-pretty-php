@@ -8,6 +8,43 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.87] - 2025-01-13
+
+### Changed
+
+- Don't place coalesce operators (`??`) at the end of the line when `--operators-last` is given
+
+### Fixed
+
+- Fix issue where newlines are not suppressed inside parentheses in DNF types
+- Fix issue where code from adjacent scopes may have the same indentation
+
+  ```php
+  <?php
+
+  // Before:
+  $foo = bar('foo',
+      'bar')
+      ->baz();
+
+  function ($foo,
+      $bar) {
+      baz();
+  };
+
+  // After:
+  $foo = bar('foo',
+          'bar')
+      ->baz();
+
+  function ($foo,
+          $bar) {
+      baz();
+  };
+  ```
+- Fix issue where only the last constructor in the document with a promoted parameter is formatted correctly
+- Fix issue where lists with leading delimiters may not be aligned when `align-lists` is enabled
+
 ## [v0.4.86] - 2025-01-08
 
 A lot of refactoring has gone into this release, so there may be changes not picked up in testing or not mentioned here.
@@ -1748,7 +1785,8 @@ If you think this version of `pretty-php` does something worse, not better, plea
 
 Initial release
 
-[v0.4.86]: https://github.com/lkrms/pretty-php/compare/v0.4.85...v0.4.86
+[v0.4.87]: https://github.com/lkrms/pretty-php/compare/v0.4.86...v0.4.87
+[v0.4.86]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.85...v0.4.86
 [v0.4.85]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.84...v0.4.85
 [v0.4.84]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.83...v0.4.84
 [v0.4.83]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.82...v0.4.83
