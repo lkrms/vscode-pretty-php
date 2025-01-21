@@ -8,6 +8,35 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.88] - 2025-01-21
+
+### Changed
+
+- Remove binary prefixes (e.g. `b` in `b"foo$bar"`) from all strings, not just constant strings
+- Remove double quotes and leading whitespace from heredoc and nowdoc labels (e.g. `<<< "EOF"` becomes `<<<EOF`)
+- Improve declaration spacing
+  - Add blank lines after loosely-spaced declarations so comments cannot start on the next line
+  - Allow for comments between DocBlocks and subsequent declarations when checking input spacing and suppressing blank lines
+  - Don't always add a blank line between declarations separated by comments other than DocBlocks
+- Improve readability of anonymous functions with lexical variables by adding newlines before:
+  - parameter lists that break over multiple lines
+  - lexical variable lists that break over multiple lines
+
+### Fixed
+
+- Fix issue where nowdocs with whitespace before the label may not be formatted correctly (reported in #195)
+- Fix issue where newlines are suppressed before heredocs at the start of statements when `--psr12` is given
+- Fix issue where heredocs with a `b` prefix are not formatted correctly
+- Fix issue where code needs to be formatted twice for correct placement of brackets in some expressions
+- Fix issue where grouped imports like `use A\B\{C\D, function b\c, const D};` trigger an exception
+- Fix issue where exceptions like `Deprecated: The (real) cast is deprecated, use (float) instead` are thrown on PHP 7.4
+- Fix issue where binary strings may trigger an exception on PHP 7.4
+- Fix inconsistent output when input uses multiple line endings
+
+### Security
+
+- Fail with an exception if `pretty-php` is running as root
+
 ## [v0.4.87] - 2025-01-13
 
 ### Changed
@@ -1785,7 +1814,8 @@ If you think this version of `pretty-php` does something worse, not better, plea
 
 Initial release
 
-[v0.4.87]: https://github.com/lkrms/pretty-php/compare/v0.4.86...v0.4.87
+[v0.4.88]: https://github.com/lkrms/pretty-php/compare/v0.4.87...v0.4.88
+[v0.4.87]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.86...v0.4.87
 [v0.4.86]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.85...v0.4.86
 [v0.4.85]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.84...v0.4.85
 [v0.4.84]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.83...v0.4.84
