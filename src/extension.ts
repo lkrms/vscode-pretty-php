@@ -98,7 +98,14 @@ export function activate (context: vscode.ExtensionContext) {
           '-q', // Silence pretty-php aside from errors and warnings
           '--',
           '-' // Specify that code to format should be taken from the standard input
-        ]
+        ],
+        {
+          env: {
+            ...process.env,
+            DEBUG: undefined, // Don't accidentally enable debug mode
+            XDEBUG_MODE: 'off' // Disable Xdebug
+          }
+        }
       )
 
       log.info('Spawned:', ...php.spawnargs)
