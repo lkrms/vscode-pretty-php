@@ -8,10 +8,25 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.89] - 2025-01-23
+
+### Changed
+
+- Check if the last statement exited a `switch` case when indenting comments
+- Don't add a space between `fn` and `&` in arrow functions that return a value by reference
+- Improve formatting of empty statements after open tags
+- Improve empty `switch` indentation
+
+### Fixed
+
+- Fix issue where `declare()` statements with unenclosed bodies are not formatted correctly
+- Fix regression in v0.4.86 where "magic" commas may be ignored when `preserve-one-line` is enabled
+
 ## [v0.4.88] - 2025-01-21
 
 ### Changed
 
+- Disable Xdebug to improve performance when running `pretty-php` in VS Code
 - Remove binary prefixes (e.g. `b` in `b"foo$bar"`) from all strings, not just constant strings
 - Remove double quotes and leading whitespace from heredoc and nowdoc labels (e.g. `<<< "EOF"` becomes `<<<EOF`)
 - Improve declaration spacing
@@ -1814,7 +1829,8 @@ If you think this version of `pretty-php` does something worse, not better, plea
 
 Initial release
 
-[v0.4.88]: https://github.com/lkrms/pretty-php/compare/v0.4.87...v0.4.88
+[v0.4.89]: https://github.com/lkrms/pretty-php/compare/v0.4.88...v0.4.89
+[v0.4.88]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.87...v0.4.88
 [v0.4.87]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.86...v0.4.87
 [v0.4.86]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.85...v0.4.86
 [v0.4.85]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.84...v0.4.85
