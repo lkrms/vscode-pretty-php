@@ -8,6 +8,12 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.90] - 2025-01-27
+
+### Security
+
+- Allow `pretty-php` to run as root to fix issue where an exception is thrown when running with elevated privileges in a container
+
 ## [v0.4.89] - 2025-01-23
 
 ### Changed
@@ -1829,7 +1835,8 @@ If you think this version of `pretty-php` does something worse, not better, plea
 
 Initial release
 
-[v0.4.89]: https://github.com/lkrms/pretty-php/compare/v0.4.88...v0.4.89
+[v0.4.90]: https://github.com/lkrms/pretty-php/compare/v0.4.89...v0.4.90
+[v0.4.89]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.88...v0.4.89
 [v0.4.88]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.87...v0.4.88
 [v0.4.87]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.86...v0.4.87
 [v0.4.86]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.85...v0.4.86
