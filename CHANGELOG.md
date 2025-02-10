@@ -8,6 +8,25 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.91] - 2025-02-10
+
+### Changed
+
+- If `preserve-one-line` is enabled, format multi-line control structures where every `if`/`elseif`/`else` or `try`/`catch`/`finally` statement starts and ends on the same line as follows:
+
+  ```php
+  <?php
+  if ($foo) { foo(); }
+  elseif ($bar) { bar(); }
+  else { baz(); }
+  ```
+- In `pretty-php`, use friendly rule names when reporting incompatible rules
+
+### Fixed
+
+- Fix issue where invalid arguments to `pretty-php` may not be reported if every input file has an associated config file
+- Adopt upstream fix for issue where tabs in the input may not be expanded correctly
+
 ## [v0.4.90] - 2025-01-27
 
 ### Security
@@ -1835,7 +1854,8 @@ If you think this version of `pretty-php` does something worse, not better, plea
 
 Initial release
 
-[v0.4.90]: https://github.com/lkrms/pretty-php/compare/v0.4.89...v0.4.90
+[v0.4.91]: https://github.com/lkrms/pretty-php/compare/v0.4.90...v0.4.91
+[v0.4.90]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.89...v0.4.90
 [v0.4.89]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.88...v0.4.89
 [v0.4.88]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.87...v0.4.88
 [v0.4.87]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.86...v0.4.87

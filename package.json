@@ -2,7 +2,7 @@
   "name": "pretty-php",
   "displayName": "PHP Formatter - pretty-php",
   "description": "The opinionated PHP code formatter, now with full PHP 8.4 support",
-  "version": "0.4.90",
+  "version": "0.4.91",
   "publisher": "lkrms",
   "engines": {
     "vscode": "^1.74.0"
