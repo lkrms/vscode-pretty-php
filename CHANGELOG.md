@@ -8,6 +8,12 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.93] - 2025-03-31
+
+### Changed
+
+- Update dependencies and adopt upstream changes
+
 ## [v0.4.92] - 2025-02-27
 
 ### Fixed
@@ -1881,7 +1887,8 @@ If you think this version of `pretty-php` does something worse, not better, plea
 
 Initial release
 
-[v0.4.92]: https://github.com/lkrms/pretty-php/compare/v0.4.91...v0.4.92
+[v0.4.93]: https://github.com/lkrms/pretty-php/compare/v0.4.92...v0.4.93
+[v0.4.92]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.91...v0.4.92
 [v0.4.91]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.90...v0.4.91
 [v0.4.90]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.89...v0.4.90
 [v0.4.89]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.88...v0.4.89
