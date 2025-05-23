@@ -8,6 +8,47 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.94] - 2025-05-23
+
+### Added
+
+- Add support for VS Code [region markers](https://code.visualstudio.com/docs/editing/codebasics#_folding)
+
+  Comments like `#region Twig` aren't converted to `// region Twig` anymore; `pretty-php` recognises them as region markers and leaves them alone:
+
+  ```php
+  Input:
+
+  <?php
+  return function (Foo $foo) {
+    $foo->bar(Baz::class);
+
+    #region Comment
+
+    /* Other comments
+     */
+    //are still normalised
+    #as usual
+  };
+  #endregion
+
+  Output:
+
+  <?php
+  return function (Foo $foo) {
+      $foo->bar(Baz::class);
+
+      #region Comment
+
+      /*
+       * Other comments
+       */
+      // are still normalised
+      // as usual
+  };
+  #endregion
+  ```
+
 ## [v0.4.93] - 2025-03-31
 
 ### Changed
@@ -1887,7 +1928,8 @@ If you think this version of `pretty-php` does something worse, not better, plea
 
 Initial release
 
-[v0.4.93]: https://github.com/lkrms/pretty-php/compare/v0.4.92...v0.4.93
+[v0.4.94]: https://github.com/lkrms/pretty-php/compare/v0.4.93...v0.4.94
+[v0.4.93]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.92...v0.4.93
 [v0.4.92]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.91...v0.4.92
 [v0.4.91]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.90...v0.4.91
 [v0.4.90]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.89...v0.4.90
