@@ -8,6 +8,17 @@ It is generated from the GitHub release notes of both projects by [salient/chang
 [salient/changelog]: https://github.com/salient-labs/php-changelog
 [Keep a Changelog]: https://keepachangelog.com/en/1.1.0/
 
+## [v0.4.95] - 2025-12-04
+
+This release runs on PHP 8.5, but formatting changes for PHP 8.5 won't land until the next release. Thanks for your patience!
+
+### Fixed
+
+- Adopt upstream fix for `register_argc_argv must be enabled` exception when running on PHP 8.5
+- Fix issue where removal of whitespace after `T_CONCAT` may break syntax
+
+  Presets that remove whitespace before and after `T_CONCAT` may cause unparseable output errors when the next token is a number, e.g. if `"foo" . 71` collapses to `"foo".71`. This is now prevented by a mandatory rule.
+
 ## [v0.4.94] - 2025-05-23
 
 ### Added
@@ -1928,7 +1939,8 @@ If you think this version of `pretty-php` does something worse, not better, plea
 
 Initial release
 
-[v0.4.94]: https://github.com/lkrms/pretty-php/compare/v0.4.93...v0.4.94
+[v0.4.95]: https://github.com/lkrms/pretty-php/compare/v0.4.94...v0.4.95
+[v0.4.94]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.93...v0.4.94
 [v0.4.93]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.92...v0.4.93
 [v0.4.92]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.91...v0.4.92
 [v0.4.91]: https://github.com/lkrms/vscode-pretty-php/compare/v0.4.90...v0.4.91
